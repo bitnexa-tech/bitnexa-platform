@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BITNEXA Technologies — Code Beyond Limits | Web Development, Cloud & Media Agency</title>
+  <meta name="description" content="Bitnexa Technologies is a premier digital agency building high-performance websites, scalable backends, Render cloud deployments, custom domains, and viral reels video editing." />
+  
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            cyber: ['"Orbitron"', 'sans-serif'],
+          },
+          colors: {
+            cyan: {
+              400: '#00f0ff',
+              500: '#00d2ff',
+              600: '#00b4d8',
+            },
+            electric: {
+              400: '#38bdf8',
+              500: '#0284c7',
+              600: '#0077b6',
+              700: '#03045e',
+            },
+            void: {
+              800: '#09152e',
+              850: '#060e20',
+              900: '#040916',
+              950: '#02050e',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/threeui.css" />
+  <script src="js/three.min.js"></script>
+  <script src="js/GLTFLoader.js"></script>
+  <script src="js/warpFieldRenderer.js"></script>
+</head>
+<body class="bg-cyber-void text-slate-100 min-h-screen font-sans antialiased selection:bg-cyan-500 selection:text-black cyber-grid flex flex-col relative">
+
+  <!-- MASTER PROFESSIONAL 3D WEBGL QUANTUM WAVE & AURORA SCENE -->
+  <div class="neon-scene" aria-hidden="true">
+    <canvas id="neon-webgl-canvas"></canvas>
+  </div>
+
+  <!-- TOP NEON SCROLL PROGRESS BAR -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- LASER SCANLINE SWEEP ON SCROLL -->
+  <div id="scroll-scanline"></div>
+
+  <!-- LEFT AND RIGHT SVG CIRCUIT RAILS -->
+  <div class="circuit-rail circuit-rail-left">
+    <svg width="24" height="100%" viewBox="0 0 24 1000" preserveAspectRatio="none">
+      <path id="circuit-rail-left-line" class="circuit-rail-line" d="M12 0 L12 250 L20 270 L20 450 L6 480 L6 750 L18 780 L18 1000" />
+      <circle class="circuit-rail-node" cx="20" cy="270" r="3" />
+      <circle class="circuit-rail-node" cx="6" cy="480" r="3" />
+      <circle class="circuit-rail-node" cx="18" cy="780" r="3" />
+    </svg>
+  </div>
+  <div class="circuit-rail circuit-rail-right">
+    <svg width="24" height="100%" viewBox="0 0 24 1000" preserveAspectRatio="none">
+      <path id="circuit-rail-right-line" class="circuit-rail-line" d="M12 0 L12 200 L4 230 L4 520 L18 550 L18 820 L8 850 L8 1000" />
+      <circle class="circuit-rail-node" cx="4" cy="230" r="3" />
+      <circle class="circuit-rail-node" cx="18" cy="550" r="3" />
+      <circle class="circuit-rail-node" cx="8" cy="850" r="3" />
+    </svg>
+  </div>
+
+  <!-- CUSTOM CYBER-NEON DUAL CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-outline"></div>
+
+
+
+  <!-- MOMENTUM CONTENT WRAPPER WITH VELOCITY SKEW -->
+  <div id="smooth-content" class="w-full flex flex-col">
+
+    <!-- TOP PROMOTIONAL ANNOUNCEMENT BAR -->
+    <div class="border-b border-cyan-500/20 bg-void-950/90 text-xs text-cyan-300 py-2 px-4 backdrop-blur-md relative z-30">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff] animate-pulse"></span>
+          <span class="font-cyber font-bold tracking-widest text-[11px] text-white">BITNEXA TECHNOLOGIES</span>
+          <span class="text-slate-400 hidden sm:inline">&bull;</span>
+          <span class="text-cyan-400/90 font-mono tracking-wider text-[11px] hidden sm:inline">CODE BEYOND LIMITS &bull; INDIA'S PREMIER TECH &amp; MEDIA AGENCY</span>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <button id="nav-sound-btn" onclick="toggleCyberAudio()" class="px-2.5 py-1 rounded-lg bg-void-900 border border-cyan-500/30 hover:border-cyan-400 text-slate-300 hover:text-cyan-300 transition-all text-[11px] font-semibold">
+            🔇 SFX: OFF
+          </button>
+          <a href="warp-field.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 hover:border-emerald-400 text-emerald-300 hover:text-white font-mono text-[11px] transition-all">
+            <span>🚀 Warp Field Studio &nearr;</span>
+          </a>
+          <a href="mailto:bitnexatechnologies@gmail.com" class="hidden sm:flex items-center gap-1.5 text-cyan-400 hover:text-white font-mono text-[11px] transition-colors">
+            <span>✉️ bitnexatechnologies@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 nav-glass backdrop-blur-2xl bg-void-950/85 border-b border-cyan-500/15">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <div class="relative w-12 h-12 rounded-2xl overflow-hidden p-0.5 bg-gradient-to-tr from-cyan-400 via-electric-500 to-blue-600 shadow-[0_0_20px_rgba(0,240,255,0.35)] group-hover:scale-105 transition-all">
+            <img src="assets/logo.jpg" alt="Bitnexa Logo" class="w-full h-full object-cover rounded-[14px]" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-cyber font-extrabold text-xl tracking-wider text-white">
+                BITNEXA
+              </span>
+              <span class="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">
+                AGENCY
+              </span>
+            </div>
+            <div class="text-[10px] text-cyan-400/80 font-mono tracking-widest uppercase">Code Beyond Limits</div>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-300">
+          <a href="#services" class="hover:text-cyan-400 transition-colors" data-i18n="nav_services">Services</a>
+          <a href="#projects" class="hover:text-cyan-400 transition-colors" data-i18n="nav_projects">Showcase Work</a>
+          <a href="#quantum-atom" class="hover:text-cyan-400 transition-colors flex items-center gap-1 text-cyan-300" data-i18n="nav_atom">
+            <span>⚛️ 3D Atom Core</span>
+          </a>
+          <a href="#warp-engine" class="hover:text-emerald-400 transition-colors flex items-center gap-1 text-emerald-300">
+            <span>🚀 Warp Field</span>
+          </a>
+          <a href="#why-us" class="hover:text-cyan-400 transition-colors" data-i18n="nav_why">Why Choose Us</a>
+          <a href="#packages" class="hover:text-cyan-400 transition-colors" data-i18n="nav_pricing">Packages &amp; Pricing</a>
+          <a href="#founders" class="hover:text-cyan-400 transition-colors" data-i18n="nav_founders">Founders</a>
+          <a href="#faqs" class="hover:text-cyan-400 transition-colors" data-i18n="nav_faqs">FAQs</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-2.5">
+          <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-void-900 border border-cyan-500/30 text-[11px] font-mono text-cyan-300 font-bold shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            GLOBAL / EN
+          </span>
+
+          <a href="mailto:bitnexatechnologies@gmail.com" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-void-900 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 text-xs font-bold shadow-sm transition-all" data-i18n="nav_email">
+            <span>✉️ Email Us</span>
+          </a>
+
+          <button onclick="openInquiryModal()" class="px-4 py-2 rounded-xl btn-neon-primary text-white text-xs font-bold transition-all" data-i18n="nav_proposal">
+            Get Free Proposal &rarr;
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- HERO SECTION (PROMOTIONAL SPOTLIGHT WITH FLOATING AVX PILLS) -->
+    <section class="relative pt-10 pb-24 overflow-hidden z-10">
+      
+      <!-- Ambient Glows -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-4xl mx-auto space-y-6">
+          
+          <!-- Live Status Pulse Ping Badge (Nexvora Style) -->
+          <div class="flex justify-center">
+            <span class="live-badge">
+              <span class="live-ping"></span>
+              <span data-i18n="hero_badge">Available for New Projects &bull; Live Q1 2026</span>
+            </span>
+          </div>
+
+          <!-- Official Brand Emblem Pill (Unblocks 3D Laptop in Hero) -->
+          <div class="flex justify-center">
+            <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-void-950/80 border border-cyan-500/40 backdrop-blur-xl shadow-[0_0_30px_rgba(0,240,255,0.3)]">
+              <div class="w-7 h-7 rounded-lg overflow-hidden border border-cyan-400/60 shrink-0">
+                <img src="assets/logo.jpg" alt="Bitnexa Emblem" class="w-full h-full object-cover" />
+              </div>
+              <span class="font-cyber font-extrabold tracking-widest text-xs text-cyan-300">BITNEXA TECHNOLOGIES</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+          </div>
+
+          <!-- Tagline Circuit Divider -->
+          <div class="circuit-divider max-w-md mx-auto">
+            <span class="font-cyber font-bold tracking-[0.3em] text-xs sm:text-sm text-cyan-400 uppercase" data-i18n="hero_tagline">CODE BEYOND LIMITS</span>
+          </div>
+
+          <!-- Main Catchy Headline with Matrix Scramble -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+            <span data-i18n="hero_h1_1">We Build High-Speed</span> <br />
+            <span class="text-gradient-cyan-blue cyber-scramble" data-text="Websites, Cloud &amp; Viral Media" data-i18n="hero_h1_2">Websites, Cloud &amp; Viral Media</span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-xl leading-relaxed max-w-3xl mx-auto" data-i18n="hero_sub">
+            Bitnexa Technologies is your dedicated tech &amp; creative growth partner. From custom modern web development and bulletproof Node.js backends to 24/7 Render Cloud live deployments, custom domains, and viral Instagram Reels editing.
+          </p>
+
+          <!-- Promotional Highlights Pill -->
+          <div class="flex flex-wrap items-center justify-center gap-2 pt-2 text-xs font-mono text-cyan-300">
+            <span class="px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25">⚡ Lightning Fast Delivery</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25">🔒 100% Secure &amp; SSL Live</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25">💰 Transparent ₹ INR Pricing</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25">🤝 Direct Founder Support</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="openInquiryModal()" class="w-full sm:w-auto px-8 py-4 rounded-2xl btn-neon-primary text-white font-bold text-sm shadow-xl flex items-center justify-center gap-2">
+              <span>🔥 Get a Free Project Proposal</span>
+              <span>&rarr;</span>
+            </button>
+
+            <button onclick="openInquiryModal()" class="w-full sm:w-auto px-8 py-4 rounded-2xl btn-cyber-outline font-bold text-sm flex items-center justify-center gap-2 text-cyan-300 hover:text-white transition-all">
+              <span>✉️ Request Proposal Online</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+
+          <!-- Key Metrics Strip with Stat Glass Cards -->
+          <div class="pt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            
+            <div class="stat-glass-card unfold-card delay-100">
+              <div id="stat-projects" class="text-2xl sm:text-3xl font-extrabold text-white font-mono">35+</div>
+              <div class="text-xs text-cyan-400 font-mono uppercase tracking-wider mt-1">Delivered Builds</div>
+            </div>
+
+            <div class="stat-glass-card unfold-card delay-200">
+              <div id="stat-uptime" class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">99.9%</div>
+              <div class="text-xs text-cyan-400 font-mono uppercase tracking-wider mt-1">Render Cloud Uptime</div>
+            </div>
+
+            <div class="stat-glass-card unfold-card delay-300">
+              <div id="stat-hours" class="text-2xl sm:text-3xl font-extrabold text-white font-mono">24h</div>
+              <div class="text-xs text-cyan-400 font-mono uppercase tracking-wider mt-1">Fast Turnaround</div>
+            </div>
+
+            <div class="stat-glass-card unfold-card delay-400">
+              <div id="stat-satisfaction" class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">100%</div>
+              <div class="text-xs text-cyan-400 font-mono uppercase tracking-wider mt-1">Client Satisfaction</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DUAL KINETIC CYBER MARQUEE STRIP -->
+    <div class="py-5 border-y border-cyan-500/15 bg-void-950/90 relative overflow-hidden space-y-2.5 z-20">
+      <div class="marquee-wrapper">
+        <div class="marquee-track text-cyan-400 font-cyber font-bold text-xs tracking-widest">
+          <div class="marquee-item"><span>⚡ BITNEXA TECHNOLOGIES</span> <span>&bull;</span> <span>CODE BEYOND LIMITS</span> <span>&bull;</span> <span>FULL-STACK WEB APPS</span> <span>&bull;</span> <span>24/7 RENDER CLOUD SLA</span> <span>&bull;</span> <span>NODE.JS &amp; REACT 19</span> <span>&bull;</span> <span>VIRAL REELS &amp; 4K MEDIA</span> <span>&bull;</span> <span>FOUNDED BY ARYAN JANGIR &amp; VIRENDRA</span> <span>&bull;</span></div>
+          <div class="marquee-item"><span>⚡ BITNEXA TECHNOLOGIES</span> <span>&bull;</span> <span>CODE BEYOND LIMITS</span> <span>&bull;</span> <span>FULL-STACK WEB APPS</span> <span>&bull;</span> <span>24/7 RENDER CLOUD SLA</span> <span>&bull;</span> <span>NODE.JS &amp; REACT 19</span> <span>&bull;</span> <span>VIRAL REELS &amp; 4K MEDIA</span> <span>&bull;</span> <span>FOUNDED BY ARYAN JANGIR &amp; VIRENDRA</span> <span>&bull;</span></div>
+        </div>
+      </div>
+      <div class="marquee-wrapper">
+        <div class="marquee-track-reverse text-slate-400 font-mono text-[11px] tracking-wider">
+          <div class="marquee-item"><span>🌐 100% TRANSPARENT ₹ INR PRICING</span> <span>&bull;</span> <span>FREE LIFETIME SSL &amp; HTTPS</span> <span>&bull;</span> <span>CLOUDFLARE DDOS PROTECTION</span> <span>&bull;</span> <span>0.4S LIGHTNING PAGE LOADS</span> <span>&bull;</span> <span>SUB-SECOND DATABASE QUERIES</span> <span>&bull;</span> <span>DIRECT FOUNDER EMAIL SUPPORT</span> <span>&bull;</span></div>
+          <div class="marquee-item"><span>🌐 100% TRANSPARENT ₹ INR PRICING</span> <span>&bull;</span> <span>FREE LIFETIME SSL &amp; HTTPS</span> <span>&bull;</span> <span>CLOUDFLARE DDOS PROTECTION</span> <span>&bull;</span> <span>0.4S LIGHTNING PAGE LOADS</span> <span>&bull;</span> <span>SUB-SECOND DATABASE QUERIES</span> <span>&bull;</span> <span>DIRECT FOUNDER EMAIL SUPPORT</span> <span>&bull;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 border-t border-cyan-500/15 bg-void-950/70 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="services_subtitle">What We Do Best</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Full-Stack Digital & Creative Services" data-i18n="services_title">Full-Stack Digital &amp; Creative Services</span>
+          </h2>
+          <p class="text-slate-400 text-sm" data-i18n="services_desc">We don't just build websites; we engineer revenue-generating digital assets for your brand.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Service 1 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-100">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                  💻
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹4,999</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Modern Frontend &amp; Web Apps</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Ultra-responsive, pixel-perfect user interfaces built with React 19, Next.js, and modern Tailwind CSS. Micro-animations, fast mobile browsing, and sub-second page performance.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ React 19 / Next.js / Tailwind CSS</li>
+                <li>✔ Mobile &amp; Tablet Optimized</li>
+                <li>✔ SEO &amp; Speed Optimized</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Website Frontend Development')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Frontend &rarr;
+            </button>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-200">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-electric-500/10 border border-electric-500/30 text-electric-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                  ⚙️
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹7,999</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Backend Systems &amp; REST APIs</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                High-concurrency Node.js, Express, and database backends. Bulletproof JWT auth, email OTP authentication, Razorpay payment gateways, and custom admin control panels.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ Node.js &bull; Express &bull; PostgreSQL &bull; SQLite</li>
+                <li>✔ Email OTP &bull; Razorpay Gateway</li>
+                <li>✔ Bank-Grade Data Security</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Backend & REST APIs')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Backend &rarr;
+            </button>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-300">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                  🚀
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹2,499</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Render Cloud Live Deployment</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                We take your local files and deploy them live to the world on Render Cloud. Automated Git CI/CD pipelines, Docker containerization, environment secrets, and zero downtime.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ Render.com Cloud Setup</li>
+                <li>✔ Git Auto-Deploy on Commit</li>
+                <li>✔ Environment Variables &amp; SSL</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Render Cloud Deployment')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Cloud Live &rarr;
+            </button>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-100">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-electric-500/10 border border-electric-500/30 text-electric-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                  🌐
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹1,999</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Custom Domain &amp; SSL Architecture</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Domain registration and DNS linking with GoDaddy, Namecheap, and Cloudflare. Enterprise DDoS protection, auto-renewing HTTPS certificates, and custom business email routing.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ GoDaddy / Namecheap DNS Linking</li>
+                <li>✔ Cloudflare Speed &amp; Security</li>
+                <li>✔ Free Lifetime HTTPS Certificate</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Custom Domain & DNS Setup')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Domain &rarr;
+            </button>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-200">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                  🎬
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹4,999</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Viral Reels &amp; Video Editing</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                High-retention Instagram Reels and YouTube Shorts designed to stop the scroll. Kinetic text animations, sound effects, meme hooks, 4K color grading, and viral pacing.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ Premiere Pro &bull; After Effects</li>
+                <li>✔ Animated Subtitles &amp; Sound FX</li>
+                <li>✔ Viral Hook Optimization</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Viral Reels & Video Editing')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Reels &rarr;
+            </button>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="circuit-card unfold-card p-7 space-y-4 flex flex-col justify-between delay-300">
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-electric-500/10 border border-electric-500/30 text-electric-400 flex items-center justify-center text-2xl shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+                  📈
+                </div>
+                <span class="text-xs font-mono text-cyan-400 font-bold">Starts ₹9,999</span>
+              </div>
+              <h3 class="text-xl font-bold text-white">Instagram Growth &amp; Paid Ads</h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Organic profile scaling and high-converting Meta advertising campaigns. Targeted customer acquisition, high-converting acquisition funnels, and measurable ROI.
+              </p>
+              <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+                <li>✔ Targeted Meta Ad Campaigns</li>
+                <li>✔ High-Converting Lead Generation</li>
+                <li>✔ Measurable ROI Tracking</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Instagram Growth & Paid Ads')" class="w-full py-2.5 rounded-xl btn-cyber-outline text-xs font-bold transition-all text-center relative z-10">
+              Inquire For Growth &rarr;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SHOWCASE PROJECTS SECTION -->
+    <section id="projects" class="py-20 border-t border-cyan-500/15 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="projects_subtitle">Our Work Portfolio</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 split-reveal-text">
+              <span class="cyber-scramble" data-text="Proof of Work: What We Build" data-i18n="projects_title">Proof of Work: What We Build</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 max-w-xl" data-i18n="projects_desc">
+              Explore live production builds, e-commerce engines, real estate portals, and viral media created by Bitnexa Technologies.
+            </p>
+          </div>
+
+          <!-- Category Filters & View Toggle -->
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+            <!-- View Mode Switcher: Grid vs Horizontal Slider -->
+            <div class="inline-flex items-center p-1 rounded-xl bg-void-900 border border-cyan-500/30 text-xs font-mono shadow-sm">
+              <button id="view-mode-grid" onclick="switchProjectView('grid')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-cyan-400 text-black shadow-[0_0_12px_rgba(0,240,255,0.4)] transition-all" data-i18n="view_grid">
+                ⊞ Grid View
+              </button>
+              <button id="view-mode-slider" onclick="switchProjectView('slider')" class="px-3 py-1.5 rounded-lg text-xs font-mono text-slate-400 hover:text-white transition-all" data-i18n="view_slider">
+                ↔ Horizontal Track
+              </button>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="filterCategory('all', this)" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold text-black bg-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all" data-i18n="filter_all">
+                All Projects (8)
+              </button>
+              <button onclick="filterCategory('web', this)" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-void-900 border border-white/5 transition-all" data-i18n="filter_web">
+                💻 Web &amp; Apps
+              </button>
+              <button onclick="filterCategory('cloud', this)" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-void-900 border border-white/5 transition-all" data-i18n="filter_cloud">
+                🚀 Cloud &amp; Domains
+              </button>
+              <button onclick="filterCategory('media', this)" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white bg-void-900 border border-white/5 transition-all" data-i18n="filter_media">
+                🎬 Reels &amp; Marketing
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Portfolio Grid (Default View) -->
+        <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Horizontal Project Showcase Track (Slider View) -->
+        <div id="portfolio-slider-container" class="hidden space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-white/10">
+            <div class="text-xs font-mono text-cyan-400 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span id="slider-counter-label"><span id="slider-current-index">1</span> / 8 PROJECTS &bull; SCROLL OR CLICK ARROWS</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="scrollProjectTrack(-1)" class="w-10 h-10 rounded-xl bg-void-900 border border-cyan-500/30 text-cyan-300 hover:text-white hover:border-cyan-400 flex items-center justify-center font-bold text-sm transition-all shadow-sm">
+                ◀
+              </button>
+              <button onclick="scrollProjectTrack(1)" class="w-10 h-10 rounded-xl bg-void-900 border border-cyan-500/30 text-cyan-300 hover:text-white hover:border-cyan-400 flex items-center justify-center font-bold text-sm transition-all shadow-sm">
+                ▶
+              </button>
+            </div>
+          </div>
+
+          <div class="portfolio-track-wrapper">
+            <div id="portfolio-horizontal-track" class="portfolio-horizontal-track">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3D QUANTUM ATOM CORE & ARCHITECTURE ENGINE -->
+    <section id="quantum-atom" class="py-20 border-t border-cyan-500/15 bg-void-950 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <div class="flex items-center justify-center gap-2">
+            <span class="live-badge">
+              <span class="live-ping"></span>
+              <span>⚛️ QUANTUM ARCHITECTURE // 3D ATOM CORE</span>
+            </span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="The Atomic Engine of Bitnexa" data-i18n="atom_title">The Atomic Engine of Bitnexa</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="atom_desc">
+            Drag to rotate, accelerate electron velocity, and experience our real-time 3D Quantum Atom model. We engineer digital products with the mathematical precision of atomic orbital physics.
+          </p>
+        </div>
+
+        <!-- Interactive 3D Atom Stage -->
+        <div class="atom-card unfold-card p-6 sm:p-8 space-y-6">
+          
+          <!-- Atom Terminal Top Bar -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff] animate-pulse"></span>
+                <span class="w-3 h-3 rounded-full bg-electric-400"></span>
+                <span class="w-3 h-3 rounded-full bg-purple-400"></span>
+              </div>
+              <span class="font-cyber font-bold text-xs sm:text-sm text-white tracking-wider">
+                BITNEXA 3D QUANTUM ATOM CORE &bull; RUTHERFORD-BOHR v3.0
+              </span>
+            </div>
+
+            <!-- Live Telemetry Badges -->
+            <div class="flex flex-wrap items-center gap-2 text-[10px] font-mono text-cyan-300">
+              <span class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/30">NUCLEONS: 12</span>
+              <span class="px-2.5 py-1 rounded bg-electric-500/10 border border-electric-500/30">SHELLS: 4 (K, L, M, N)</span>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">CORE: STABLE</span>
+            </div>
+          </div>
+
+          <!-- 3D Interactive Canvas Viewport -->
+          <div class="relative w-full rounded-2xl overflow-hidden bg-void-950/90 border border-cyan-500/20 shadow-inner">
+            <canvas id="interactive-atom-canvas"></canvas>
+
+            <!-- Floating Overlay Telemetry HUD -->
+            <div class="absolute top-4 left-4 p-3 rounded-xl bg-void-950/80 border border-cyan-500/25 backdrop-blur-md text-xs font-mono pointer-events-none space-y-1">
+              <div class="text-[10px] text-slate-400 uppercase tracking-widest">LIVE QUANTUM TELEMETRY</div>
+              <div class="text-white font-bold flex items-center justify-between gap-4">
+                <span class="text-slate-400">Electron Velocity:</span>
+                <span id="atom-telemetry-speed" class="text-cyan-400 font-mono">2,187 km/s</span>
+              </div>
+              <div class="text-white font-bold flex items-center justify-between gap-4">
+                <span class="text-slate-400">Core Frequency:</span>
+                <span class="text-emerald-400 font-mono">432.8 THz</span>
+              </div>
+              <div class="text-white font-bold flex items-center justify-between gap-4">
+                <span class="text-slate-400">State:</span>
+                <span id="atom-telemetry-state" class="text-cyan-300 font-mono">SUPERCONDUCTING</span>
+              </div>
+            </div>
+
+            <div class="absolute bottom-4 left-4 hidden sm:block text-[11px] font-mono text-slate-400 bg-void-950/70 px-3 py-1.5 rounded-lg border border-white/5 pointer-events-none">
+              👆 Click &amp; drag to rotate in 360° &bull; Touch &amp; pinch to inspect orbitals
+            </div>
+          </div>
+
+          <!-- Bottom Interactive Controls Bar -->
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pt-2">
+            
+            <!-- Quantum Model Switcher (Bohr Shells vs Quantum Cloud vs Fusion Vortex) -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono text-cyan-400 font-bold mr-1" data-i18n="atom_model_label">Quantum Model:</span>
+              <button id="atom-mode-bohr" onclick="switchAtomMode('bohr', this)" class="atom-mode-btn atom-btn-active px-3 py-1.5 rounded-xl border border-cyan-500/40 text-xs font-mono transition-all" data-i18n="atom_mode_bohr">
+                ⚛️ Bohr Shells
+              </button>
+              <button id="atom-mode-cloud" onclick="switchAtomMode('cloud', this)" class="atom-mode-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all" data-i18n="atom_mode_cloud">
+                🌌 Quantum Cloud
+              </button>
+              <button id="atom-mode-vortex" onclick="switchAtomMode('vortex', this)" class="atom-mode-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all" data-i18n="atom_mode_vortex">
+                🌀 Fusion Vortex
+              </button>
+            </div>
+
+            <!-- Speed Modes -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono text-slate-400 mr-1" data-i18n="atom_speed_label">Orbital Speed:</span>
+              <button id="atom-btn-1x" onclick="setAtomSpeed(1, this)" class="atom-speed-btn atom-btn-active px-3 py-1.5 rounded-xl border border-cyan-500/40 text-xs font-mono transition-all">
+                1x
+              </button>
+              <button id="atom-btn-2x" onclick="setAtomSpeed(2.5, this)" class="atom-speed-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all">
+                2.5x
+              </button>
+              <button id="atom-btn-warp" onclick="setAtomSpeed(5.5, this)" class="atom-speed-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all">
+                ⚡ Warp
+              </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2.5 w-full lg:w-auto">
+              <button onclick="triggerQuantumBurst()" class="flex-1 lg:flex-initial px-4 py-2 rounded-xl btn-neon-primary text-xs font-bold font-mono transition-all" data-i18n="atom_btn_burst">
+                💥 Pulse Burst
+              </button>
+              <button onclick="toggleAtomReverse()" class="px-3 py-2 rounded-xl btn-cyber-outline text-xs font-mono transition-all" data-i18n="atom_btn_reverse">
+                🔄 Reverse
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- 3 Quantum Engineering Pillars -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-100">
+            <div class="text-3xl relative z-10">⚛️</div>
+            <h3 class="text-lg font-bold text-white relative z-10">Sub-Atomic Speed</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              Web applications built to execute in microseconds with sub-0.4s page load metrics and optimized DOM structures.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-200">
+            <div class="text-3xl relative z-10">🔒</div>
+            <h3 class="text-lg font-bold text-white relative z-10">Nuclear-Grade Security</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              Zero-trust authentication, encrypted JWT tokens, SQL injection shields, and bank-grade SSL certificates.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-300">
+            <div class="text-3xl relative z-10">⚡</div>
+            <h3 class="text-lg font-bold text-white relative z-10">Quantum Concurrency</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              High-volume Node.js event-driven architecture capable of processing thousands of simultaneous client requests with zero latency.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3D HYPERSPACE WARP FIELD SHOWCASE (THREEUI INTEGRATION) -->
+    <section id="warp-engine" class="py-20 border-t border-cyan-500/15 bg-void-950/90 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <div class="flex items-center justify-center gap-2">
+            <span class="live-badge !border-emerald-500/40 !bg-emerald-500/10 !text-emerald-300">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981] animate-pulse"></span>
+              <span>🚀 THREEUI ENGINE // WARP FIELD BACKGROUND</span>
+            </span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Quantum Hyperspace Warp Velocity">Quantum Hyperspace Warp Velocity</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            The original hero warp: 400 emerald streaks and 40 luminous tiles through deep-space fog. Experience hyper-speed WebGL rendering powered by Three.js r128.
+          </p>
+        </div>
+
+        <!-- THE EXACT SHADER FRAME COMPONENT -->
+        <div class="shader-frame relative w-full h-[520px] rounded-3xl overflow-hidden border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.2)] bg-[#02040a]">
+          <div id="warp-field-section-host" class="threeui-background warp-field w-full h-full"></div>
+
+          <!-- OVERLAY TELEMETRY & CONTROLS -->
+          <div class="absolute top-4 left-4 p-4 rounded-2xl bg-void-950/80 border border-emerald-500/25 backdrop-blur-md text-xs font-mono space-y-2 pointer-events-none z-10 max-w-xs">
+            <div class="flex items-center justify-between gap-4 border-b border-emerald-500/20 pb-1.5">
+              <span class="text-emerald-400 font-bold">&lt;WarpFieldBackground /&gt;</span>
+              <span id="section-warp-fps" class="text-white font-mono font-bold">60 FPS</span>
+            </div>
+            <div class="text-[11px] space-y-1 text-slate-300">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Variant:</span>
+                <span id="section-warp-variant" class="text-emerald-300 font-bold">streaks</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Velocity:</span>
+                <span class="text-emerald-300 font-bold">15.0 Warp Speed</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Streak Opacity:</span>
+                <span class="text-emerald-300 font-bold">0.60 (400 Streaks)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Tile Opacity:</span>
+                <span class="text-emerald-300 font-bold">0.90 (40 Tiles)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Camera FOV:</span>
+                <span class="text-emerald-300 font-bold">75° Perspective</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US (PROMOTIONAL ADVANTAGES) -->
+    <section id="why-us" class="py-20 border-t border-cyan-500/15 bg-void-950/80 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="why_subtitle">Why Bitnexa?</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Why Businesses Trust Bitnexa Technologies" data-i18n="why_title">Why Businesses Trust Bitnexa Technologies</span>
+          </h2>
+          <p class="text-slate-400 text-sm" data-i18n="why_desc">We combine high-level technical mastery with transparent communication and rapid delivery.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-100">
+            <div class="text-3xl relative z-10">⚡</div>
+            <h3 class="text-base font-bold text-white relative z-10">Ultra-Rapid Delivery</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              No waiting for months. We ship functional MVPs and websites within 3 to 7 business days so your business launches fast.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-200">
+            <div class="text-3xl relative z-10">🤝</div>
+            <h3 class="text-base font-bold text-white relative z-10">Direct Founder Attention</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              You talk directly with Aryan and Virendra. No junior middlemen or account managers — complete clarity from day one.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-300">
+            <div class="text-3xl relative z-10">💰</div>
+            <h3 class="text-base font-bold text-white relative z-10">Zero Hidden Charges</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              Transparent pricing in Indian Rupees (₹). What we quote is what you pay — no surprise maintenance bills.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-3 delay-400">
+            <div class="text-3xl relative z-10">🛡️</div>
+            <h3 class="text-base font-bold text-white relative z-10">30 Days Free Support</h3>
+            <p class="text-slate-400 text-xs leading-relaxed relative z-10">
+              We don't leave you after deployment. Enjoy 30 days of free bug fixes, minor updates, and performance monitoring.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PACKAGES & PRICING SECTION -->
+    <section id="packages" class="py-20 border-t border-cyan-500/15 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="packages_subtitle">Transparent Packages</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Affordable Agency Packages in ₹ INR" data-i18n="packages_title">Affordable Agency Packages in ₹ INR</span>
+          </h2>
+          <p class="text-slate-400 text-sm" data-i18n="packages_desc">Choose the tier that matches your current goal, or talk to us for a custom package.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          
+          <!-- Package 1 -->
+          <div class="circuit-card unfold-card p-8 flex flex-col justify-between space-y-6 delay-100">
+            <div class="space-y-4 relative z-10">
+              <span class="px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 text-xs font-mono font-bold">STARTER LAUNCH</span>
+              <div class="text-3xl font-extrabold text-white font-mono">₹5,999 <span class="text-xs text-slate-400 font-sans font-normal">one-time</span></div>
+              <p class="text-xs text-slate-300">Perfect for personal brands, consultants, portfolios, and single-product landing pages.</p>
+              <ul class="text-xs text-slate-300 space-y-2.5 font-mono">
+                <li>✔ High-converting landing page</li>
+                <li>✔ Mobile &amp; tablet responsiveness</li>
+                <li>✔ Priority Email &amp; Contact integration</li>
+                <li>✔ Render live cloud deployment</li>
+                <li>✔ Free SSL certificate setup</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Starter Launch Package (₹5,999)')" class="w-full py-3 rounded-xl btn-cyber-outline font-bold text-xs transition-all text-center relative z-10">
+              Choose Starter &rarr;
+            </button>
+          </div>
+
+          <!-- Package 2 (Featured) -->
+          <div class="circuit-card unfold-card p-8 border-cyan-400 shadow-[0_0_35px_rgba(0,240,255,0.25)] flex flex-col justify-between space-y-6 relative delay-200">
+            <div class="absolute -top-3.5 right-6 px-3 py-0.5 rounded-full bg-cyan-400 text-black text-[10px] font-cyber font-bold uppercase tracking-wider z-20">
+              MOST POPULAR
+            </div>
+            <div class="space-y-4 relative z-10">
+              <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-mono font-bold">BUSINESS GROWTH</span>
+              <div class="text-3xl font-extrabold text-cyan-400 font-mono">₹14,999 <span class="text-xs text-slate-400 font-sans font-normal">one-time</span></div>
+              <p class="text-xs text-slate-300">Complete multi-page business website or web application with backend database.</p>
+              <ul class="text-xs text-slate-300 space-y-2.5 font-mono">
+                <li>✔ 5 to 8 Custom designed pages</li>
+                <li>✔ Node.js backend &amp; database</li>
+                <li>✔ Contact form with Instant Email alerts</li>
+                <li>✔ Custom domain &amp; Cloudflare DNS</li>
+                <li>✔ Razorpay INR Payment gateway integration</li>
+                <li>✔ 30 days free technical support</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Business Growth Package (₹14,999)')" class="w-full py-3 rounded-xl btn-neon-primary font-bold text-xs shadow-lg transition-all text-center relative z-10">
+              Choose Business Growth &rarr;
+            </button>
+          </div>
+
+          <!-- Package 3 -->
+          <div class="circuit-card unfold-card p-8 flex flex-col justify-between space-y-6 delay-300">
+            <div class="space-y-4 relative z-10">
+              <span class="px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 text-xs font-mono font-bold">VIRAL MEDIA SUITE</span>
+              <div class="text-3xl font-extrabold text-white font-mono">₹8,999 <span class="text-xs text-slate-400 font-sans font-normal">/ month</span></div>
+              <p class="text-xs text-slate-300">High-volume video editing &amp; Reels production designed to build massive organic reach.</p>
+              <ul class="text-xs text-slate-300 space-y-2.5 font-mono">
+                <li>✔ 12 Viral Instagram Reels / Shorts</li>
+                <li>✔ Kinetic typography &amp; sound design</li>
+                <li>✔ Trend research &amp; viral hook scripts</li>
+                <li>✔ 4K color grading &amp; meme overlays</li>
+                <li>✔ Rapid 24-48h turnaround per video</li>
+              </ul>
+            </div>
+            <button onclick="openInquiryModal('Viral Media Suite (₹8,999/mo)')" class="w-full py-3 rounded-xl btn-cyber-outline font-bold text-xs transition-all text-center relative z-10">
+              Choose Media Suite &rarr;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CYBER TERMINAL SANDBOX -->
+    <section class="py-16 border-t border-cyan-500/15 bg-void-950 relative z-10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+        
+        <div class="text-center space-y-2">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">Developer Direct Shell</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+            <span class="cyber-scramble" data-text="Bitnexa Interactive Terminal">Bitnexa Interactive Terminal</span>
+          </h2>
+          <p class="text-slate-400 text-xs">Run real-time directives or click command chips below to query our agency systems.</p>
+        </div>
+
+        <div class="cyber-terminal unfold-card shadow-[0_0_50px_rgba(0,240,255,0.15)]">
+          <div class="terminal-header">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span class="ml-2 text-xs text-slate-300 font-bold font-mono">bitnexa-shell — v2.4 (x86_64-linux)</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px] text-cyan-400 font-mono">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span>LIVE REPL</span>
+            </div>
+          </div>
+
+          <div id="terminal-output" class="terminal-body space-y-1">
+            <div class="text-slate-400 text-xs">Bitnexa Technologies [Version 2.4.0-release]</div>
+            <div class="text-slate-400 text-xs">(c) 2026 Bitnexa Technologies. Code Beyond Limits. All rights reserved.</div>
+            <div class="text-cyan-300 text-xs mt-2">💡 Type <span class="font-bold underline cursor-pointer" onclick="executeTerminalCommand('help')">help</span> to view available system commands or click a chip below:</div>
+          </div>
+
+          <!-- Quick Command Chips -->
+          <div class="px-4 py-2 border-t border-white/5 bg-void-900/60 flex flex-wrap gap-2 text-xs font-mono">
+            <span class="text-slate-400 self-center text-[10px] uppercase">Quick Execute:</span>
+            <button onclick="executeTerminalCommand('atom')" class="px-2.5 py-1 rounded bg-cyan-500/15 border border-cyan-500/35 text-cyan-300 font-bold hover:bg-cyan-500/30 transition-all">⚛️ atom</button>
+            <button onclick="executeTerminalCommand('services')" class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 hover:bg-cyan-500/20 transition-all">services</button>
+            <button onclick="executeTerminalCommand('stack')" class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 hover:bg-cyan-500/20 transition-all">stack</button>
+            <button onclick="executeTerminalCommand('founders')" class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 hover:bg-cyan-500/20 transition-all">founders</button>
+            <button onclick="executeTerminalCommand('quote')" class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 hover:bg-cyan-500/20 transition-all">quote</button>
+            <button onclick="executeTerminalCommand('contact')" class="px-2.5 py-1 rounded bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 hover:bg-cyan-500/20 transition-all">contact</button>
+            <button onclick="executeTerminalCommand('clear')" class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all">clear</button>
+          </div>
+
+          <div class="terminal-input-row">
+            <span class="text-cyan-400 font-bold text-xs">bitnexa@guest:~$</span>
+            <input type="text" id="terminal-input" placeholder="Type command here (e.g. 'help', 'services', 'quote') and press Enter..." class="flex-1 bg-transparent text-white text-xs outline-none font-mono placeholder-slate-600" />
+            <button onclick="executeTerminalCommand(document.getElementById('terminal-input').value.trim().toLowerCase()); document.getElementById('terminal-input').value = '';" class="px-3 py-1 rounded bg-cyan-500 text-black font-bold text-xs hover:bg-cyan-400 transition-all">Run &crarr;</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & FOUNDERS SECTION -->
+    <section id="founders" class="py-20 border-t border-cyan-500/15 bg-void-900/60 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="founders_subtitle">Leadership &amp; Ownership</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Meet the Founders" data-i18n="founders_title">Meet the Founders</span>
+          </h2>
+          <p class="text-slate-400 text-sm" data-i18n="founders_desc">Direct access to the technical and creative minds steering Bitnexa Technologies.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <!-- FOUNDER 1: ARYAN JANGIR -->
+          <div class="circuit-card unfold-card p-8 space-y-5 delay-100">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-5 border-b border-white/10 relative z-10">
+              <div class="w-18 h-18 rounded-2xl bg-gradient-to-tr from-cyan-400 to-electric-600 p-1 shrink-0 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                <div class="w-full h-full bg-void-950 rounded-[14px] flex items-center justify-center font-cyber font-extrabold text-2xl text-cyan-300">
+                  AJ
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-2xl font-extrabold text-white">Aryan Jangir</h3>
+                  <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-mono font-bold border border-cyan-500/30">FOUNDER</span>
+                </div>
+                <div class="text-sm font-semibold text-cyan-400">Head of Technology &amp; Full-Stack Architect</div>
+                <div class="text-xs text-slate-400 mt-0.5 font-mono">React, Node.js &amp; Render Cloud Systems Specialist</div>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed relative z-10">
+              Leads all software architecture, database design, and cloud deployments. Aryan personally oversees code quality, server security, and system speed to ensure your project performs flawlessly.
+            </p>
+
+            <div class="space-y-2 text-xs relative z-10">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-void-950 border border-white/5">
+                <span class="text-slate-400 font-mono">Direct Founder Email:</span>
+                <a href="mailto:aryan.bitnexa@gmail.com" class="text-cyan-400 hover:underline font-mono font-bold">aryan.bitnexa@gmail.com</a>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-void-950 border border-white/5">
+                <span class="text-slate-400 font-mono">Core Focus:</span>
+                <span class="text-white font-medium">Node.js, React, Render Cloud, Security</span>
+              </div>
+            </div>
+
+            <div class="pt-2 relative z-10">
+              <a href="mailto:aryan.bitnexa@gmail.com" class="w-full py-3.5 rounded-xl btn-neon-primary font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg transition-all">
+                <span>Email Aryan Directly</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- FOUNDER 2: VIRENDRA -->
+          <div class="circuit-card unfold-card p-8 space-y-5 delay-200">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 pb-5 border-b border-white/10 relative z-10">
+              <div class="w-18 h-18 rounded-2xl bg-gradient-to-tr from-electric-400 to-blue-600 p-1 shrink-0 shadow-[0_0_20px_rgba(56,189,248,0.4)]">
+                <div class="w-full h-full bg-void-950 rounded-[14px] flex items-center justify-center font-cyber font-extrabold text-2xl text-electric-300">
+                  V
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-2xl font-extrabold text-white">Virendra</h3>
+                  <span class="px-2.5 py-0.5 rounded-full bg-electric-500/20 text-electric-300 text-[10px] font-mono font-bold border border-electric-500/30">CO-FOUNDER</span>
+                </div>
+                <div class="text-sm font-semibold text-electric-400">Head of Operations &amp; Media Growth</div>
+                <div class="text-xs text-slate-400 mt-0.5 font-mono">Video Production, Reels &amp; Client Success</div>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed relative z-10">
+              Drives creative direction, short-form video production, client relations, and delivery timelines. Virendra ensures your media assets capture attention, generate views, and turn viewers into loyal clients.
+            </p>
+
+            <div class="space-y-2 text-xs relative z-10">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-void-950 border border-white/5">
+                <span class="text-slate-400 font-mono">Direct Co-Founder Email:</span>
+                <a href="mailto:virendra.bitnexa@gmail.com" class="text-electric-400 hover:underline font-mono font-bold">virendra.bitnexa@gmail.com</a>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-void-950 border border-white/5">
+                <span class="text-slate-400 font-mono">Core Focus:</span>
+                <span class="text-white font-medium">Reels Editing, Social Growth, Delivery QA</span>
+              </div>
+            </div>
+
+            <div class="pt-2 relative z-10">
+              <a href="mailto:virendra.bitnexa@gmail.com" class="w-full py-3.5 rounded-xl btn-neon-primary font-bold text-xs text-center flex items-center justify-center gap-2 shadow-lg transition-all">
+                <span>Email Virendra Directly</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQS SECTION -->
+    <section id="faqs" class="py-20 border-t border-cyan-500/15 bg-void-950/70 relative z-10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <div class="text-center space-y-2">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest" data-i18n="faqs_subtitle">Common Questions</span>
+          <h2 class="text-3xl font-extrabold text-white">
+            <span class="cyber-scramble split-reveal-text" data-text="Frequently Asked Questions" data-i18n="faqs_title">Frequently Asked Questions</span>
+          </h2>
+          <p class="text-slate-400 text-sm">Everything you need to know before initiating your project with Bitnexa.</p>
+        </div>
+
+        <div class="space-y-4 text-sm">
+          
+          <div class="circuit-card unfold-card p-6 space-y-2 delay-100">
+            <h4 class="font-bold text-white text-base relative z-10">Q: How long does it take to build and deploy a website?</h4>
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              Standard business websites and high-converting landing pages are fully designed, coded, and deployed live within <strong>3 to 5 business days</strong>. Large-scale e-commerce engines or custom full-stack web applications typically take 7 to 14 days.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-2 delay-200">
+            <h4 class="font-bold text-white text-base relative z-10">Q: Will you connect and launch the website on our custom domain (.com / .in)?</h4>
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              Yes, absolutely! We connect your GoDaddy, Namecheap, Hostinger, or Google domain directly to Cloudflare edge CDN and high-speed Render Cloud servers, complete with free lifetime SSL (HTTPS) encryption and zero downtime handover.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-2 delay-300">
+            <h4 class="font-bold text-white text-base relative z-10">Q: What are the standard payment terms and milestones?</h4>
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              Typically, 40% initial token deposit is required to begin engineering, and the remaining 60% balance is settled after you review and approve the live staging preview. We accept UPI, Bank Transfer, and secure international credit/debit cards.
+            </p>
+          </div>
+
+          <div class="circuit-card unfold-card p-6 space-y-2 delay-400">
+            <h4 class="font-bold text-white text-base relative z-10">Q: Do you offer recurring monthly packages for reels and video editing?</h4>
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              Yes! We provide dedicated monthly agency retainer packages delivering 12 to 20 high-retention reels per month (with visual hooks, dynamic kinetic subtitles, and viral sound curation) delivered on strict schedule.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DIRECT PROMOTIONAL INQUIRY SECTION -->
+    <section id="contact" class="py-20 border-t border-cyan-500/15 bg-transparent relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <span class="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">Start Your Project Today</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            <span class="cyber-scramble" data-text="Let's Build Something Exceptional Together">Let's Build Something Exceptional Together</span>
+          </h2>
+          <p class="text-slate-400 text-sm">Fill out the quick quote request below, or email Aryan and Virendra directly for an instant project review.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Company Official Card -->
+          <div class="circuit-card unfold-card p-7 space-y-5 delay-100">
+            <div class="flex items-center gap-3 relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                🏢
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white">Bitnexa Official Desk</h3>
+                <div class="text-xs text-cyan-400 font-mono">Company Headquarters</div>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              For business inquiries, project proposals, formal quotations, invoices, and technical partnerships.
+            </p>
+
+            <div class="space-y-3 text-xs relative z-10">
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-cyan-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Official Email:</span>
+                <a href="mailto:bitnexatechnologies@gmail.com" class="text-cyan-400 hover:underline font-mono font-bold block truncate">bitnexatechnologies@gmail.com</a>
+                <a href="mailto:contact@bitnexa.com" class="text-slate-400 hover:underline font-mono block truncate">contact@bitnexa.com</a>
+              </div>
+
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-cyan-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Priority Inquiries:</span>
+                <a href="mailto:contact@bitnexa.com" class="text-cyan-400 hover:underline font-mono font-bold block truncate">contact@bitnexa.com &nearr;</a>
+              </div>
+
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-cyan-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Working Days:</span>
+                <span class="text-slate-200 font-medium">Monday - Saturday (10 AM - 10 PM IST)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Founders Direct Email Card -->
+          <div class="circuit-card unfold-card p-7 space-y-5 delay-200">
+            <div class="flex items-center gap-3 relative z-10">
+              <div class="w-10 h-10 rounded-xl bg-electric-500/10 text-electric-400 flex items-center justify-center text-xl">
+                👥
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-white">Direct Founder Channels</h3>
+                <div class="text-xs text-electric-400 font-mono">Aryan &amp; Virendra</div>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-xs leading-relaxed relative z-10">
+              Speak directly with the leadership for high-priority projects, urgent deadlines, or tailored custom scopes.
+            </p>
+
+            <div class="space-y-3 text-xs relative z-10">
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-cyan-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Aryan Jangir (Founder &amp; Tech Lead):</span>
+                <a href="mailto:aryan.bitnexa@gmail.com" class="text-cyan-400 hover:underline font-mono font-bold block">aryan.bitnexa@gmail.com</a>
+              </div>
+
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-electric-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Virendra (Co-Founder &amp; Operations):</span>
+                <a href="mailto:virendra.bitnexa@gmail.com" class="text-electric-400 hover:underline font-mono font-bold block">virendra.bitnexa@gmail.com</a>
+              </div>
+
+              <div class="p-3 rounded-xl bg-void-950/85 border border-white/12 backdrop-blur-md space-y-1">
+                <span class="text-cyan-400 block font-mono text-[10.5px] uppercase font-bold tracking-wider">Response Guarantee:</span>
+                <span class="text-cyan-300 font-medium">Within 60 Minutes Guaranteed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Inquiry Form -->
+          <div class="circuit-card unfold-card p-7 space-y-4 delay-300">
+            <h3 class="text-base font-bold text-white relative z-10">Request Free Proposal</h3>
+            <p class="text-slate-400 text-xs relative z-10">Tell us what you want to build and we'll reply with a clear quote &amp; timeline.</p>
+
+            <form onsubmit="handleInquirySubmit(event)" class="space-y-3 text-xs relative z-10">
+              <div>
+                <input type="text" id="inquiry-name" required placeholder="Your Full Name *" class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl px-3.5 py-2.5 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all" />
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <input type="email" id="inquiry-email" required placeholder="Email Address *" class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl px-3.5 py-2.5 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all" />
+                <input type="tel" id="inquiry-phone" required placeholder="Phone / Mobile Number *" class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl px-3.5 py-2.5 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all" />
+              </div>
+
+              <div>
+                <input type="text" id="inquiry-service-input" required placeholder="Service (e.g. Website, Render Live, Reels)" class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl px-3.5 py-2.5 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all" />
+              </div>
+
+              <div>
+                <textarea id="inquiry-message" rows="3" required placeholder="Explain features needed, your budget in ₹, and target deadline..." class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl p-3 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl btn-neon-primary text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                <span>Submit Project Proposal Request &rarr;</span>
+                <span>&rarr;</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-cyan-500/15 bg-transparent py-12 text-xs text-slate-400 relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl overflow-hidden border border-cyan-500/40">
+            <img src="assets/logo.jpg" alt="Bitnexa Logo" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <span class="font-cyber font-bold text-white text-sm">BITNEXA TECHNOLOGIES</span>
+            <span class="block text-[10px] text-cyan-400/80 font-mono">CODE BEYOND LIMITS &bull; Founded by Aryan Jangir &amp; Virendra</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 font-medium">
+          <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+          <a href="#projects" class="hover:text-cyan-400 transition-colors">Showcase Work</a>
+          <a href="#why-us" class="hover:text-cyan-400 transition-colors">Why Choose Us</a>
+          <a href="#packages" class="hover:text-cyan-400 transition-colors">Packages</a>
+          <a href="#founders" class="hover:text-cyan-400 transition-colors">Founders</a>
+          <a href="mailto:bitnexatechnologies@gmail.com" class="hover:text-white transition-colors">bitnexatechnologies@gmail.com</a>
+        </div>
+
+        <div class="text-[11px] text-slate-500 font-mono">
+          &copy; 2026 BITNEXA TECHNOLOGIES. All rights reserved.
+        </div>
+
+      </div>
+    </footer>
+
+  </div> <!-- END OF #smooth-content -->
+
+  <!-- MODAL FOR PROJECT INQUIRY -->
+  <div id="inquiry-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-void-950/85 backdrop-blur-xl">
+    <div class="circuit-card p-6 sm:p-8 max-w-lg w-full shadow-2xl relative">
+      <button onclick="closeInquiryModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl leading-none z-20">&times;</button>
+
+      <div class="mb-5 relative z-10">
+        <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-widest">Project Inquiry</span>
+        <h3 class="text-xl font-bold text-white mt-1">Get an Instant Quote</h3>
+        <p class="text-xs text-slate-400 mt-1">Aryan and Virendra will review your requirements and reply directly to your email.</p>
+      </div>
+
+      <form onsubmit="handleInquirySubmit(event)" class="space-y-4 text-xs relative z-10">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Your Full Name *</label>
+          <input type="text" id="modal-name" required placeholder="e.g. Rahul Verma" class="w-full bg-void-950 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Email *</label>
+            <input type="email" id="modal-email" required placeholder="name@domain.com" class="w-full bg-void-950 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Contact Phone *</label>
+            <input type="tel" id="modal-phone" required placeholder="+91 98765 43210" class="w-full bg-void-950 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Service Required *</label>
+          <input type="text" id="modal-service" required placeholder="e.g. Website Frontend, Render Live, Reels" class="w-full bg-void-950 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Project Details &amp; Budget in ₹</label>
+          <textarea id="modal-details" rows="3" placeholder="Briefly describe what you need, your estimated budget, and deadline..." class="w-full bg-void-950/85 border border-white/12 backdrop-blur-md rounded-xl p-3 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:bg-void-950/70 transition-all"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl btn-neon-primary text-white font-bold text-xs shadow-lg transition-all">
+          Submit Proposal Request &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+
+  <!-- 3D INTERACTIVE DEVICE PREVIEW MODAL (MACBOOK PRO & IPHONE 16 PRO) -->
+  <div id="device-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-void-950/90 backdrop-blur-2xl device-preview-backdrop">
+    <div class="device-3d-stage max-w-4xl w-full p-4 sm:p-6 rounded-3xl bg-void-900/95 border border-cyan-500/30 shadow-[0_0_50px_rgba(0,240,255,0.2)] relative space-y-6">
+      
+      <!-- Top Modal Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold" data-i18n="device_modal_badge">3D INTERACTIVE DEVICE SIMULATOR</span>
+          </div>
+          <h3 id="preview-modal-title" class="text-xl sm:text-2xl font-bold text-white mt-1">Project Name</h3>
+        </div>
+
+        <!-- Device Switcher Pills & Close -->
+        <div class="flex items-center gap-3">
+          <div class="inline-flex p-1 rounded-xl bg-void-950 border border-white/10 text-xs font-mono shadow-inner">
+            <button id="dev-btn-laptop" onclick="setPreviewDevice('laptop')" class="px-3 py-1.5 rounded-lg lang-btn-active">
+              💻 MacBook Pro
+            </button>
+            <button id="dev-btn-phone" onclick="setPreviewDevice('phone')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">
+              📱 iPhone 16 Pro
+            </button>
+          </div>
+          <button onclick="closeDevicePreview()" class="w-9 h-9 rounded-xl bg-void-950 border border-white/10 text-slate-400 hover:text-white text-2xl flex items-center justify-center leading-none">&times;</button>
+        </div>
+      </div>
+
+      <!-- 3D Device Screen Area -->
+      <div id="device-screen-container" class="relative py-2 flex items-center justify-center min-h-[360px]">
+        <!-- Dynamically rendered laptop or phone frame -->
+      </div>
+
+      <!-- Bottom Specs & Direct Proposal Action -->
+      <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div id="preview-modal-metrics" class="text-xs font-mono text-cyan-300">
+          <!-- Live telemetry metrics -->
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button id="preview-modal-quote-btn" onclick="openInquiryModalForPreview()" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl btn-neon-primary text-white text-xs font-bold font-mono flex items-center justify-center gap-2">
+            <span>✉️ Inquire About This Architecture</span>
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

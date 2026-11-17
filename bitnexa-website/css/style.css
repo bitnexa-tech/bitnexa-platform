@@ -1,0 +1,980 @@
+/* ==========================================================================
+   BITNEXA TECHNOLOGIES - "CODE BEYOND LIMITS"
+   Ultra-Advanced Cybernetic Scroll & Visual FX Engine:
+   - Momentum Velocity Inertia & Dynamic Skew Damping
+   - 3D Perspective Unfolding & Portal Card Warping
+   - Cyber Kinetic Matrix Text Scramble & Decode
+   - Floating Holographic Cyber HUD & Real-Time Telemetry
+   - Laser Scanline Scroll Sweep & Ambient Particle Grid
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #02050e;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+/* Hide default cursor on desktop for custom cyber cursor */
+@media (min-width: 1024px) {
+  body, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
+
+/* ==========================================================================
+   1. CUSTOM DUAL-LAYER CYBER-NEON CURSOR
+   ========================================================================== */
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #00f0ff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+#cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(0, 240, 255, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), inset 0 0 10px rgba(0, 240, 255, 0.15);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s, 
+              background-color 0.25s;
+}
+
+#cursor-outline.cursor-hover {
+  width: 70px;
+  height: 70px;
+  border-color: #00f0ff;
+  background-color: rgba(0, 240, 255, 0.12);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+#cursor-dot.cursor-hover {
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  box-shadow: 0 0 15px #ffffff;
+}
+
+#cursor-outline.cursor-click {
+  transform: translate(-50%, -50%) scale(0.8);
+  border-color: #ffffff;
+}
+
+/* ==========================================================================
+   2. TOP SCROLL PROGRESS BAR & LASER SCANLINE SWEEP
+   ========================================================================== */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #0077b6, #00d2ff, #00f0ff, #ffffff);
+  box-shadow: 0 0 15px #00f0ff, 0 0 25px #00d2ff;
+  z-index: 999999;
+  transition: width 0.08s ease-out;
+  pointer-events: none;
+}
+
+#scroll-scanline {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+  box-shadow: 0 0 15px #00f0ff;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   3. FLOATING CYBER HUD (HEADS-UP TELEMETRY DISPLAY)
+   ========================================================================== */
+#cyber-hud {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  pointer-events: none;
+}
+
+@media (max-width: 1280px) {
+  #cyber-hud {
+    display: none;
+  }
+}
+
+.hud-panel {
+  background: rgba(4, 9, 22, 0.35);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  backdrop-filter: blur(12px);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hud-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hud-label {
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.hud-val {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   4. INERTIA MOMENTUM WRAPPER & SKEW PHYSICS
+   ========================================================================== */
+#smooth-content {
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   5. 3D CARD ENTRANCE & FOLDING PHYSICS
+   ========================================================================== */
+.unfold-card {
+  opacity: 0;
+  transform: perspective(1200px) rotateX(24deg) translateY(70px) scale(0.9);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.unfold-active {
+  opacity: 1 !important;
+  transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1) !important;
+}
+
+/* Stagger Delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* ==========================================================================
+   6. 3D TILT WITH DYNAMIC HOLOGRAPHIC SPECULAR SHINE
+   ========================================================================== */
+.circuit-card {
+  position: relative;
+  background: rgba(5, 11, 24, 0.78);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(0, 240, 255, 0.28);
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 240, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.22);
+  border-radius: 24px;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease-out;
+  overflow: hidden;
+}
+
+/* Corner Circuit Brackets (Matches Logo) */
+.circuit-card::before, .circuit-card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.circuit-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #00f0ff;
+  border-left: 2px solid #00f0ff;
+  border-top-left-radius: 8px;
+}
+
+.circuit-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #00f0ff;
+  border-right: 2px solid #00f0ff;
+  border-bottom-right-radius: 8px;
+}
+
+.circuit-card:hover {
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.35), inset 0 0 25px rgba(0, 240, 255, 0.12);
+}
+
+.circuit-card:hover::before, .circuit-card:hover::after {
+  width: 22px;
+  height: 22px;
+  box-shadow: 0 0 14px #00f0ff;
+}
+
+/* Holographic Prismatic Foil Overlay (Apple Card / Specular Shimmer) */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.35) 0%, rgba(168, 85, 247, 0.22) 35%, rgba(56, 189, 248, 0.12) 60%, transparent 80%);
+  mix-blend-mode: screen;
+}
+
+.circuit-card:hover .card-shine {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   7. CYBER MATRIX KINETIC TEXT SCRAMBLE
+   ========================================================================== */
+.cyber-scramble {
+  font-family: inherit;
+  display: inline-block;
+  will-change: text;
+}
+
+/* Metallic & Neon Typography */
+.text-chrome {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan-blue {
+  background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #0077b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-neon-primary {
+  background: linear-gradient(135deg, #00d2ff 0%, #0077b6 100%);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon-primary:hover {
+  background: linear-gradient(135deg, #00f0ff 0%, #0099ff 100%);
+  box-shadow: 0 0 45px rgba(0, 240, 255, 0.85);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-cyber-outline {
+  background: rgba(4, 11, 26, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #e2e8f0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-cyber-outline:hover {
+  border-color: #00f0ff;
+  color: #00f0ff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Tagline Circuit Divider */
+.circuit-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.circuit-divider::before, .circuit-divider::after {
+  content: '';
+  height: 2px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+/* Floating animation for centerpiece logo */
+@keyframes cyberFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.cyber-float {
+  animation: cyberFloat 5s ease-in-out infinite;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #02050e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0077b6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* ==========================================================================
+   8. 3D ORBITAL NEON RINGS (MATCHING LOGO GEOMETRY)
+   ========================================================================== */
+.logo-orbital-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
+}
+
+.orbital-ring-1 {
+  width: 230px;
+  height: 90px;
+  border: 2px solid rgba(0, 240, 255, 0.85);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.7), inset 0 0 15px rgba(0, 240, 255, 0.4);
+  transform: rotateX(72deg) rotateY(-18deg) rotateZ(30deg);
+  animation: orbitalSpin 9s linear infinite;
+}
+
+.orbital-ring-2 {
+  width: 250px;
+  height: 100px;
+  border: 1.5px dashed rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  transform: rotateX(65deg) rotateY(15deg) rotateZ(-40deg);
+  animation: orbitalSpinReverse 14s linear infinite;
+}
+
+@keyframes orbitalSpin {
+  0% { transform: rotateX(72deg) rotateY(-18deg) rotateZ(0deg); }
+  100% { transform: rotateX(72deg) rotateY(-18deg) rotateZ(360deg); }
+}
+
+@keyframes orbitalSpinReverse {
+  0% { transform: rotateX(65deg) rotateY(15deg) rotateZ(360deg); }
+  100% { transform: rotateX(65deg) rotateY(15deg) rotateZ(0deg); }
+}
+
+/* ==========================================================================
+   9. INFINITE KINETIC CYBER MARQUEE
+   ========================================================================== */
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeLoop 28s linear infinite;
+}
+
+.marquee-track-reverse {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeLoopReverse 34s linear infinite;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.825rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+@keyframes marqueeLoop {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeLoopReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ==========================================================================
+   10. CURSOR PARTICLE SPARKLE TRAIL
+   ========================================================================== */
+.cursor-sparkle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 99998;
+  background: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff, 0 0 18px #00d2ff;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: transform 0.45s ease-out, opacity 0.45s ease-out;
+}
+
+/* ==========================================================================
+   11. LEFT & RIGHT CIRCUIT BOARD RAILS
+   ========================================================================== */
+.circuit-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 35;
+  pointer-events: none;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+.circuit-rail-left { left: 8px; }
+.circuit-rail-right { right: 8px; }
+
+@media (max-width: 1280px) {
+  .circuit-rail { display: none; }
+}
+
+.circuit-rail-line {
+  stroke: rgba(0, 240, 255, 0.28);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-dasharray: 6 12;
+}
+
+.circuit-rail-node {
+  fill: #00f0ff;
+  filter: drop-shadow(0 0 6px #00f0ff);
+}
+
+/* ==========================================================================
+   12. INTERACTIVE CYBER TERMINAL SANDBOX
+   ========================================================================== */
+.cyber-terminal {
+  background: rgba(2, 5, 14, 0.94);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.18), inset 0 0 20px rgba(0, 240, 255, 0.06);
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-header {
+  background: rgba(4, 9, 22, 0.95);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terminal-body {
+  padding: 16px;
+  min-height: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 16px;
+  background: rgba(4, 9, 22, 0.8);
+}
+
+/* ==========================================================================
+   13. MASTER PROFESSIONAL 3D WEBGL QUANTUM WAVE & AURORA SCENE
+   ========================================================================== */
+.neon-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(1400px 900px at 65% 25%, #051a3d 0%, #030d24 45%, #02050e 85%);
+  overflow: hidden;
+  transition: opacity 1.2s ease;
+}
+
+.neon-scene::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 25%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.07) 0%, transparent 70%);
+  filter: blur(140px);
+  pointer-events: none;
+  animation: auroraBreathe 16s ease-in-out infinite alternate;
+}
+
+.neon-scene::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: 15%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, transparent 65%);
+  filter: blur(120px);
+  pointer-events: none;
+  animation: auroraBreatheReverse 18s ease-in-out infinite alternate;
+}
+
+@keyframes auroraBreathe {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+  50% { transform: scale(1.15) translate(-4%, 4%); opacity: 0.9; }
+  100% { transform: scale(0.95) translate(4%, -4%); opacity: 0.7; }
+}
+
+@keyframes auroraBreatheReverse {
+  0% { transform: scale(0.95) translate(0, 0); opacity: 0.5; }
+  50% { transform: scale(1.18) translate(5%, -3%); opacity: 0.85; }
+  100% { transform: scale(1) translate(-3%, 3%); opacity: 0.6; }
+}
+
+.neon-scene canvas {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+/* ==========================================================================
+   14. FLOATING HOLOGRAPHIC AVX PILLS (HOVERING TECH BADGES)
+   ========================================================================== */
+.avx-pill {
+  --tone: #00f0ff;
+  z-index: 25;
+  color: #e0f2fe;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--tone);
+  background: rgba(4, 9, 22, 0.35);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px var(--tone);
+  animation: avxFloat 4.2s ease-in-out infinite, avxDrift 7s ease-in-out infinite alternate;
+  pointer-events: auto;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.avx-pill:hover {
+  transform: scale(1.08) translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 26px var(--tone) !important;
+  border-color: #ffffff !important;
+}
+
+.avx-pill--cyan { --tone: #00f0ff; }
+.avx-pill--blue { --tone: #38bdf8; }
+.avx-pill--purple { --tone: #a855f7; }
+.avx-pill--emerald { --tone: #10b981; }
+
+@keyframes avxFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes avxDrift {
+  0% { translate: 0 0; }
+  100% { translate: 8px 0; }
+}
+
+/* ==========================================================================
+   15. NEXVORA SCENE-WINDOW & GLASS LIFT CARDS
+   ========================================================================== */
+.scene-window {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.scene-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(2, 5, 14, 0.95) 0%, rgba(2, 5, 14, 0.6) 40%, rgba(2, 5, 14, 0.05) 85%);
+  z-index: 1;
+}
+
+.lift-card {
+  background: rgba(4, 9, 22, 0.82);
+  border: 1px solid rgba(0, 240, 255, 0.22);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 24px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s ease, 
+              box-shadow 0.35s ease;
+}
+
+.lift-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(0, 240, 255, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+.stat-glass-card {
+  background: rgba(4, 9, 22, 0.75);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  padding: 20px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-glass-card:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   16. LIVE PING & GLOW BADGES
+   ========================================================================== */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00f0ff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.live-ping {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+  position: relative;
+}
+
+.live-ping::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid #00f0ff;
+  animation: livePingPulse 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes livePingPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Glass Header Scroll States */
+.nav-glass {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-glass.scrolled {
+  background: rgba(4, 9, 22, 0.88) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.22) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.nav-glass.scrolled-deep {
+  background: rgba(2, 5, 14, 0.95) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.35) !important;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8), inset 0 1px rgba(0, 240, 255, 0.15) !important;
+}
+
+/* ==========================================================================
+   18. 3D QUANTUM ATOM ENGINE & TELEMETRY STYLING
+   ========================================================================== */
+.atom-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, rgba(6, 20, 50, 0.75) 0%, rgba(2, 5, 14, 0.94) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 28px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.18), inset 0 0 30px rgba(0, 240, 255, 0.08);
+  overflow: hidden;
+}
+
+.atom-card::before, .atom-card::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.atom-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2.5px solid #00f0ff;
+  border-left: 2.5px solid #00f0ff;
+  border-top-left-radius: 12px;
+  box-shadow: 0 0 12px #00f0ff;
+}
+
+.atom-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2.5px solid #00f0ff;
+  border-right: 2.5px solid #00f0ff;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 0 12px #00f0ff;
+}
+
+#interactive-atom-canvas {
+  width: 100%;
+  height: 480px;
+  display: block;
+  cursor: grab;
+}
+
+#interactive-atom-canvas:active {
+  cursor: grabbing;
+}
+
+.atom-btn-active {
+  background: #00f0ff !important;
+  color: #02050e !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6) !important;
+  font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   19. KINETIC STAGGERED TEXT SPLIT REVEAL
+   ========================================================================== */
+.split-reveal-line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.split-char {
+  display: inline-block;
+  transform: translateY(115%) rotateX(-35deg);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease;
+  will-change: transform, opacity;
+}
+
+.split-reveal-active .split-char {
+  transform: translateY(0) rotateX(0deg);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   20. HORIZONTAL PROJECT TRACK & 3D PARALLAX CAROUSEL
+   ========================================================================== */
+.portfolio-track-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.portfolio-horizontal-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 16px 4px 28px 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.portfolio-horizontal-track::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-slide-card {
+  flex: 0 0 calc(100% - 32px);
+  max-width: 420px;
+  scroll-snap-align: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .horizontal-slide-card {
+    flex: 0 0 420px;
+  }
+}
+
+/* ==========================================================================
+   21. INTERACTIVE 3D DEVICE PREVIEW MODAL
+   ========================================================================== */
+.device-preview-backdrop {
+  perspective: 1200px;
+}
+
+.device-3d-stage {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.device-frame-laptop {
+  background: #0b1329;
+  border: 2px solid rgba(0, 240, 255, 0.4);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 25px 60px -15px rgba(0, 240, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.device-laptop-base {
+  background: #1e293b;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0 0 16px 16px;
+  height: 16px;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+}
+
+.device-laptop-notch {
+  width: 70px;
+  height: 5px;
+  background: #334155;
+  border-radius: 0 0 6px 6px;
+  margin: 0 auto;
+}
+
+.device-frame-phone {
+  max-width: 340px;
+  margin: 0 auto;
+  background: #02050e;
+  border: 3.5px solid rgba(0, 240, 255, 0.5);
+  border-radius: 40px;
+  box-shadow: 0 25px 50px rgba(0, 240, 255, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+
+.phone-dynamic-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 22px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+/* ==========================================================================
+   22. MULTI-LANGUAGE TOGGLE ACTIVE STYLES
+   ========================================================================== */
+.lang-btn-active {
+  background: #00f0ff !important;
+  color: #02050e !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.6) !important;
+}
+
+
+
+

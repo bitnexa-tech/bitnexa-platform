@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: agency-workflow-hub
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@agency.com
+      - key: ADMIN_NAME
+        value: Agency Master
+      # Optional: Add SMTP credentials for real production email OTP delivery
+      # - key: SMTP_HOST
+      #   value: smtp.gmail.com
+      # - key: SMTP_PORT
+      #   value: 587
+      # - key: SMTP_USER
+      #   sync: false
+      # - key: SMTP_PASS
+      #   sync: false

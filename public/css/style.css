@@ -1,0 +1,231 @@
+/* ==========================================================================
+   DEVFLOW STUDIO PRO - 3 DISTINCT APPLICATION UI SYSTEMS
+   1. Client: Customer SaaS Order & Milestone Portal (Sky/Blue)
+   2. Worker: Developer Kanban Workstation (Emerald/Mint)
+   3. Admin: Enterprise Executive CRM & Financial Data Table (Purple/Obsidian)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Base Reset & Fonts */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   1. CLIENT PORTAL THEME (Customer SaaS Hub)
+   ========================================================================== */
+body.app-client {
+  background-color: #050a14;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(3, 105, 161, 0.08) 0px, transparent 55%);
+}
+
+.client-sidebar {
+  background: rgba(10, 18, 36, 0.95);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.client-card {
+  background: rgba(13, 24, 48, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 20px;
+  transition: all 0.25s ease;
+}
+
+.client-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.25);
+}
+
+/* ==========================================================================
+   2. WORKER PORTAL THEME (Developer & Creator Kanban IDE)
+   ========================================================================== */
+body.app-worker {
+  background-color: #030a08;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.14) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.09) 0px, transparent 55%);
+}
+
+.worker-header {
+  background: rgba(6, 18, 14, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.kanban-board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 1280px) {
+  .kanban-board-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.kanban-col {
+  background: rgba(8, 22, 18, 0.75);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  border-radius: 20px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-col-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kanban-cards-wrapper {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.worker-task-card {
+  background: rgba(13, 31, 26, 0.92);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 16px;
+  padding: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.worker-task-card:hover {
+  border-color: rgba(16, 185, 129, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -8px rgba(16, 185, 129, 0.3);
+}
+
+/* ==========================================================================
+   3. ADMIN PORTAL THEME (Executive Enterprise CRM & Table)
+   ========================================================================== */
+body.app-admin {
+  background-color: #080312;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.13) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 55%);
+}
+
+.admin-header {
+  background: rgba(18, 9, 36, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.admin-table-container {
+  background: rgba(19, 10, 38, 0.8);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  background: rgba(26, 14, 50, 0.9);
+  padding: 0.875rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #c084fc;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.25);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8125rem;
+  vertical-align: top;
+}
+
+.admin-table tr:hover td {
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.admin-stat-card {
+  background: rgba(22, 11, 45, 0.8);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   PORTAL SWITCHER DOCK (Floating Bottom Nav)
+   ========================================================================== */
+.portal-dock {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+}
+
+/* Glow Dots */
+.glow-dot-sky {
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.glow-dot-emerald {
+  box-shadow: 0 0 10px #34d399;
+}
+
+.glow-dot-purple {
+  box-shadow: 0 0 10px #c084fc;
+}
+
+/* Animations */
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

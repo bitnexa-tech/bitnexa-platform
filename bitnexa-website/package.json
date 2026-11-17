@@ -1,0 +1,18 @@
+{
+  "name": "bitnexa-website",
+  "version": "1.0.0",
+  "description": "Official Website for Bitnexa Technologies - Web Development, Cloud & Media Agency",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "agency",
+    "web-development",
+    "render",
+    "fullstack",
+    "bitnexa"
+  ],
+  "author": "Aryan Jangir & Virendra",
+  "license": "ISC"
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreeUI - WarpFieldBackground Component</title>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/threeui.css" />
+  <script src="js/three.min.js"></script>
+  <script src="js/warpFieldRenderer.js"></script>
+  <style>
+    body {
+      background-color: #030304;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+    }
+    .shader-frame {
+      position: relative;
+      width: 100%;
+      height: 78vh;
+      min-height: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.15), inset 0 0 40px rgba(0, 0, 0, 0.8);
+      background: #02040a;
+    }
+    .hud-glass {
+      background: rgba(3, 7, 18, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4 sm:p-6 lg:p-8">
+
+  <!-- TOP HEADER -->
+  <header class="max-w-7xl mx-auto w-full flex items-center justify-between pb-6 border-b border-emerald-500/20">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/logo.jpg" alt="Bitnexa Logo" class="w-10 h-10 rounded-xl border border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.3)] group-hover:scale-105 transition-transform" />
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-white text-base tracking-wider">THREEUI</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">r128 SHADER</span>
+          </div>
+          <div class="text-[11px] text-emerald-400/80 font-mono">WarpFieldBackground Component</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-mono text-emerald-400 hidden sm:inline-flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        400 Emerald Streaks &bull; 40 Luminous Tiles
+      </span>
+      <a href="index.html" class="px-4 py-2 rounded-xl bg-void-900 border border-emerald-500/40 text-emerald-300 hover:text-white hover:bg-emerald-500/20 text-xs font-bold transition-all flex items-center gap-1.5">
+        &larr; Back to Bitnexa
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN SCENE CONTAINER -->
+  <main class="max-w-7xl mx-auto w-full flex-1 flex flex-col py-6 space-y-6">
+
+    <!-- BRIEF & DETAILS -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
+          <span>&lt;WarpFieldBackground /&gt;</span>
+          <span id="active-variant-tag" class="text-xs font-mono font-normal px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 uppercase">
+            variant: streaks
+          </span>
+        </h1>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          The original hero warp: 400 emerald streaks and 40 luminous tiles through deep-space fog.
+        </p>
+      </div>
+
+      <!-- VARIANT SELECTOR PILLS -->
+      <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+        <span class="text-slate-400 text-[11px] mr-1">VARIANTS:</span>
+        <button onclick="switchVariant('streaks')" id="btn-streaks" class="px-3 py-1.5 rounded-lg border border-emerald-400 bg-emerald-500/25 text-emerald-200 font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+          streaks
+        </button>
+        <button onclick="switchVariant('letters')" id="btn-letters" class="px-3 py-1.5 rounded-lg border border-white/10 hover:border-emerald-500/50 text-slate-300 hover:text-white transition-all">
+          letters
+        </button>
+        <button onclick="switchVariant('keycaps')" id="btn-keycaps" class="px-3 py-1.5 rounded-lg border border-white/10 hover:border-emerald-500/50 text-slate-300 hover:text-white transition-all">
+          keycaps
+        </button>
+        <button onclick="switchVariant('hyperspace')" id="btn-hyperspace" class="px-3 py-1.5 rounded-lg border border-white/10 hover:border-emerald-500/50 text-slate-300 hover:text-white transition-all">
+          hyperspace
+        </button>
+      </div>
+    </div>
+
+    <!-- THE EXACT SHADER FRAME COMPONENT -->
+    <div class="shader-frame">
+      <div id="warp-field-host" class="threeui-background warp-field w-full h-full"></div>
+
+      <!-- OVERLAY TELEMETRY HUD -->
+      <div class="hud-glass absolute top-4 left-4 p-4 rounded-2xl text-xs font-mono space-y-2 pointer-events-none z-10 max-w-xs">
+        <div class="flex items-center justify-between gap-4 border-b border-emerald-500/20 pb-1.5">
+          <span class="text-emerald-400 font-bold">WARP ENGINE HUD</span>
+          <span id="hud-fps" class="text-white font-mono font-bold">60 FPS</span>
+        </div>
+        <div class="text-[11px] space-y-1 text-slate-300">
+          <div class="flex justify-between">
+            <span class="text-slate-400">Warp Speed:</span>
+            <span id="hud-speed" class="text-emerald-300 font-bold">15.0</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Streak Opacity:</span>
+            <span id="hud-streak-op" class="text-emerald-300 font-bold">0.60</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Tile Opacity:</span>
+            <span id="hud-tile-op" class="text-emerald-300 font-bold">0.90</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Camera FOV:</span>
+            <span id="hud-fov" class="text-emerald-300 font-bold">75°</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">Deep-Space Fog:</span>
+            <span class="text-emerald-300 font-bold">0.001 FogExp2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER HERO BADGE -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        <div class="text-center space-y-3 p-6 rounded-3xl hud-glass border border-emerald-500/30 max-w-md mx-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-mono text-emerald-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            ACTIVE WARP VECTOR
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-wider">
+            QUANTUM WARP FIELD
+          </h2>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            Streaming toward camera on +z with authored continuous corridor recycle. Powered by Three.js r128 WebGL.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REAL-TIME INTERACTIVE CONTROLS -->
+    <div class="p-5 rounded-2xl hud-glass space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-emerald-500/20">
+        <span class="text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider">
+          🎛️ Real-Time Component Properties (Configured Usage)
+        </span>
+        <button onclick="resetDefaults()" class="text-[11px] font-mono text-slate-400 hover:text-emerald-300 transition-colors">
+          Reset to Defaults
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-xs font-mono">
+        <!-- Speed -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>speed:</span>
+            <span id="val-speed" class="text-emerald-400 font-bold">15.0</span>
+          </div>
+          <input type="range" id="ctrl-speed" min="1" max="50" step="0.5" value="15" oninput="updateProp('speed', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+
+        <!-- streakOpacity -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>streakOpacity:</span>
+            <span id="val-streakOpacity" class="text-emerald-400 font-bold">0.60</span>
+          </div>
+          <input type="range" id="ctrl-streakOpacity" min="0.05" max="1" step="0.05" value="0.60" oninput="updateProp('streakOpacity', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+
+        <!-- tileOpacity -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>tileOpacity:</span>
+            <span id="val-tileOpacity" class="text-emerald-400 font-bold">0.90</span>
+          </div>
+          <input type="range" id="ctrl-tileOpacity" min="0.05" max="1" step="0.05" value="0.90" oninput="updateProp('tileOpacity', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+
+        <!-- FOV -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>fov:</span>
+            <span id="val-fov" class="text-emerald-400 font-bold">75</span>
+          </div>
+          <input type="range" id="ctrl-fov" min="30" max="120" step="1" value="75" oninput="updateProp('fov', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+
+        <!-- Hue -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>hue:</span>
+            <span id="val-hue" class="text-emerald-400 font-bold">0°</span>
+          </div>
+          <input type="range" id="ctrl-hue" min="0" max="360" step="5" value="0" oninput="updateProp('hue', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+
+        <!-- Saturation -->
+        <div class="space-y-1">
+          <div class="flex justify-between text-slate-400 text-[11px]">
+            <span>saturation:</span>
+            <span id="val-saturation" class="text-emerald-400 font-bold">1.00</span>
+          </div>
+          <input type="range" id="ctrl-saturation" min="0" max="3" step="0.1" value="1.0" oninput="updateProp('saturation', parseFloat(this.value))" class="w-full accent-emerald-400 cursor-pointer" />
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Configured Options matching Prompt specification exactly
+    const currentOptions = {
+      variant: 'streaks',
+      speed: 15.0,
+      streakOpacity: 0.60,
+      tileOpacity: 0.90,
+      fov: 75,
+      hue: 0,
+      saturation: 1.00,
+      brightness: 1.00
+    };
+
+    let warpInstance = null;
+
+    function initWarp() {
+      const host = document.getElementById('warp-field-host');
+      if (warpInstance) {
+        warpInstance.destroy();
+      }
+      warpInstance = window.mountWarpFieldBackground(host, currentOptions);
+      updateDisplayValues();
+    }
+
+    function switchVariant(variant) {
+      currentOptions.variant = variant;
+      ['streaks', 'letters', 'keycaps', 'hyperspace'].forEach(v => {
+        const btn = document.getElementById('btn-' + v);
+        if (v === variant) {
+          btn.className = 'px-3 py-1.5 rounded-lg border border-emerald-400 bg-emerald-500/25 text-emerald-200 font-bold transition-all shadow-[0_0_12px_rgba(16,185,129,0.3)]';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-lg border border-white/10 hover:border-emerald-500/50 text-slate-300 hover:text-white transition-all';
+        }
+      });
+      document.getElementById('active-variant-tag').textContent = 'variant: ' + variant;
+      initWarp();
+    }
+
+    function updateProp(prop, val) {
+      currentOptions[prop] = val;
+      if (warpInstance) {
+        warpInstance.setOptions({ [prop]: val });
+      }
+      updateDisplayValues();
+    }
+
+    function updateDisplayValues() {
+      document.getElementById('val-speed').textContent = currentOptions.speed.toFixed(1);
+      document.getElementById('val-streakOpacity').textContent = currentOptions.streakOpacity.toFixed(2);
+      document.getElementById('val-tileOpacity').textContent = currentOptions.tileOpacity.toFixed(2);
+      document.getElementById('val-fov').textContent = currentOptions.fov;
+      document.getElementById('val-hue').textContent = currentOptions.hue + '°';
+      document.getElementById('val-saturation').textContent = currentOptions.saturation.toFixed(2);
+
+      document.getElementById('hud-speed').textContent = currentOptions.speed.toFixed(1);
+      document.getElementById('hud-streak-op').textContent = currentOptions.streakOpacity.toFixed(2);
+      document.getElementById('hud-tile-op').textContent = currentOptions.tileOpacity.toFixed(2);
+      document.getElementById('hud-fov').textContent = currentOptions.fov + '°';
+    }
+
+    function resetDefaults() {
+      currentOptions.speed = 15.0;
+      currentOptions.streakOpacity = 0.60;
+      currentOptions.tileOpacity = 0.90;
+      currentOptions.fov = 75;
+      currentOptions.hue = 0;
+      currentOptions.saturation = 1.00;
+      currentOptions.brightness = 1.00;
+
+      document.getElementById('ctrl-speed').value = 15;
+      document.getElementById('ctrl-streakOpacity').value = 0.60;
+      document.getElementById('ctrl-tileOpacity').value = 0.90;
+      document.getElementById('ctrl-fov').value = 75;
+      document.getElementById('ctrl-hue').value = 0;
+      document.getElementById('ctrl-saturation').value = 1.0;
+
+      if (warpInstance) {
+        warpInstance.setOptions(currentOptions);
+      }
+      updateDisplayValues();
+    }
+
+    // Live FPS Tracker
+    let lastTime = performance.now();
+    let frameCount = 0;
+    function updateFPS() {
+      frameCount++;
+      const now = performance.now();
+      if (now - lastTime >= 1000) {
+        document.getElementById('hud-fps').textContent = frameCount + ' FPS';
+        frameCount = 0;
+        lastTime = now;
+      }
+      requestAnimationFrame(updateFPS);
+    }
+    requestAnimationFrame(updateFPS);
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', initWarp);
+  </script>
+</body>
+</html>

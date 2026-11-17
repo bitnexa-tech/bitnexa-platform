@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Worker Workstation - Kanban Dev Desk</title>
+  <meta name="description" content="Dedicated Worker & Developer Kanban Workstation to execute assigned jobs, track sprint stages, and submit live deliverables." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            },
+            surface: {
+              800: '#0d221c',
+              850: '#091915',
+              900: '#061310',
+              950: '#030a08',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="app-worker bg-surface-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-emerald-500 selection:text-white flex flex-col pb-24">
+
+  <!-- TOP WORKER SYSTEM STATUS BAR -->
+  <div class="border-b border-emerald-500/20 bg-surface-900/90 text-xs text-emerald-200 py-1.5 px-4 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 glow-dot-emerald animate-pulse"></span>
+        <span class="font-bold tracking-wide font-mono text-[11px]">DEVFLOW WORKSTATION // TALENT SPRINT DESK</span>
+        <span class="text-slate-400 hidden sm:inline">&bull; Talent Workspace (Execute &amp; Deliver Assigned Sprints)</span>
+      </div>
+      <div class="flex items-center gap-3 text-[11px] font-mono text-slate-400">
+        <span id="sync-indicator" class="text-emerald-400 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Sprint Sync Active (8s)</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKER NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 backdrop-blur-2xl bg-surface-950/85 border-b border-emerald-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <a href="/worker" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl overflow-hidden p-0.5 bg-gradient-to-tr from-cyan-400 to-emerald-500 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-all">
+            <img src="/assets/logo.jpg" alt="Bitnexa Logo" class="w-full h-full object-cover rounded-[10px]" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-base text-white">Bitnexa</span>
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-wider">
+                Worker Desk
+              </span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono">Code Beyond Limits &bull; Sprint Board</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Action Controls -->
+      <div class="flex items-center gap-3">
+        <button onclick="loadWorkerTasks()" class="px-3 py-1.5 rounded-xl bg-surface-900 border border-emerald-500/30 hover:border-emerald-400 text-slate-200 text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-colors">
+          <span>↻ Refresh Board</span>
+        </button>
+
+        <!-- Unauthenticated -->
+        <div id="auth-logged-out" class="flex items-center gap-2">
+          <button onclick="openAuthModal()" class="px-4 py-2 rounded-xl border border-emerald-500/30 hover:border-emerald-400 bg-surface-900 text-emerald-200 text-xs font-bold transition-all shadow-sm">
+            Worker Login
+          </button>
+        </div>
+
+        <!-- Authenticated -->
+        <div id="auth-logged-in" class="hidden flex items-center gap-3">
+          <div class="flex items-center gap-2 bg-surface-900 border border-emerald-500/20 rounded-2xl px-3 py-1.5 shadow-sm">
+            <div id="user-avatar" class="w-7 h-7 rounded-xl bg-emerald-600 flex items-center justify-center font-bold text-xs uppercase text-white shadow-sm">
+              W
+            </div>
+            <div class="text-left hidden sm:block">
+              <div id="user-name" class="text-xs font-bold text-slate-100">Worker</div>
+              <div class="text-[9px] text-emerald-400 font-mono font-semibold tracking-wider">ACTIVE TALENT</div>
+            </div>
+          </div>
+          
+          <button onclick="logout()" title="Logout" class="p-2 rounded-xl border border-white/10 bg-surface-900 hover:bg-rose-500/10 text-slate-400 hover:text-rose-400 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="fixed bottom-24 right-6 z-50 flex flex-col gap-2 max-w-md w-full pointer-events-none"></div>
+
+  <!-- MAIN KANBAN WORKSPACE -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    
+    <!-- Hero & Stats Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-900 border border-emerald-500/20 rounded-3xl p-5 sm:p-6 shadow-xl">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono mb-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 glow-dot-emerald"></span>
+          <span>Talent Execution Desk &bull; Sprint Operations Workspace</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-extrabold text-white">Sprint Kanban Workstation</h1>
+        <p class="text-slate-300 text-xs mt-0.5">Move cards across sprint stages: pick up assigned jobs, develop, submit live links, and complete work.</p>
+      </div>
+
+      <!-- Quick Stats Ribbon -->
+      <div class="flex items-center gap-3 bg-surface-950 p-2.5 rounded-2xl border border-emerald-500/20">
+        <div class="px-3 py-1">
+          <div class="text-[10px] text-slate-400 font-mono">Assigned (To-Do)</div>
+          <div id="stat-todo-count" class="text-lg font-bold text-sky-400 font-mono">0</div>
+        </div>
+        <div class="w-px h-7 bg-white/10"></div>
+        <div class="px-3 py-1">
+          <div class="text-[10px] text-slate-400 font-mono">In Progress</div>
+          <div id="stat-active-count" class="text-lg font-bold text-purple-400 font-mono">0</div>
+        </div>
+        <div class="w-px h-7 bg-white/10"></div>
+        <div class="px-3 py-1">
+          <div class="text-[10px] text-slate-400 font-mono">Completed</div>
+          <div id="stat-done-count" class="text-lg font-bold text-emerald-400 font-mono">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters & Quick Actions Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2">
+        <input type="text" id="worker-search-input" oninput="filterWorkerCards()" placeholder="Search project title or client..." class="bg-surface-900 border border-emerald-500/20 rounded-xl px-3.5 py-2 text-slate-200 text-xs focus:outline-none focus:border-emerald-400 w-48 sm:w-64" />
+        <select id="worker-category-filter" onchange="filterWorkerCards()" class="bg-surface-900 border border-emerald-500/20 rounded-xl px-3 py-2 text-slate-300 text-xs focus:outline-none focus:border-emerald-400">
+          <option value="All">All Categories</option>
+          <option value="Website Frontend">💻 Website Frontend</option>
+          <option value="Website Backend">⚙️ Website Backend</option>
+          <option value="Render Deployment">🚀 Render Deployment</option>
+          <option value="Domain & DNS Setup">🌐 Custom Domain Setup</option>
+          <option value="Reels & Video Editing">🎬 Reels Editing</option>
+          <option value="Instagram Promotion">📈 Instagram Promotion</option>
+        </select>
+      </div>
+
+      <div class="text-slate-400 font-mono text-[11px] flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Drag or click buttons to advance stage</span>
+      </div>
+    </div>
+
+    <!-- 4-COLUMN KANBAN BOARD -->
+    <div id="kanban-board-container" class="kanban-board-grid">
+      
+      <!-- COLUMN 1: TO-DO / ASSIGNED -->
+      <div class="kanban-col border-sky-500/25">
+        <div class="kanban-col-header bg-sky-500/10 text-sky-300">
+          <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
+            <span>📥 To-Do / Assigned</span>
+          </div>
+          <span id="col-count-assigned" class="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-200 text-xs font-mono font-bold">0</span>
+        </div>
+        <div id="col-cards-assigned" class="kanban-cards-wrapper">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- COLUMN 2: IN PROGRESS -->
+      <div class="kanban-col border-purple-500/25">
+        <div class="kanban-col-header bg-purple-500/10 text-purple-300">
+          <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
+            <span>⚡ In Progress</span>
+          </div>
+          <span id="col-count-progress" class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-200 text-xs font-mono font-bold">0</span>
+        </div>
+        <div id="col-cards-progress" class="kanban-cards-wrapper">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- COLUMN 3: UNDER REVIEW -->
+      <div class="kanban-col border-amber-500/25">
+        <div class="kanban-col-header bg-amber-500/10 text-amber-300">
+          <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
+            <span>🔍 Under Review (QA)</span>
+          </div>
+          <span id="col-count-review" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-200 text-xs font-mono font-bold">0</span>
+        </div>
+        <div id="col-cards-review" class="kanban-cards-wrapper">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- COLUMN 4: COMPLETED / DELIVERED -->
+      <div class="kanban-col border-emerald-500/25">
+        <div class="kanban-col-header bg-emerald-500/10 text-emerald-300">
+          <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
+            <span>✅ Completed</span>
+          </div>
+          <span id="col-count-completed" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 text-xs font-mono font-bold">0</span>
+        </div>
+        <div id="col-cards-completed" class="kanban-cards-wrapper">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-surface-950/85 backdrop-blur-xl">
+    <div class="bg-surface-900 border border-emerald-500/25 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative animate-scale-up">
+      <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
+
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3 text-xl">
+          🛠️
+        </div>
+        <h3 class="text-xl font-bold text-white">Worker Desk Sign-In</h3>
+        <p class="text-xs text-slate-400 mt-1">Instant passwordless verification code sent to your registered worker email.</p>
+      </div>
+
+      <div class="mb-4 bg-surface-950 p-3 rounded-2xl border border-emerald-500/15 space-y-2 text-xs">
+        <span class="text-slate-400 block text-[11px] font-bold uppercase">1-Click Fast Worker Access:</span>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="quickFillWorker('worker.vikram@agency.com', 'Vikram Singh')" class="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-bold hover:bg-emerald-500/20 text-center">
+            Vikram (Dev)
+          </button>
+          <button onclick="quickFillWorker('worker.ananya@agency.com', 'Ananya Verma')" class="p-2 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-300 font-bold hover:bg-teal-500/20 text-center">
+            Ananya (Media)
+          </button>
+        </div>
+      </div>
+
+      <div id="auth-step-email" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Worker Email Address *</label>
+          <input type="email" id="auth-email-input" placeholder="worker@agency.com" class="w-full bg-surface-950 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Full Name</label>
+          <input type="text" id="auth-name-input" placeholder="e.g. Vikram Singh" class="w-full bg-surface-950 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+        </div>
+        <button onclick="handleSendOtp()" id="btn-send-otp" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-sm shadow-lg shadow-emerald-500/20">
+          Get Verification Code &rarr;
+        </button>
+      </div>
+
+      <div id="auth-step-otp" class="hidden space-y-4">
+        <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-xs text-emerald-300 flex items-center justify-between">
+          <span id="auth-otp-sent-to">Code sent</span>
+          <button onclick="backToEmailStep()" class="text-white underline font-semibold">Change</button>
+        </div>
+        <div id="dev-otp-helper" class="hidden p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-xs text-amber-300 flex items-center justify-between">
+          <span>Dev Code: <strong id="dev-otp-display" class="font-mono text-amber-200 font-bold">123456</strong></span>
+          <button onclick="autoFillDevOtp()" class="bg-amber-500/30 text-amber-100 px-2.5 py-1 rounded-lg text-xs font-bold">Paste</button>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Enter 6-Digit OTP</label>
+          <input type="text" id="auth-otp-input" maxlength="6" placeholder="• • • • • •" class="w-full bg-surface-950 border border-white/10 rounded-xl px-4 py-3 text-center text-2xl font-mono text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500" />
+        </div>
+        <button onclick="handleVerifyOtp()" id="btn-verify-otp" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold text-sm">
+          Verify &amp; Enter Worker Desk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKER PROGRESS / DELIVERABLE SUBMIT MODAL -->
+  <div id="worker-update-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-surface-950/85 backdrop-blur-xl">
+    <div class="bg-surface-900 border border-emerald-500/25 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative">
+      <button onclick="closeWorkerUpdateModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl leading-none">&times;</button>
+
+      <div class="mb-5">
+        <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-bold">Sprint Execution Control</div>
+        <h3 class="text-xl font-bold text-white mt-1">Submit Deliverable &amp; Notes</h3>
+        <p id="worker-modal-task-title" class="text-xs text-slate-300 font-mono mt-1 font-semibold truncate">Task Title</p>
+      </div>
+
+      <form id="worker-update-form" onsubmit="handleWorkerUpdateSubmit(event)" class="space-y-4">
+        <input type="hidden" id="worker-modal-task-id" />
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Update Stage *</label>
+          <select id="worker-modal-status-select" class="w-full bg-surface-950 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
+            <option value="In Progress">⚡ In Progress (Working actively on code/editing)</option>
+            <option value="Under Review">🔍 Under Review (Deliverable ready for QA &amp; Client check)</option>
+            <option value="Completed">✅ Completed (Work accepted &amp; delivered)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Deliverable Link (GitHub / Render URL / Drive / Reel Link)</label>
+          <input type="url" id="worker-modal-link" placeholder="https://github.com/... or https://...onrender.com" class="w-full bg-surface-950 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Technical Execution Notes for Client &amp; Admin</label>
+          <textarea id="worker-modal-notes" rows="4" placeholder="Mention completed features, test credentials, live URL details, or instructions..." class="w-full bg-surface-950 border border-white/10 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all">
+          Save Stage &amp; Submit Work
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FLOATING MULTI-PORTAL SWITCHER DOCK -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
+    <div class="portal-dock px-3 py-2 rounded-2xl flex items-center gap-2 text-xs">
+      <span class="text-[10px] text-slate-400 font-mono hidden sm:inline px-2">SWITCH PORTAL:</span>
+      <a href="/client" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-sky-300 hover:bg-sky-500/10 font-medium flex items-center gap-1.5 transition-colors">
+        <span>💼 Client</span>
+      </a>
+      <a href="/worker" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold flex items-center gap-1.5">
+        <span>🛠️ Worker</span>
+      </a>
+      <a href="/admin" class="px-3 py-1.5 rounded-xl text-slate-400 hover:text-purple-300 hover:bg-purple-500/10 font-medium flex items-center gap-1.5 transition-colors">
+        <span>👑 Admin</span>
+      </a>
+      <a href="/" class="p-1.5 rounded-xl text-slate-500 hover:text-white" title="Home Hub">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <script src="/js/worker.js"></script>
+</body>
+</html>
