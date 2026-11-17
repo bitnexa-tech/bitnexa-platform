@@ -434,7 +434,7 @@ async function loadClientTasks() {
     }
 
     container.innerHTML = data.tasks.map(t => {
-      const emailAdminLink = `mailto:bitnexatechnologies@gmail.com?subject=Bitnexa%20Inquiry%20-%20${encodeURIComponent(t.title)}`;
+      const emailAdminLink = `mailto:bitnexa.technologies@gmail.com?subject=Bitnexa%20Inquiry%20-%20${encodeURIComponent(t.title)}`;
 
       return `
         <div class="client-card p-6 sm:p-7 space-y-5">

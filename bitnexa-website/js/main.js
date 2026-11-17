@@ -525,7 +525,7 @@ Best regards,
 ${name}`
   );
 
-  const mailtoUrl = `mailto:bitnexatechnologies@gmail.com?cc=aryan.bitnexa@gmail.com,virendra.bitnexa@gmail.com&subject=${subject}&body=${body}`;
+  const mailtoUrl = `mailto:bitnexa.technologies@gmail.com?cc=aryan.bitnexa@gmail.com,virendra.bitnexa@gmail.com&subject=${subject}&body=${body}`;
 
   // Automatically save inquiry to agency database
   fetch('/api/inquiry', {
@@ -823,7 +823,7 @@ function executeTerminalCommand(cmd) {
     case 'contact':
       respLine.innerHTML = `
         <div class="text-xs space-y-1">
-          <div>✉️ Company: <a href="mailto:bitnexatechnologies@gmail.com" class="text-cyan-400 underline font-bold">bitnexatechnologies@gmail.com</a></div>
+          <div>✉️ Company: <a href="mailto:bitnexa.technologies@gmail.com" class="text-cyan-400 underline font-bold">bitnexa.technologies@gmail.com</a></div>
           <div>👨‍💻 Aryan (Tech): <a href="mailto:aryan.bitnexa@gmail.com" class="text-cyan-300 underline font-mono">aryan.bitnexa@gmail.com</a></div>
           <div>🎬 Virendra (Ops): <a href="mailto:virendra.bitnexa@gmail.com" class="text-electric-300 underline font-mono">virendra.bitnexa@gmail.com</a></div>
         </div>
