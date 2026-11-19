@@ -105,8 +105,8 @@ async function runTests() {
         'POST',
         '/api/tasks',
         {
-          title: 'Deploy Next.js App to Render with Custom Domain',
-          service_category: 'Render Deployment',
+          title: 'Deploy Next.js App to Dedicated Cloud with Custom Domain',
+          service_category: 'Domain & Cloud Deployment',
           description: 'Need full setup with automatic deploys and SSL domain link.',
           budget_inr: 8500,
           deadline: '3 Days',
@@ -174,8 +174,8 @@ async function runTests() {
         `/api/tasks/${createdTaskId}/progress`,
         {
           status: 'In Progress',
-          worker_notes: 'Started environment configuration on Render.',
-          submission_link: 'https://render.com/demo-service-status',
+          worker_notes: 'Started environment configuration on dedicated cloud server.',
+          submission_link: 'https://mybrand.com/demo-service-status',
         },
         workerToken
       );

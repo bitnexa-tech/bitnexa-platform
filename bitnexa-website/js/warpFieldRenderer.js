@@ -34,7 +34,7 @@ const LETTER_RESET_Z = -1300;
 const RESET_Z = -1800;
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const SPEED_SCALE = { streaks: 1, letters: 0.5, keycaps: 0.7, hyperspace: 2.4 };
-const BACKGROUND = { streaks: 0x02040a, letters: 0x02040a, keycaps: 0x03070c, hyperspace: 0x01020a };
+const BACKGROUND = { streaks: 0x030303, letters: 0x030303, keycaps: 0x050505, hyperspace: 0x020202 };
 
 
 function createStreakLayer(group, settings, opacity) {
@@ -94,7 +94,7 @@ function createTileLayer(group, opacity) {
   let lastOpacity = opacity;
   for (let index = 0; index < 40; index += 1) {
     const material = template.clone();
-    material.color.setHex(Math.random() > 0.6 ? 0xa7f3d0 : Math.random() > 0.5 ? 0xd1fae5 : 0xffffff);
+    material.color.setHex(Math.random() > 0.6 ? 0xffd700 : Math.random() > 0.5 ? 0xf59e0b : 0xffffff);
     const mesh = new THREE.Mesh(geometry, material);
     const angle = Math.random() * Math.PI * 2;
     const radius = Math.random() * 400 + 100;
@@ -174,7 +174,7 @@ function createGlyphGeometries(atlas) {
 function createLetterLayer(group, opacity) {
   const atlas = createGlyphAtlas("#ffffff");
   const geometries = createGlyphGeometries(atlas);
-  const tints = [0xffffff, 0xa7f3d0, 0x34d399].map((color) => new THREE.MeshBasicMaterial({
+  const tints = [0xffffff, 0xffd700, 0xf59e0b, 0xfde047].map((color) => new THREE.MeshBasicMaterial({
     map: atlas.texture, color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide,
   }));
   const letters = [];
@@ -284,16 +284,16 @@ function createKeycapLayer(scene, group, opacity) {
   const atlas = createGlyphAtlas("#ffffff");
   const legendGeometries = createGlyphGeometries(atlas);
   const capGeometry = createKeycapGeometry(26, 14, 26);
-  const bodies = [0x3d4844, 0x505c57, 0x2b3431].map((color) => new THREE.MeshLambertMaterial({ color, emissive: 0x03110b, transparent: true, opacity }));
-  const legends = [0x9df5cf, 0xffffff].map((color) => new THREE.MeshBasicMaterial({
+  const bodies = [0x1a1a1e, 0x242429, 0x121215].map((color) => new THREE.MeshLambertMaterial({ color, emissive: 0x100b02, transparent: true, opacity }));
+  const legends = [0xffd700, 0xffffff, 0xfde047].map((color) => new THREE.MeshBasicMaterial({
     map: atlas.texture, color, transparent: true, opacity, depthWrite: false, side: THREE.DoubleSide,
   }));
-  const ambient = new THREE.AmbientLight(0x0f1a17, 1);
-  const key = new THREE.DirectionalLight(0xf4fffb, 1.9);
+  const ambient = new THREE.AmbientLight(0x1a1505, 1);
+  const key = new THREE.DirectionalLight(0xfff8db, 1.9);
   key.position.set(0.4, 1, 0.7);
-  const rim = new THREE.DirectionalLight(0x34d399, 0.45);
+  const rim = new THREE.DirectionalLight(0xf59e0b, 0.55);
   rim.position.set(-0.7, -0.4, 0.5);
-  const flash = new THREE.PointLight(0x10b981, 0.8, 900);
+  const flash = new THREE.PointLight(0xffd700, 0.9, 900);
   flash.position.set(0, 0, 140);
   scene.add(ambient, key, rim, flash);
   const caps = [];
@@ -314,7 +314,7 @@ function createKeycapLayer(scene, group, opacity) {
     group.add(mesh);
     caps.push({ mesh, spin: (Math.random() - 0.5) * 0.03, swayX: (Math.random() - 0.5) * 0.026, swayY: (Math.random() - 0.5) * 0.03, phase: 0, drift: 0, radius });
   }
-  const sparks = createSparkLayer(group, 750, 7, 0x6ee7b7, opacity, 620);
+  const sparks = createSparkLayer(group, 750, 7, 0xffd700, opacity, 620);
   return {
     update(step) {
       caps.forEach((cap) => {
@@ -368,9 +368,9 @@ function createTunnelTexture() {
       /* drawn once above and once below the seam so the scrolling wrap is invisible */
       for (const offset of [-size, 0, size]) {
         const gradient = context.createLinearGradient(0, top + offset, 0, top + offset + height);
-        gradient.addColorStop(0, "rgba(191,219,254,0)");
-        gradient.addColorStop(0.5, `rgba(224,238,255,${alpha})`);
-        gradient.addColorStop(1, "rgba(147,197,253,0)");
+        gradient.addColorStop(0, "rgba(255,215,0,0)");
+        gradient.addColorStop(0.5, `rgba(255,255,255,${alpha})`);
+        gradient.addColorStop(1, "rgba(245,158,11,0)");
         context.fillStyle = gradient;
         context.fillRect(x, top + offset, width, height);
       }
@@ -392,9 +392,9 @@ function createGlowTexture() {
   if (context) {
     const gradient = context.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
     gradient.addColorStop(0, "rgba(255,255,255,1)");
-    gradient.addColorStop(0.18, "rgba(219,234,254,0.55)");
-    gradient.addColorStop(0.45, "rgba(96,165,250,0.16)");
-    gradient.addColorStop(1, "rgba(2,6,23,0)");
+    gradient.addColorStop(0.18, "rgba(255,215,0,0.65)");
+    gradient.addColorStop(0.45, "rgba(245,158,11,0.22)");
+    gradient.addColorStop(1, "rgba(3,3,3,0)");
     context.fillStyle = gradient;
     context.fillRect(0, 0, size, size);
   }
@@ -443,10 +443,10 @@ function createHyperspaceLayer(group, opacity) {
 }
 
 const STREAK_SETTINGS = {
-  streaks: { count: 400, radiusMin: 20, radiusSpread: 800, lengthMin: 50, lengthSpread: 150, palette: [0x10b981, 0x059669, 0x34d399, 0xffffff], opacityScale: 1 },
-  letters: { count: 260, radiusMin: 20, radiusSpread: 800, lengthMin: 40, lengthSpread: 120, palette: [0x10b981, 0x059669, 0x34d399, 0xffffff], opacityScale: 1 },
-  keycaps: { count: 220, radiusMin: 20, radiusSpread: 800, lengthMin: 40, lengthSpread: 140, palette: [0x10b981, 0x34d399, 0xa7f3d0, 0xffffff], opacityScale: 1 },
-  hyperspace: { count: 1200, radiusMin: 6, radiusSpread: 760, lengthMin: 170, lengthSpread: 420, palette: [0xffffff, 0xdbeafe, 0x93c5fd, 0x60a5fa, 0xc7d2fe], opacityScale: 1.45 },
+  streaks: { count: 450, radiusMin: 20, radiusSpread: 800, lengthMin: 50, lengthSpread: 150, palette: [0xffd700, 0xf59e0b, 0xffffff, 0xfde047, 0xd97706], opacityScale: 1 },
+  letters: { count: 260, radiusMin: 20, radiusSpread: 800, lengthMin: 40, lengthSpread: 120, palette: [0xffd700, 0xffffff, 0xf59e0b, 0xfde047], opacityScale: 1 },
+  keycaps: { count: 220, radiusMin: 20, radiusSpread: 800, lengthMin: 40, lengthSpread: 140, palette: [0xffd700, 0xf59e0b, 0xffffff, 0xd97706], opacityScale: 1 },
+  hyperspace: { count: 1200, radiusMin: 6, radiusSpread: 760, lengthMin: 170, lengthSpread: 420, palette: [0xffffff, 0xffd700, 0xf59e0b, 0xfde047, 0xd97706], opacityScale: 1.45 },
 };
 
 function createWarpFieldRenderer(canvas, getOptions) {

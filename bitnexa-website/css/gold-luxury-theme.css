@@ -1,0 +1,1021 @@
+/* ==========================================================================
+   BITNEXA TECHNOLOGIES — OBSIDIAN BLACK, CRISP WHITE & GOLDEN YELLOW THEME
+   Prestige Luxury Tech & High-Impact Digital Agency Aesthetic:
+   - Deep Pure Obsidian Black (#000000 / #030303 / #0a0a0d)
+   - Razor-Sharp High-Contrast Pure White (#ffffff)
+   - Radiant Metallic Golden Yellow (#ffd700 / #f59e0b / #facc15)
+   - Subtle Gold Laser Traces & Glass Obsidian Card Architecture
+   - Zero Shaking / Zero Wobble / 100% Solid & Fluid Stability
+   ========================================================================== */
+
+:root {
+  --gold-primary: #f59e0b;
+  --gold-bright: #ffd700;
+  --gold-light: #fde047;
+  --gold-glow: rgba(245, 158, 11, 0.45);
+  --gold-border: rgba(245, 158, 11, 0.32);
+  --gold-border-bright: rgba(255, 215, 0, 0.65);
+  --obsidian-deep: #030303;
+  --obsidian-surface: #0a0a0d;
+  --obsidian-card: rgba(14, 14, 18, 0.88);
+  --text-pure-white: #ffffff;
+  --text-silver: #e2e8f0;
+  --text-muted-gold: #fbbf24;
+}
+
+/* ==========================================================================
+   1. GLOBAL RESET & OBSIDIAN ATMOSPHERE
+   ========================================================================== */
+html,
+html.dark,
+html.light {
+  background-color: #030303 !important;
+  color: #ffffff !important;
+  color-scheme: dark !important;
+}
+
+body {
+  background-color: #030303 !important;
+  background-image: 
+    radial-gradient(rgba(245, 158, 11, 0.07) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.07) 0%, transparent 65%),
+    radial-gradient(circle at 50% 70%, rgba(245, 158, 11, 0.05) 0%, transparent 65%) !important;
+  background-size: 28px 28px, 100% 100%, 100% 100% !important;
+  background-repeat: repeat, no-repeat, no-repeat !important;
+  color: #ffffff !important;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #f59e0b !important;
+  color: #000000 !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #030303;
+}
+::-webkit-scrollbar-track {
+  background: #08080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #b45309;
+  border-radius: 9999px;
+  border: 2px solid #030303;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Completely Hide Scanline, Circuit Rails & Partition Lines */
+#scroll-scanline,
+.circuit-rail,
+.circuit-rail-left,
+.circuit-rail-right {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Ensure standard operating system cursor is always visible with zero lag */
+html, body {
+  cursor: default !important;
+}
+a, button, [onclick], input[type="button"], input[type="submit"], select, .filter-btn, [role="button"] {
+  cursor: pointer !important;
+}
+input[type="text"], input[type="email"], textarea {
+  cursor: text !important;
+}
+
+/* Custom Cursor: Pure Gold Theme (Zero Cyan) */
+#cursor-dot {
+  background: #ffd700 !important;
+  box-shadow: 0 0 10px #ffd700, 0 0 20px rgba(255, 215, 0, 0.6) !important;
+}
+
+#cursor-outline {
+  border: 1.5px solid rgba(255, 215, 0, 0.75) !important;
+}
+
+#cursor-outline.cursor-hover {
+  border-color: #ffd700 !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.6) !important;
+}
+
+/* Ambient backdrops */
+
+/* Ambient Radial Glows (Luminous Gold) */
+.absolute.bg-pink-500\/10,
+.absolute.bg-emerald-500\/10,
+.absolute.bg-pink-600\/15 {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%) !important;
+}
+
+/* Content Stability: Zero transform */
+#smooth-content {
+  transform: none !important;
+  will-change: auto !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   2. HIGH-IMPACT TYPOGRAPHY & GOLD GRADIENTS
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  text-shadow: none !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-slate-100,
+.text-slate-200,
+.text-slate-300 {
+  color: #f1f5f9 !important;
+}
+
+.text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Golden text highlights */
+.text-cyan-400,
+.text-cyan-300,
+.text-emerald-400,
+.text-emerald-300,
+.text-amber-300,
+.text-amber-400 {
+  color: #facc15 !important;
+}
+
+/* Prestige Golden Gradient Headings */
+.text-gradient-cyan-blue,
+.text-gold-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #fde047 30%, #f59e0b 70%, #d97706 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 25px rgba(245, 158, 11, 0.45)) !important;
+}
+
+.title-luxury-emboss {
+  text-shadow: 0 0 30px rgba(245, 158, 11, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   3. SECTIONS & GLASS OBSIDIAN CARDS (100% SEAMLESS UNIFIED BACKGROUND)
+   ========================================================================== */
+section,
+footer {
+  background: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+section.bg-void-950,
+section.bg-void-900,
+section.bg-void-850,
+section.bg-void-950\/90,
+section.bg-void-950\/80,
+section.bg-void-950\/70,
+section.bg-void-950\/40,
+section.bg-void-900\/60,
+section.bg-white,
+section.bg-slate-50,
+section.bg-slate-50\/60,
+section.bg-slate-50\/70 {
+  background: transparent !important;
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.border-t.border-cyan-500\/15,
+.border-t.border-amber-500\/20,
+.border-t.border-slate-200,
+.border-y.border-amber-500\/20,
+.border-y.border-slate-200 {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-color: transparent !important;
+}
+
+.bg-void-950,
+.bg-void-900,
+.bg-void-850,
+.bg-cyber-void {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* Prestige Glass Obsidian Cards */
+.stat-glass-card,
+.service-card,
+.project-card,
+.pricing-card,
+.circuit-card,
+.unfold-card,
+.circuit-card,
+.quote-calculator-box,
+.roadmap-step-card,
+.testimonial-card {
+  background: rgba(14, 14, 18, 0.88) !important;
+  border: 1px solid rgba(245, 158, 11, 0.24) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.08) !important;
+  color: #ffffff !important;
+  border-radius: 18px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.stat-glass-card:hover,
+.service-card:hover,
+.project-card:hover,
+.pricing-card:hover,
+.circuit-card:hover,
+.circuit-card:hover,
+.roadmap-step-card:hover,
+.testimonial-card:hover {
+  border-color: #ffd700 !important;
+  box-shadow: 0 18px 45px -5px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 215, 0, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   4. NAVIGATION & ANNOUNCEMENT HEADER
+   ========================================================================== */
+/* Top announcement bar */
+.border-b.border-slate-200,
+.border-b.border-emerald-500\/20,
+.border-b.border-pink-500\/20,
+.bg-slate-50,
+.bg-void-950\/90 {
+  background: #08080a !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25) !important;
+  color: #fde047 !important;
+}
+
+/* Main Navigation Header */
+header,
+.nav-glass {
+  background: rgba(5, 5, 8, 0.9) !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(245, 158, 11, 0.08) !important;
+}
+
+.nav-glass.scrolled,
+.nav-glass.scrolled-deep {
+  background: rgba(3, 3, 5, 0.98) !important;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.4) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95), 0 0 30px rgba(245, 158, 11, 0.15) !important;
+}
+
+header nav a {
+  color: #e2e8f0 !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+header nav a:hover {
+  color: #ffd700 !important;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6) !important;
+}
+
+/* Brand Emblem & Logo */
+header a span.font-cyber {
+  color: #ffffff !important;
+}
+
+/* Agency Pill in Navbar */
+header span.bg-cyan-500\/15,
+header span.text-cyan-300 {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25) !important;
+}
+
+
+
+/* Language Badge */
+span.bg-void-900.border.border-cyan-500\/30 {
+  background: #0f0f14 !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fde047 !important;
+}
+
+/* Email Us in Navbar */
+a[data-i18n="nav_email"] {
+  background: #111115 !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  color: #fde047 !important;
+}
+
+a[data-i18n="nav_email"]:hover {
+  border-color: #ffd700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* ==========================================================================
+   5. BUTTONS (RADIANT GOLD & OBSIDIAN OUTLINE)
+   ========================================================================== */
+.btn-neon-primary,
+.btn-luxury-primary {
+  background: linear-gradient(135deg, #ffd700 0%, #f59e0b 50%, #b45309 100%) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border: 1px solid #ffe066 !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5), 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  letter-spacing: 0.01em;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-neon-primary:hover,
+.btn-luxury-primary:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 60%, #f59e0b 100%) !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 6px 20px rgba(0, 0, 0, 0.7) !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-cyber-outline {
+  background: rgba(14, 14, 18, 0.9) !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  color: #fde047 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-cyber-outline:hover {
+  border-color: #ffd700 !important;
+  color: #ffffff !important;
+  background: rgba(245, 158, 11, 0.18) !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   6. HERO BADGES, LOGO CENTERPIECE & PROMOTIONAL PILLS
+   ========================================================================== */
+.live-badge {
+  background: rgba(245, 158, 11, 0.14) !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  color: #fde047 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2) !important;
+}
+
+.live-ping {
+  background: #ffd700 !important;
+  box-shadow: 0 0 10px #ffd700 !important;
+}
+
+/* Hero Center Large Logo Showcase */
+.w-36.h-36.sm\:w-44.sm\:h-44.md\:w-52.md\:h-52,
+.relative.w-36.h-36 {
+  background: #0a0a0e !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.25), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Verified Ribbon beneath Logo */
+.absolute.-bottom-3\.5 {
+  background: #050507 !important;
+  border: 1px solid #f59e0b !important;
+  color: #fde047 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4) !important;
+}
+
+.circuit-divider {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #facc15 !important;
+}
+
+/* Promotional highlights pills */
+.flex.flex-wrap.items-center.justify-center.gap-2 span {
+  background: rgba(18, 18, 22, 0.85) !important;
+  border: 1px solid rgba(245, 158, 11, 0.28) !important;
+  color: #fde047 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ==========================================================================
+   7. SERVICES SECTION & 4K MEDIA STUDIO
+   ========================================================================== */
+.service-icon-box,
+.w-12.h-12.rounded-2xl.bg-cyan-500\/10,
+.w-11.h-11.rounded-2xl.bg-pink-500\/15,
+.w-11.h-11.rounded-2xl.bg-emerald-500\/15 {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  color: #ffd700 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25) !important;
+}
+
+/* Starts ₹ price tags on services */
+.service-card span[class*="text-amber-300"],
+.service-card span[class*="text-emerald-300"],
+.service-card span[class*="text-cyan-300"] {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  color: #ffd700 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2) !important;
+}
+
+/* Media Showcase Card in Black & Gold */
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   8. SHOWCASE PROJECTS & CATEGORY FILTERS
+   ========================================================================== */
+.category-btn {
+  background: #0e0e12 !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  color: #cbd5e1 !important;
+  font-weight: 600 !important;
+}
+
+.category-btn:hover {
+  border-color: #ffd700 !important;
+  color: #ffd700 !important;
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #ffd700 0%, #f59e0b 100%) !important;
+  color: #000000 !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5) !important;
+}
+
+.project-tag {
+  background: #0f0f14 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  color: #fde047 !important;
+}
+
+/* ==========================================================================
+   9. TECH STACK & MARQUEE STRIP
+   ========================================================================== */
+.tech-marquee-badge {
+  background: #0d0d12 !important;
+  border: 1px solid rgba(245, 158, 11, 0.32) !important;
+  color: #fde047 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.tech-marquee-badge:hover {
+  border-color: #ffd700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.45) !important;
+}
+
+/* ==========================================================================
+   10. ROADMAP 4-STEP CARDS (FEATURE 2)
+   ========================================================================== */
+.roadmap-step-card span.text-blue-600,
+.roadmap-step-card span.text-emerald-600 {
+  color: #ffd700 !important;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.roadmap-step-card span[class*="bg-blue-50"],
+.roadmap-step-card span[class*="bg-emerald-50"] {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #fde047 !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+}
+
+.roadmap-step-card span[class*="bg-blue-600"],
+.roadmap-step-card span[class*="bg-emerald-500"] {
+  background: #ffd700 !important;
+  box-shadow: 0 0 8px #ffd700;
+}
+
+/* ==========================================================================
+   11. TESTIMONIALS & TRUST WALL (FEATURE 1)
+   ========================================================================== */
+.testimonial-card span[class*="text-amber-500"] span {
+  color: #ffd700 !important;
+  text-shadow: 0 0 8px #ffd700;
+}
+
+.testimonial-card div.w-11.h-11 {
+  background: linear-gradient(135deg, #ffd700, #f59e0b, #b45309) !important;
+  color: #000000 !important;
+  font-weight: 800;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4) !important;
+}
+
+.grid.grid-cols-2.md\:grid-cols-4.gap-6 div.text-3xl {
+  color: #ffd700 !important;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.5) !important;
+}
+
+/* ==========================================================================
+   12. WHY CHOOSE US & COMPARISON TABLE
+   ========================================================================== */
+table {
+  background: #09090c !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+
+thead tr {
+  background: #111116 !important;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+thead th {
+  color: #ffd700 !important;
+  font-weight: 700 !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(245, 158, 11, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+
+tbody tr:hover {
+  background: rgba(245, 158, 11, 0.06) !important;
+}
+
+/* ==========================================================================
+   13. PACKAGES & PROJECT SCOPE CALCULATOR
+   ========================================================================== */
+.pricing-card.popular,
+.pricing-card.border-cyan-500 {
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.3), 0 20px 50px rgba(0, 0, 0, 0.9) !important;
+}
+
+.pricing-badge {
+  background: linear-gradient(135deg, #ffd700, #f59e0b) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5) !important;
+}
+
+/* Project Scope Calculator (Executive Gold Edition) */
+.quote-calculator-box,
+.quote-calculator-box {
+  background: #09090d !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.18) !important;
+}
+
+.quote-checkbox-item,
+.quote-checkbox-item {
+  background: #0e0e13 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quote-checkbox-item:hover,
+.quote-checkbox-item:hover {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  background: #13131a !important;
+}
+
+.quote-checkbox-item.selected,
+.quote-checkbox-item.selected {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1.5px solid #ffd700 !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25) !important;
+}
+
+.quote-checkbox-item span[class*="text-emerald-400"],
+.quote-checkbox-item span[class*="text-amber-400"] {
+  color: #ffd700 !important;
+  font-weight: 800 !important;
+}
+
+#quote-total-price,
+#quote-total-price {
+  color: #ffd700 !important;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.6) !important;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   14. FOUNDERS SECTION (DOSSIERS)
+   ========================================================================== */
+.character-dossier-tag {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #ffd700 !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  font-weight: 700 !important;
+}
+
+.circuit-card .border-emerald-500\/20,
+.circuit-card .border-pink-500\/20,
+.circuit-card .border-cyan-500\/20 {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+.circuit-card .bg-void-950\/80 {
+  background: #0d0d12 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  color: #ffffff !important;
+}
+
+.circuit-card a[href^="mailto:"] {
+  color: #fde047 !important;
+  font-weight: 700;
+}
+
+.circuit-card div.w-20.h-20 {
+  background: linear-gradient(135deg, #ffd700, #f59e0b, #b45309) !important;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.4) !important;
+}
+
+.circuit-card div.w-20.h-20 div {
+  background: #07070a !important;
+  color: #ffd700 !important;
+}
+
+/* ==========================================================================
+   15. FAQS ACCORDION & TERMINAL SANDBOX
+   ========================================================================== */
+.faq-accordion-item {
+  background: #0a0a0e !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 14px !important;
+}
+
+.faq-accordion-item button {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.faq-accordion-item .faq-answer {
+  color: #cbd5e1 !important;
+}
+
+/* Developer Interactive Terminal: Luxury Gold-Trim Console */
+#terminal-container,
+.terminal-window,
+.cyber-terminal {
+  background: #07070a !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.15) !important;
+  border-radius: 16px;
+}
+
+/* ==========================================================================
+   16. INQUIRY MODAL & FORM CONTROLS
+   ========================================================================== */
+#inquiry-modal {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+#inquiry-modal-card {
+  background: #0a0a0e !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 45px rgba(245, 158, 11, 0.25) !important;
+  color: #ffffff !important;
+  border-radius: 20px;
+}
+
+#inquiry-modal-card input,
+#inquiry-modal-card textarea,
+#inquiry-modal-card select {
+  background: #0f0f15 !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.3) !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+}
+
+#inquiry-modal-card input:focus,
+#inquiry-modal-card textarea:focus,
+#inquiry-modal-card select:focus {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25) !important;
+  background: #14141c !important;
+}
+
+#inquiry-modal-card label {
+  color: #fde047 !important;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   17. HUD WIDGETS (CIRCULAR MINI-MAP & AUDIO CONTROLS)
+   ========================================================================== */
+
+
+.minimap-radar-circle {
+  border-color: #ffd700 !important;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(5, 5, 8, 0.95) 75%) !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3) !important;
+}
+
+.minimap-blip {
+  background: #ffd700 !important;
+  box-shadow: 0 0 10px #ffd700 !important;
+}
+
+.minimap-sweep {
+  background: conic-gradient(from 0deg, transparent 75%, rgba(255, 215, 0, 0.5) 100%) !important;
+}
+
+#minimap-zone-text {
+  color: #fde047 !important;
+  font-weight: 700;
+}
+
+/* Cheat banner */
+
+
+/* Floating Audio / Sound button */
+
+
+
+
+.equalizer-bar {
+  background: #ffd700 !important;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress-bar {
+  background: linear-gradient(90deg, #b45309, #f59e0b, #ffd700, #ffffff) !important;
+  box-shadow: 0 0 15px #ffd700 !important;
+}
+
+#scroll-scanline {
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.8), transparent) !important;
+}
+
+/* ==========================================================================
+   18. FOOTER
+   ========================================================================== */
+footer {
+  background: #050507 !important;
+  border-top: 1px solid rgba(245, 158, 11, 0.25) !important;
+  color: #94a3b8 !important;
+}
+
+footer a {
+  color: #cbd5e1 !important;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #ffd700 !important;
+}
+
+/* Circuit rails: subtle gold stroke */
+.circuit-rail-line {
+  stroke: rgba(245, 158, 11, 0.35) !important;
+  filter: drop-shadow(0 0 3px #f59e0b) !important;
+}
+
+.circuit-rail-node {
+  fill: #ffd700 !important;
+  filter: drop-shadow(0 0 6px #ffd700) !important;
+}
+
+/* ==========================================================================
+   19. MULTI-OS & CROSS-DEVICE MOBILE OPTIMIZATIONS (iOS, Android, Windows, Mac)
+   ========================================================================== */
+
+/* --- A. Core OS Level Typography & Text Rendering --- */
+html {
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #b45309 #08080a !important;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  box-sizing: border-box;
+}
+
+/* --- B. iOS Safari Notch, Dynamic Island & Home Indicator Safe Areas --- */
+body {
+  padding-top: max(0px, env(safe-area-inset-top)) !important;
+  padding-bottom: max(0px, env(safe-area-inset-bottom)) !important;
+  padding-left: max(0px, env(safe-area-inset-left)) !important;
+  padding-right: max(0px, env(safe-area-inset-right)) !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+header.sticky {
+  padding-top: max(0px, env(safe-area-inset-top)) !important;
+}
+
+/* --- C. Disable Synthetic Cursor on Touchscreens (iOS & Android) --- */
+@media (hover: none) and (pointer: coarse), (max-width: 1024px) {
+  #cursor-dot,
+  #cursor-outline {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  * {
+    cursor: auto !important;
+  }
+  a, button, input, select, textarea, [onclick] {
+    cursor: pointer !important;
+  }
+}
+
+/* --- D. iOS Safari Auto-Zoom Fix for Form Inputs --- */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea,
+  #modal-name,
+  #modal-email,
+  #modal-phone,
+  #modal-service,
+  #modal-details {
+    font-size: 16px !important; /* iOS requires >=16px to prevent viewport jumping */
+  }
+}
+
+/* --- E. Mobile Navigation Drawer Animation & Depth --- */
+#mobile-nav-drawer {
+  animation: mobileNavSlideDown 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes mobileNavSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- F. Compact Floating HUD on Mobile & Foldable Screens (<= 640px) --- */
+@media (max-width: 640px) {
+  
+
+  
+
+  #minimap-zone-text {
+    font-size: 10px !important;
+    max-width: 120px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  
+
+  /* 44px Minimum Touch Target (Apple HIG & Material Design) */
+  button,
+  .btn-neon-primary,
+  .btn-cyber-outline,
+  a[onclick],
+  #nav-sound-btn {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Responsive Metrics Strip on Phones */
+  .stat-glass-card {
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .stat-glass-card .text-2xl,
+  .stat-glass-card .sm\:text-3xl {
+    font-size: 1.35rem !important;
+  }
+
+  .stat-glass-card .text-xs {
+    font-size: 9px !important;
+  }
+
+  /* Modal Mobile Responsiveness */
+  #inquiry-modal-card,
+  #inquiry-modal .circuit-card {
+    padding: 20px 16px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    border-radius: 18px !important;
+  }
+}
+
+/* --- G. Extra-Small Screen Optimization (<= 380px: iPhone SE, Galaxy Fold cover) --- */
+@media (max-width: 380px) {
+  h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.15 !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Logo scaling */
+  .w-36.h-36,
+  .sm\:w-44.sm\:h-44,
+  .md\:w-52.md\:h-52 {
+    width: 105px !important;
+    height: 105px !important;
+    padding: 6px !important;
+  }
+
+  .live-badge {
+    font-size: 9px !important;
+    padding: 4px 8px !important;
+  }
+
+  /* Marquee badge spacing */
+  .tech-marquee-badge {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* --- H. Hardware-Accelerated Marquee for Smooth 60FPS on Android & iOS --- */
+.marquee-track {
+  will-change: transform !important;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* --- I. Table Horizontal Scroll Container for Small Screens --- */
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+/* --- J. 3D Quantum Atom Luxury Gold Theme Overrides --- */
+.atom-btn-active {
+  background: linear-gradient(135deg, #ffd700 0%, #f59e0b 100%) !important;
+  color: #000000 !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6) !important;
+  font-weight: 800 !important;
+}
+
+.atom-card {
+  background: rgba(10, 10, 12, 0.95) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(245, 158, 11, 0.12) !important;
+}

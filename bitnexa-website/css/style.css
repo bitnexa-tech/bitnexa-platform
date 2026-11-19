@@ -23,11 +23,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Hide default cursor on desktop for custom cyber cursor */
-@media (min-width: 1024px) {
-  body, a, button, input, textarea, select {
-    cursor: none !important;
-  }
+/* Ensure default OS cursor is always visible with zero lag and native precision */
+body {
+  cursor: default !important;
+}
+a, button, [onclick], input[type="button"], input[type="submit"], select, .filter-btn {
+  cursor: pointer !important;
+}
+input[type="text"], input[type="email"], textarea {
+  cursor: text !important;
 }
 
 /* ==========================================================================
@@ -172,9 +176,9 @@ body {
    4. INERTIA MOMENTUM WRAPPER & SKEW PHYSICS
    ========================================================================== */
 #smooth-content {
-  will-change: transform;
-  transform-style: preserve-3d;
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: none !important;
+  will-change: auto !important;
+  transition: none !important;
 }
 
 /* ==========================================================================

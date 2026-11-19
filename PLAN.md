@@ -2,7 +2,7 @@
 
 ## 1. Executive Overview
 A full-stack, production-ready freelance & technical service platform connecting:
-- **Clients**: Request services (Web Frontend, Backend, Render Deployment, Domain Setup, Reels/Video, Instagram Promotion, etc.) with budget (₹ INR) and deadlines.
+- **Clients**: Request services (Web Frontend, Backend, Domain & Cloud Deployment, Domain Setup, Reels/Video, Instagram Promotion, etc.) with budget (₹ INR) and deadlines.
 - **Workers**: View assigned jobs, access specifications, deliver work, and update task stages.
 - **Admin (Owner)**: Complete visibility of all clients, task requirements, budgets (₹), worker assignment, status management, and platform metrics.
 - **Auth**: Email OTP-based verification & JWT-secured role-based access control.
@@ -14,7 +14,7 @@ A full-stack, production-ready freelance & technical service platform connecting
 ### Backend
 - **Runtime**: Node.js (v26+ compatible)
 - **Framework**: Express.js
-- **Database**: SQLite3 / persistent storage with zero external dependencies for localhost, seamless migration support for Render (PostgreSQL / persistent disk).
+- **Database**: SQLite3 / persistent storage with zero external dependencies for localhost, seamless migration support for Production Custom Domain & Cloud (PostgreSQL / persistent disk).
 - **Authentication**: Email OTP verification + JWT (JSON Web Tokens) with Role-Based Access Control (`client`, `worker`, `admin`).
 - **Mailing**: Nodemailer (supports SMTP / Gmail / Resend; includes Dev Fallback logger so localhost testing is never blocked if SMTP credentials are yet to be configured).
 
@@ -48,7 +48,7 @@ A full-stack, production-ready freelance & technical service platform connecting
 - `client_id` (INTEGER, FK -> users.id)
 - `worker_id` (INTEGER NULLABLE, FK -> users.id)
 - `title` (TEXT)
-- `service_category` (TEXT) -- 'Frontend Web', 'Backend Web', 'Render Deployment', 'Domain Setup', 'Reel & Video Editing', 'Instagram Promotion', 'Other'
+- `service_category` (TEXT) -- 'Frontend Web', 'Backend Web', 'Domain & Cloud Deployment', 'Domain Setup', 'Reel & Video Editing', 'Instagram Promotion', 'Other'
 - `description` (TEXT)
 - `budget_inr` (INTEGER) -- In ₹ Rupees
 - `deadline` (TEXT)
@@ -65,7 +65,7 @@ A full-stack, production-ready freelance & technical service platform connecting
 ## 4. Service Categories & Presets
 1. **Website Frontend Development**: React, Vue, Next.js, HTML/Tailwind/CSS, responsive UI.
 2. **Website Backend Development**: Node.js/Express, Python/FastAPI, REST APIs, Database integration.
-3. **Render Deployment & Hosting**: Cloud setup on Render, environment config, web service build.
+3. **Custom Domain & Cloud Deployment**: Cloud setup, custom domain DNS linkage, SSL certificates, web service build.
 4. **Custom Domain Setup**: DNS records (A, CNAME), SSL/HTTPS, Cloudflare/GoDaddy/Namecheap linking.
 5. **Instagram & YouTube Reels Editing**: Short-form video editing, captions, hooks, viral sound design.
 6. **Instagram Promotion & Marketing**: Page growth, targeted outreach, promotional campaigns.
@@ -118,6 +118,6 @@ A full-stack, production-ready freelance & technical service platform connecting
   3. Admin view and worker assignment.
   4. Worker status updates and deliverable submission.
   5. Admin status approval and completion.
-- Verify localhost launch and Render deployment readiness (`render.yaml` or Procfile / build script).
+- Verify localhost launch and custom domain production deployment readiness.
 
 ---

@@ -4,7 +4,7 @@ const db = require('../config/db');
 const VALID_CATEGORIES = [
   'Website Frontend',
   'Website Backend',
-  'Render Deployment',
+  'Domain & Cloud Deployment',
   'Domain & DNS Setup',
   'Reels & Video Editing',
   'Instagram Promotion',

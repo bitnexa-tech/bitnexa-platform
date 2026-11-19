@@ -1,7 +1,7 @@
-# 🚀 WorkFlow Agency - Localhost & Render Deployment Guide
+# 🚀 WorkFlow Agency - Localhost & Custom Domain & Production Deployment Guide
 
 यह प्रोजेक्ट एक फुल-स्टैक एजेंसी वर्कफ़्लो प्लेटफ़ॉर्म है जहाँ:
-1. **Client**: वेबसाइट फ़्रंटएंड, बैकएंड, रेंडर डिप्लॉयमेंट, कस्टम डोमेन, इंस्टाग्राम रील्स और प्रमोशन जैसे काम बजट (₹) के साथ दे सकता है।
+1. **Client**: वेबसाइट फ़्रंटएंड, बैकएंड, कस्टम डोमेन लाइव डिप्लॉयमेंट, कस्टम डोमेन, इंस्टाग्राम रील्स और प्रमोशन जैसे काम बजट (₹) के साथ दे सकता है।
 2. **Worker Panel**: कर्मचारियों को काम दिखता है, वे काम की स्थिति अपडेट कर सकते हैं और फ़ाइनल लिंक सबमिट कर सकते हैं।
 3. **Admin Panel**: आप (मालिक) सब कुछ देख सकते हैं—क्लाइंट कौन है, उसे क्या चाहिए, कितने रुपये का काम है, और किस वर्कर को असाइन करना है।
 4. **Email OTP Auth**: ईमेल पर 6-डिजिट OTP से सुरक्षित लॉगिन।
@@ -45,7 +45,7 @@ npm run dev
    - यहाँ से क्लाइंट नया काम सबमिट करता है:
      - Website Frontend (React, Vue, Tailwind)
      - Website Backend (Node.js, Express, DB)
-     - Render Live Deployment
+     - Custom Domain Live Deployment
      - Custom Domain & SSL Setup
      - Instagram & YouTube Reels Editing
      - Instagram Growth & Ads
@@ -55,7 +55,7 @@ npm run dev
 2. **🛠️ Worker Desk (`/worker`)**:
    - सिर्फ काम करने वाले डेवलपर्स और वीडियो एडिटर्स के लिए।
    - यहाँ वर्कर को एडमिन द्वारा सौंपा गया काम, क्लाइंट की पूरी रिक्वायरमेंट और डेडलाइन दिखती है।
-   - वर्कर काम की स्थिति बदल सकता है (`In Progress`, `Under Review`, `Completed`) और Google Drive / GitHub / Render का लाइव लिंक सबमिट कर सकता है।
+   - वर्कर काम की स्थिति बदल सकता है (`In Progress`, `Under Review`, `Completed`) और Google Drive / GitHub / कस्टम डोमेन का लाइव लिंक सबमिट कर सकता है।
 
 3. **👑 Admin Headquarters (`/admin`)**:
    - सिर्फ एजेंसी के मालिक (आपके) लिए।
@@ -69,11 +69,11 @@ npm run dev
 
 ---
 
-## 🌐 3. बाद में Render पर Live कैसे करें (How to Deploy to Render)
+## 🌐 3. कस्टम डोमेन पर Live कैसे करें (How to Deploy with Custom Domain & Cloud)
 
 जब आप इसे इंटरनेट पर लाइव करना चाहें, यह 100% रेंडर रेडी है:
 
-### तरीका 1: Render GitHub Auto-Deploy (Recommended)
+### तरीका 1: GitHub & Custom Domain Auto-Deploy (Recommended)
 1. अपने इस प्रोजेक्ट फ़ोल्डर को GitHub रिपॉज़िटरी में पुश करें:
    ```bash
    git init
@@ -82,7 +82,7 @@ npm run dev
    git remote add origin https://github.com/<your-username>/<your-repo-name>.git
    git push -u origin main
    ```
-2. **[https://dashboard.render.com](https://dashboard.render.com)** पर जाएं।
+2. **[https://dash.cloudflare.com](https://dash.cloudflare.com)** पर जाएं।
 3. **New +** &rarr; **Web Service** चुनें।
 4. अपनी GitHub रिपॉजिटरी सिलेक्ट करें।
 5. सेटिंग्स भरें:
@@ -97,7 +97,7 @@ npm run dev
    - `ADMIN_EMAIL` = `आपका_ईमेल@domain.com`
    - `ADMIN_NAME` = `आपका नाम`
    *(अगर असली ईमेल पर OTP भेजना है, तो Gmail App Password या Brevo/SendGrid के SMTP क्रेडेंशियल्स डाल दें, जैसे `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`, `SMTP_USER=...`, `SMTP_PASS=...`)*
-7. **Deploy Web Service** पर क्लिक करें! 2 मिनट में आपकी वेबसाइट लाइव हो जाएगी (`https://your-service.onrender.com`)!
+7. **Deploy Web Service** पर क्लिक करें! 2 मिनट में आपकी वेबसाइट लाइव हो जाएगी (`https://yourbrand.com`)!
 
 ---
 
@@ -134,6 +134,6 @@ clint server/
 ├── .env                     # एनवायरनमेंट वैरिएबल्स
 ├── .env.example
 ├── package.json
-├── render.yaml              # रेंडर का 1-क्लिक डिप्लॉय कॉन्फ़िगरेशन
+├── ecosystem.config.js      # PM2 & प्रोडक्शन सर्वर कॉन्फ़िगरेशन
 └── PLAN.md
 ```

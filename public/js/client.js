@@ -66,7 +66,7 @@ function getCategoryBadge(category) {
   const configs = {
     'Website Frontend': { bg: 'bg-sky-500/10 text-sky-400 border-sky-500/30', icon: '💻' },
     'Website Backend': { bg: 'bg-purple-500/10 text-purple-400 border-purple-500/30', icon: '⚙️' },
-    'Render Deployment': { bg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', icon: '🚀' },
+    'Domain & Cloud Deployment': { bg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30', icon: '🚀' },
     'Domain & DNS Setup': { bg: 'bg-amber-500/10 text-amber-400 border-amber-500/30', icon: '🌐' },
     'Reels & Video Editing': { bg: 'bg-rose-500/10 text-rose-400 border-rose-500/30', icon: '🎬' },
     'Instagram Promotion': { bg: 'bg-pink-500/10 text-pink-400 border-pink-500/30', icon: '📈' },
@@ -423,7 +423,7 @@ async function loadClientTasks() {
           <div class="text-4xl mb-3">📁</div>
           <h4 class="text-lg font-bold text-white">No Active Orders Yet</h4>
           <p class="text-xs text-slate-400 mt-1 max-w-md mx-auto mb-5">
-            Choose a service from our catalog (Frontend, Backend, Render Deploy, Domain, or Reels) to place your first order.
+            Choose a service from our catalog (Frontend, Backend, Domain & Cloud Deploy, Domain, or Reels) to place your first order.
           </p>
           <button onclick="openNewTaskModal()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 text-white text-xs font-bold shadow-md">
             + Place Your First Project Order

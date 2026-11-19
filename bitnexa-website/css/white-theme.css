@@ -1,0 +1,725 @@
+/* ==========================================================================
+   BITNEXA TECHNOLOGIES — ULTRA-PROFESSIONAL WHITE THEME (LIGHT EDITION)
+   Pristine Executive SaaS Aesthetic (Stripe / Vercel / Linear / Apple Style)
+   - Background: Pure White & Subtle Off-White Tech Dot-Grid
+   - Typography: High-Contrast Slate-900 & Slate-700
+   - Accents: Deep Royal Sapphire (#2563eb) & Emerald Teal (#059669)
+   - Cards: Crisp Elevated White Cards with Soft Shadowing & Slate-200 Borders
+   - Zero Shaking / Zero Wobble / 100% Solid & Stable
+   ========================================================================== */
+
+:root {
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-border-subtle: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-text-main: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+  --color-primary-blue: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent-teal: #0284c7;
+  --color-accent-emerald: #059669;
+}
+
+/* ==========================================================================
+   1. GLOBAL RESET & BASE LIGHT ATMOSPHERE
+   ========================================================================== */
+html,
+html.light,
+html.dark {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  color-scheme: light !important;
+}
+
+body {
+  background-color: #ffffff !important;
+  background-image: 
+    radial-gradient(#e2e8f0 1.2px, transparent 1.2px),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #f1f5f9 100%) !important;
+  background-size: 24px 24px, 100% 100% !important;
+  color: #1e293b !important;
+  position: relative;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+/* Ambient backdrops */
+
+/* Ambient Subtle Light Glows */
+.absolute.bg-pink-500\/10,
+.absolute.bg-emerald-500\/10,
+.absolute.bg-pink-600\/15 {
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%) !important;
+}
+
+/* Stability: Zero transform on content */
+#smooth-content {
+  transform: none !important;
+  will-change: auto !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   2. HIGH-CONTRAST TYPOGRAPHY & HEADINGS
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3 {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  text-shadow: none !important;
+}
+
+.text-white {
+  color: #0f172a !important;
+}
+
+.text-slate-100,
+.text-slate-200,
+.text-slate-300 {
+  color: #334155 !important;
+}
+
+.text-slate-400 {
+  color: #475569 !important;
+}
+
+.text-slate-500 {
+  color: #64748b !important;
+}
+
+.text-cyan-400,
+.text-cyan-300 {
+  color: #2563eb !important;
+}
+
+.text-emerald-400,
+.text-emerald-300 {
+  color: #059669 !important;
+}
+
+.text-amber-300,
+.text-amber-400 {
+  color: #d97706 !important;
+}
+
+/* Title emboss: Clean professional shadowless typography */
+.title-luxury-emboss {
+  text-shadow: none !important;
+  color: #0f172a !important;
+  letter-spacing: -0.02em;
+}
+
+/* Executive Gradient Heading Text */
+.text-gradient-cyan-blue,
+.text-gold-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #2563eb 55%, #0284c7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+}
+
+/* ==========================================================================
+   3. SECTIONS, BACKGROUND VOID OVERRIDES & CARDS
+   ========================================================================== */
+section,
+footer {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-color: #e2e8f0 !important;
+}
+
+.bg-void-950,
+.bg-void-900,
+.bg-void-850,
+.bg-cyber-void {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+/* Premium Crisp White Cards */
+.stat-glass-card,
+.service-card,
+.project-card,
+.pricing-card,
+.circuit-card,
+.unfold-card,
+.circuit-card,
+.quote-calculator-box {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02) !important;
+  color: #1e293b !important;
+  border-radius: 18px !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.stat-glass-card:hover,
+.service-card:hover,
+.project-card:hover,
+.pricing-card:hover,
+.circuit-card:hover,
+.circuit-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   4. NAVIGATION & ANNOUNCEMENT HEADER
+   ========================================================================== */
+/* Top announcement bar */
+.border-b.border-emerald-500\/20,
+.border-b.border-pink-500\/20,
+.bg-void-950\/90 {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+/* Main Navigation Header */
+header,
+.nav-glass {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+.nav-glass.scrolled,
+.nav-glass.scrolled-deep {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
+}
+
+header nav a {
+  color: #475569 !important;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+header nav a:hover {
+  color: #2563eb !important;
+}
+
+/* Brand Emblem & Logo */
+header a span.font-cyber {
+  color: #0f172a !important;
+}
+
+/* Agency Pill in Navbar */
+header span.bg-cyan-500\/15,
+header span.text-cyan-300 {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+
+
+/* Language Badge */
+span.bg-void-900.border.border-cyan-500\/30 {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+/* Email Us in Navbar */
+a[data-i18n="nav_email"] {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+a[data-i18n="nav_email"]:hover {
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  background: #eff6ff !important;
+}
+
+/* ==========================================================================
+   5. BUTTONS (EXECUTIVE DARK & ROYAL SAPPHIRE)
+   ========================================================================== */
+.btn-neon-primary,
+.btn-luxury-primary {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: 1px solid #0f172a !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  letter-spacing: 0.01em;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-neon-primary:hover,
+.btn-luxury-primary:hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+.btn-cyber-outline {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-cyber-outline:hover {
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  background: #eff6ff !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   6. HERO BADGES & PROMOTIONAL PILLS
+   ========================================================================== */
+.live-badge {
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #047857 !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+}
+
+.live-ping {
+  background: #059669 !important;
+  box-shadow: 0 0 8px #059669 !important;
+}
+
+/* Hero Center Emblem Pill */
+.inline-flex.items-center.gap-3.px-5.py-2.rounded-full.bg-void-950\/80 {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+.circuit-divider {
+  border-color: #e2e8f0 !important;
+  color: #2563eb !important;
+}
+
+/* Promotional highlights pills */
+.flex.flex-wrap.items-center.justify-center.gap-2 span {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+/* ==========================================================================
+   7. SERVICES SECTION & 4K MEDIA STUDIO
+   ========================================================================== */
+.service-icon-box,
+.w-12.h-12.rounded-2xl.bg-cyan-500\/10,
+.w-11.h-11.rounded-2xl.bg-pink-500\/15,
+.w-11.h-11.rounded-2xl.bg-emerald-500\/15 {
+  background: #eff6ff !important;
+  border: 1px solid #dbeafe !important;
+  color: #2563eb !important;
+  box-shadow: none !important;
+}
+
+/* Starts ₹ price tags on services */
+.service-card span[class*="text-amber-300"],
+.service-card span[class*="text-emerald-300"] {
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
+}
+
+/* Media Showcase Card in Light Mode */
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   8. SHOWCASE PROJECTS & CATEGORY FILTERS
+   ========================================================================== */
+.category-btn {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03) !important;
+}
+
+.category-btn:hover {
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.category-btn.active {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+}
+
+.project-tag {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+/* ==========================================================================
+   9. 3D ATOM CORE & TECH SPECS VIEWPORT
+   ========================================================================== */
+#quantum-atom {
+  background: transparent !important;
+}
+
+/* Keep the 3D atom viewport dark slate for high-tech contrast */
+#interactive-atom-canvas {
+  background: #090d16 !important;
+}
+
+.bg-void-950\/90.border-cyan-500\/20 {
+  background: #090d16 !important;
+  border: 1px solid #1e293b !important;
+}
+
+/* ==========================================================================
+   10. WHY CHOOSE US & COMPARISON TABLE
+   ========================================================================== */
+table {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+thead tr {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+thead th {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+/* ==========================================================================
+   11. PACKAGES & PROJECT SCOPE CALCULATOR
+   ========================================================================== */
+.pricing-card.popular,
+.pricing-card.border-cyan-500 {
+  border: 2px solid #2563eb !important;
+  box-shadow: 0 16px 40px -4px rgba(37, 99, 235, 0.12) !important;
+}
+
+.pricing-badge {
+  background: #eff6ff !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+}
+
+/* Project Scope Calculator */
+.quote-calculator-box {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+.quote-checkbox-item {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quote-checkbox-item:hover {
+  border-color: #cbd5e1 !important;
+  background: #f1f5f9 !important;
+}
+
+.quote-checkbox-item.selected {
+  background: #eff6ff !important;
+  border: 1.5px solid #2563eb !important;
+}
+
+.quote-checkbox-item .text-white {
+  color: #0f172a !important;
+}
+
+.quote-checkbox-item span[class*="text-emerald-400"],
+.quote-checkbox-item span[class*="text-pink-400"] {
+  color: #2563eb !important;
+  font-weight: 700 !important;
+}
+
+#quote-total-price {
+  color: #0f172a !important;
+  text-shadow: none !important;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   12. FOUNDERS SECTION (DOSSIERS)
+   ========================================================================== */
+.character-dossier-tag {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe !important;
+  font-weight: 700 !important;
+}
+
+.circuit-card .text-slate-300 {
+  color: #475569 !important;
+}
+
+.circuit-card .border-emerald-500\/20,
+.circuit-card .border-pink-500\/20,
+.circuit-card .border-cyan-500\/20 {
+  border-color: #e2e8f0 !important;
+}
+
+.circuit-card .bg-void-950\/80 {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.circuit-card a[href^="mailto:"] {
+  color: #2563eb !important;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   13. FAQS ACCORDION & TERMINAL SANDBOX
+   ========================================================================== */
+.faq-accordion-item {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+  border-radius: 14px !important;
+}
+
+.faq-accordion-item button {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.faq-accordion-item .faq-answer {
+  color: #475569 !important;
+}
+
+/* Developer Interactive Terminal: Clean Slate Console */
+#terminal-container,
+.terminal-window {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.25) !important;
+  border-radius: 16px;
+}
+
+/* ==========================================================================
+   14. INQUIRY MODAL & FORM CONTROLS
+   ========================================================================== */
+#inquiry-modal {
+  background: rgba(15, 23, 42, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+#inquiry-modal-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25) !important;
+  color: #0f172a !important;
+  border-radius: 20px;
+}
+
+#inquiry-modal-card input,
+#inquiry-modal-card textarea,
+#inquiry-modal-card select {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  border-radius: 10px;
+}
+
+#inquiry-modal-card input:focus,
+#inquiry-modal-card textarea:focus,
+#inquiry-modal-card select:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+  background: #ffffff !important;
+}
+
+#inquiry-modal-card label {
+  color: #334155 !important;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   15. HUD WIDGETS (CIRCULAR MINI-MAP & AUDIO CONTROLS)
+   ========================================================================== */
+
+
+.minimap-radar-circle {
+  border-color: #2563eb !important;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(248, 250, 252, 0.95) 75%) !important;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.2) !important;
+}
+
+.minimap-blip {
+  background: #2563eb !important;
+  box-shadow: 0 0 8px #2563eb !important;
+}
+
+.minimap-sweep {
+  background: conic-gradient(from 0deg, transparent 75%, rgba(37, 99, 235, 0.4) 100%) !important;
+}
+
+#minimap-zone-text {
+  color: #0f172a !important;
+  font-weight: 700;
+}
+
+/* Cheat banner */
+
+
+/* Floating Audio / Sound button */
+
+
+
+
+.equalizer-bar {
+  background: #2563eb !important;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress-bar {
+  background: linear-gradient(90deg, #2563eb, #0284c7, #4f46e5) !important;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Laser scanline: subtle soft blue flash */
+#scroll-scanline {
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.5), transparent) !important;
+}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+footer {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+footer a {
+  color: #475569 !important;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #0f172a !important;
+}
+
+/* Circuit rails: subtle light stroke */
+.circuit-rail-line {
+  stroke: rgba(148, 163, 184, 0.4) !important;
+  filter: none !important;
+}
+
+.circuit-rail-node {
+  fill: #2563eb !important;
+  filter: drop-shadow(0 0 4px #2563eb) !important;
+}
+
+
+/* ==========================================================================
+   17. NEW FEATURES: MARQUEE BADGES, ROADMAP CARDS & TESTIMONIALS
+   ========================================================================== */
+.tech-marquee-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tech-marquee-badge:hover {
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+  transform: translateY(-1px);
+}
+
+.roadmap-step-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+  transition: all 0.25s ease !important;
+}
+
+.roadmap-step-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08) !important;
+  transform: translateY(-2px) !important;
+}
+
+.testimonial-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+  transition: all 0.25s ease !important;
+}
+
+.testimonial-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.08) !important;
+  transform: translateY(-2px) !important;
+}

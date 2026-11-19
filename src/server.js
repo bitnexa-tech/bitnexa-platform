@@ -159,7 +159,7 @@ if (require.main === module) {
     console.log(`🚀 Agency Hub Server is RUNNING at: http://localhost:${PORT}`);
     console.log(`🛡️  Admin Account: ${process.env.ADMIN_EMAIL || 'admin@agency.com'}`);
     console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`⚡ Ready for Localhost & Render Deployment`);
+    console.log(`⚡ Ready for Localhost & Production Custom Domain Deployment`);
     console.log(`======================================================\n`);
   });
 }

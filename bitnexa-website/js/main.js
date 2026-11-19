@@ -50,12 +50,12 @@ const portfolioProjects = [
   },
   {
     id: 4,
-    title: "Render Cloud Zero-Downtime Live Deployer & SSL Pipeline",
+    title: "Custom Domain Zero-Downtime Live Deployer & SSL Pipeline",
     category: "cloud",
     categoryBadge: "DevOps & Cloud",
     categoryClass: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
-    description: "Automated Render.yaml blueprint setup for automated git-push builds, environment secret encryption, automated custom domain DNS linkage with Cloudflare CDN, and free SSL certificates.",
-    techStack: ["Render Cloud", "Docker", "Cloudflare DNS", "SSL/TLS", "GitHub Actions"],
+    description: "Automated production blueprint setup for automated git-push builds, environment secret encryption, automated custom domain DNS linkage with Cloudflare CDN, and free SSL certificates.",
+    techStack: ["Custom Domain", "Docker", "Cloudflare DNS", "SSL/TLS", "GitHub Actions"],
     metrics: "🚀 100% Uptime SLA • Zero-Downtime Rolling Deploys • Free Auto-Renewing HTTPS",
     icon: "☁️",
   },
@@ -87,7 +87,7 @@ const portfolioProjects = [
     category: "cloud",
     categoryBadge: "Domain & DNS Setup",
     categoryClass: "bg-electric-500/15 text-electric-300 border-electric-500/30",
-    description: "Seamless domain purchase & configuration (GoDaddy / Namecheap / Hostinger) to Render or AWS, Cloudflare DNS proxy for DDoS protection, and Zoho/Google Workspace business email inbox setup.",
+    description: "Seamless domain purchase & configuration (GoDaddy / Namecheap / Hostinger) directly to dedicated cloud servers, Cloudflare DNS proxy for DDoS protection, and Zoho/Google Workspace business email inbox setup.",
     techStack: ["Cloudflare DNS", "Zoho Mail", "Google Workspace", "DKIM/SPF/DMARC", "GoDaddy"],
     metrics: "🌐 10/10 Email Deliverability • 0ms DNS Propagation • Bank-Grade DDoS Protection",
     icon: "🌐",
@@ -124,6 +124,17 @@ const mouse = {
   outlineY: window.innerHeight / 2,
 };
 
+// 3D Quantum Atom Engine Global State
+const interactiveAtomState = {
+  mode: 'bohr',
+  speed: 1,
+  isReverse: false,
+  burstActive: false,
+  burstScale: 0.2,
+  burstOpacity: 0,
+};
+window.interactiveAtomState = interactiveAtomState;
+
 // ==========================================================================
 // 2. DOM CONTENT LOADED INITIALIZATION
 // ==========================================================================
@@ -142,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCyberTerminal();
   initOrbitalParallax();
   initNavScrollState();
-  initProfessional3DBackground();
+  // initProfessional3DBackground(); // Disabled per user request: Removed 3D Laptop and 3D Chip
   initInteractiveAtomScene();
   initWarpFieldSection();
 
@@ -166,16 +177,6 @@ function initMomentumScrollEngine() {
 
   window.addEventListener('scroll', () => {
     telemetry.scrollY = window.scrollY;
-
-    // Laser scanline flash on scroll
-    if (scanline) {
-      scanline.style.opacity = '1';
-      scanline.style.top = `${Math.min(window.innerHeight - 10, (telemetry.scrollY % window.innerHeight))}px`;
-      clearTimeout(scanlineTimeout);
-      scanlineTimeout = setTimeout(() => {
-        scanline.style.opacity = '0';
-      }, 150);
-    }
   }, { passive: true });
 
   // 60-120 FPS Telemetry & Velocity Skew Loop
@@ -185,15 +186,10 @@ function initMomentumScrollEngine() {
     telemetry.velocity += (delta - telemetry.velocity) * 0.25;
     telemetry.lastScrollY = telemetry.scrollY;
 
-    // Elastic Skew Physics
-    const targetSkew = Math.max(-2.2, Math.min(2.2, telemetry.velocity * 0.065));
-    telemetry.skew += (targetSkew - telemetry.skew) * 0.15;
-
-    if (content && Math.abs(telemetry.skew) > 0.01) {
-      content.style.transform = `skewY(${telemetry.skew.toFixed(3)}deg)`;
-    } else if (content && Math.abs(telemetry.skew) <= 0.01 && telemetry.skew !== 0) {
-      telemetry.skew = 0;
-      content.style.transform = 'skewY(0deg)';
+    // Elastic Skew Physics completely disabled per user request (zero screen shake on scroll)
+    telemetry.skew = 0;
+    if (content) {
+      content.style.transform = 'none';
     }
 
     // Top Progress Bar
@@ -223,7 +219,7 @@ function initMomentumScrollEngine() {
 }
 
 function detectActiveZone() {
-  const sections = ['services', 'projects', 'why-us', 'packages', 'founders', 'faqs', 'contact'];
+  const sections = ['services', 'projects', 'why-us', 'process', 'packages', 'testimonials', 'faqs', 'founders', 'contact'];
   for (const id of sections) {
     const el = document.getElementById(id);
     if (el) {
@@ -299,41 +295,12 @@ function init3DUnfoldObserver() {
 }
 
 // ==========================================================================
-// 6. 3D TILT PHYSICS & DYNAMIC SPECULAR SHINE
+// 6. 3D TILT PHYSICS & DYNAMIC SPECULAR SHINE (CLEAN & NON-SHAKING)
 // ==========================================================================
 function init3DCardTilt() {
-  if (window.innerWidth < 1024) return;
-
   const cards = document.querySelectorAll('.circuit-card');
   cards.forEach((card) => {
-    if (!card.querySelector('.card-shine')) {
-      const shine = document.createElement('div');
-      shine.className = 'card-shine';
-      card.appendChild(shine);
-    }
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = -((y - centerY) / centerY) * 11;
-      const rotateY = ((x - centerX) / centerX) * 11;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-5px)`;
-
-      const shine = card.querySelector('.card-shine');
-      if (shine) {
-        shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 240, 255, 0.35) 0%, rgba(168, 85, 247, 0.22) 35%, rgba(0, 119, 182, 0.15) 60%, transparent 80%)`;
-      }
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-    });
+    card.style.transform = 'none';
   });
 }
 
@@ -535,7 +502,11 @@ ${name}`
   }).catch(() => {});
 
   closeInquiryModal();
-  showWebsiteToast(`Thank you ${name}! Your proposal inquiry has been submitted. Opening email client...`, 'success');
+  if (window.showMissionPassedToast) {
+    window.showMissionPassedToast('MISSION PASSED!', 'RESPECT + PROPOSAL DISPATCHED');
+  } else {
+    showWebsiteToast(`Thank you ${name}! Your proposal inquiry has been submitted. Opening email client...`, 'success');
+  }
 
   setTimeout(() => {
     window.location.href = mailtoUrl;
@@ -719,19 +690,13 @@ function initCircuitRails() {
 }
 
 // ==========================================================================
-// 14. 3D ORBITAL HERO LOGO PARALLAX
+// 14. 3D ORBITAL HERO LOGO PARALLAX (DISABLED TO PREVENT SHAKING)
 // ==========================================================================
 function initOrbitalParallax() {
   const stage = document.getElementById('hero-orbital-stage');
-  if (!stage) return;
-
-  window.addEventListener('scroll', () => {
-    const scroll = window.scrollY;
-    if (scroll > 800) return;
-    const tiltY = (scroll * 0.04);
-    const scale = Math.max(0.85, 1 - scroll * 0.0003);
-    stage.style.transform = `perspective(1000px) rotateY(${tiltY}deg) scale(${scale})`;
-  }, { passive: true });
+  if (stage) {
+    stage.style.transform = 'none';
+  }
 }
 
 // ==========================================================================
@@ -746,59 +711,62 @@ function initCyberTerminal() {
     if (e.key === 'Enter') {
       const cmd = input.value.trim().toLowerCase();
       input.value = '';
+      if (!cmd) return; // Prevent empty command error
       executeTerminalCommand(cmd);
     }
   });
 }
 
 function executeTerminalCommand(cmd) {
+  if (!cmd || typeof cmd !== 'string') return;
+  cmd = cmd.trim().toLowerCase();
+  if (!cmd) return; // Ignore blank input
+
   const output = document.getElementById('terminal-output');
   if (!output) return;
 
   playCyberClick();
 
   const cmdLine = document.createElement('div');
-  cmdLine.className = 'text-cyan-400 font-bold mt-2';
+  cmdLine.className = 'text-amber-400 font-bold mt-2 font-mono text-xs';
   cmdLine.innerText = `bitnexa@guest:~$ ${cmd}`;
   output.appendChild(cmdLine);
 
   const respLine = document.createElement('div');
-  respLine.className = 'text-slate-300 ml-2 mt-1 leading-relaxed';
+  respLine.className = 'text-slate-200 ml-2 mt-1 leading-relaxed font-mono';
 
   switch(cmd) {
     case 'help':
       respLine.innerHTML = `
-        <div class="text-xs space-y-1">
-          <div>Available system commands:</div>
-          <div><span class="text-cyan-300 font-bold">atom</span>     &bull; Launch &amp; view 3D Quantum Atom Core</div>
-          <div><span class="text-cyan-300 font-bold">services</span> &bull; List development &amp; creative services</div>
-          <div><span class="text-cyan-300 font-bold">stack</span>    &bull; View engineering tech stack</div>
-          <div><span class="text-cyan-300 font-bold">founders</span> &bull; Meet Aryan Jangir &amp; Virendra</div>
-          <div><span class="text-cyan-300 font-bold">quote</span>    &bull; Launch instant project quote proposal</div>
-          <div><span class="text-cyan-300 font-bold">contact</span>  &bull; Official company &amp; founder emails</div>
-          <div><span class="text-cyan-300 font-bold">clear</span>    &bull; Reset terminal output</div>
+        <div class="text-xs space-y-1.5 py-1">
+          <div class="text-amber-300 font-bold">Available System Directives:</div>
+          <div><span class="text-amber-400 font-bold">atom</span>     &bull; 3D Quantum Atom architecture details</div>
+          <div><span class="text-amber-400 font-bold">services</span> &bull; Full-stack engineering &amp; media pricing</div>
+          <div><span class="text-amber-400 font-bold">stack</span>    &bull; Core production technology stack</div>
+          <div><span class="text-amber-400 font-bold">founders</span> &bull; Direct leadership dossiers</div>
+          <div><span class="text-amber-400 font-bold">quote</span>    &bull; Open instant project quotation modal</div>
+          <div><span class="text-amber-400 font-bold">contact</span>  &bull; Executive communication channels</div>
+          <div><span class="text-amber-400 font-bold">clear</span>    &bull; Reset terminal display</div>
         </div>
       `;
       break;
     case 'atom':
       respLine.innerHTML = `
-        <div class="text-xs space-y-1">
-          <div>⚛️ <b class="text-cyan-300">Bitnexa 3D Quantum Atom Core active!</b></div>
-          <div>Shells: 4 (K, L, M, N) &bull; Nucleons: 12 &bull; Core Freq: 432.8 THz</div>
-          <div class="text-slate-400">Navigating to 3D Quantum Atom Engine...</div>
+        <div class="text-xs space-y-1 py-1">
+          <div>⚛️ <b class="text-amber-300">Bitnexa 3D Quantum Atom Core Active</b></div>
+          <div class="text-slate-300">Architecture: WebGL / Three.js &bull; Shells: 4 (K, L, M, N) &bull; Core: 432.8 THz</div>
+          <div class="text-amber-400 mt-1 cursor-pointer underline font-bold" onclick="document.getElementById('quantum-atom')?.scrollIntoView({ behavior: 'smooth' })">
+            &rarr; Click here to jump to 3D Quantum Atom interactive model
+          </div>
         </div>
       `;
-      setTimeout(() => {
-        const atomEl = document.getElementById('quantum-atom');
-        if (atomEl) atomEl.scrollIntoView({ behavior: 'smooth' });
-      }, 500);
       break;
     case 'services':
       respLine.innerHTML = `
-        <div class="text-xs space-y-1">
+        <div class="text-xs space-y-1 py-1">
           <div>⚡ 1. Modern Web Apps (React 19, Next.js, Tailwind) - Starts ₹4,999</div>
           <div>⚡ 2. Node.js Backend &amp; REST APIs (PostgreSQL, Razorpay) - Starts ₹7,999</div>
-          <div>⚡ 3. Render Cloud Live Deployments &amp; SSL - Starts ₹2,499</div>
+          <div>⚡ 3. Custom Domain Live Deployments &amp; SSL - Starts ₹2,499</div>
           <div>⚡ 4. Custom Domains &amp; Cloudflare DNS - Starts ₹1,999</div>
           <div>⚡ 5. Viral Instagram Reels Video Editing - Starts ₹4,999</div>
           <div>⚡ 6. Meta Ads &amp; Growth Marketing - Starts ₹9,999</div>
@@ -806,26 +774,26 @@ function executeTerminalCommand(cmd) {
       `;
       break;
     case 'stack':
-      respLine.innerText = 'Tech Stack: React 19, Next.js 14, Node.js, Express, PostgreSQL, SQLite, Tailwind CSS, Render Cloud, Cloudflare, Adobe Premiere Pro, After Effects.';
+      respLine.innerHTML = '<div class="text-xs text-slate-200 py-1"><b class="text-amber-300">Tech Stack:</b> React 19, Next.js, Node.js, Express, PostgreSQL, SQLite, Tailwind CSS, Cloudflare CDN, Three.js, Adobe Premiere Pro, After Effects.</div>';
       break;
     case 'founders':
       respLine.innerHTML = `
-        <div class="text-xs space-y-1">
-          <div>👑 <b class="text-white">Aryan Jangir</b> — Founder &amp; Head of Tech (aryan.bitnexa@gmail.com)</div>
-          <div>⚡ <b class="text-white">Virendra</b> — Co-Founder &amp; Head of Operations (virendra.bitnexa@gmail.com)</div>
+        <div class="text-xs space-y-1 py-1">
+          <div>👑 <b class="text-amber-300">Aryan Jangir</b> — Co-Founder &amp; Head of Tech (<a href="mailto:aryan.bitnexa@gmail.com" class="text-amber-400 underline">aryan.bitnexa@gmail.com</a>)</div>
+          <div>⚡ <b class="text-amber-300">Virendra</b> — Co-Founder &amp; Head of Operations (<a href="mailto:virendra.bitnexa@gmail.com" class="text-amber-400 underline">virendra.bitnexa@gmail.com</a>)</div>
         </div>
       `;
       break;
     case 'quote':
-      respLine.innerText = 'Launching quote proposal modal...';
-      setTimeout(() => openInquiryModal('Terminal Quick Inquiry'), 500);
+      respLine.innerHTML = '<div class="text-xs text-amber-300 py-1">Opening project proposal modal...</div>';
+      setTimeout(() => openInquiryModal('Terminal Quick Inquiry'), 400);
       break;
     case 'contact':
       respLine.innerHTML = `
-        <div class="text-xs space-y-1">
-          <div>✉️ Company: <a href="mailto:bitnexa.technologies@gmail.com" class="text-cyan-400 underline font-bold">bitnexa.technologies@gmail.com</a></div>
-          <div>👨‍💻 Aryan (Tech): <a href="mailto:aryan.bitnexa@gmail.com" class="text-cyan-300 underline font-mono">aryan.bitnexa@gmail.com</a></div>
-          <div>🎬 Virendra (Ops): <a href="mailto:virendra.bitnexa@gmail.com" class="text-electric-300 underline font-mono">virendra.bitnexa@gmail.com</a></div>
+        <div class="text-xs space-y-1 py-1">
+          <div>✉️ Agency: <a href="mailto:bitnexa.technologies@gmail.com" class="text-amber-400 underline font-bold">bitnexa.technologies@gmail.com</a></div>
+          <div>👨‍💻 Aryan: <a href="mailto:aryan.bitnexa@gmail.com" class="text-amber-300 underline font-mono">aryan.bitnexa@gmail.com</a></div>
+          <div>🎬 Virendra: <a href="mailto:virendra.bitnexa@gmail.com" class="text-amber-300 underline font-mono">virendra.bitnexa@gmail.com</a></div>
         </div>
       `;
       break;
@@ -833,7 +801,7 @@ function executeTerminalCommand(cmd) {
       output.innerHTML = '';
       return;
     default:
-      respLine.innerHTML = `<span class="text-rose-400">Command not found: "${cmd}". Type <b class="text-cyan-300 underline cursor-pointer" onclick="executeTerminalCommand('help')">help</b> for available directives.</span>`;
+      respLine.innerHTML = `<span class="text-rose-400 font-mono text-xs">Command not found: "${cmd}". Type <b class="text-amber-400 underline cursor-pointer" onclick="executeTerminalCommand('help')">help</b> for available directives.</span>`;
   }
 
   output.appendChild(respLine);
@@ -869,7 +837,7 @@ function initProfessional3DBackground() {
   if (!canvas || typeof THREE === 'undefined') return;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x02050e, 0.012);
+  scene.fog = new THREE.FogExp2(0x07010f, 0.012);
 
   const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 120);
   camera.position.set(0, 1.8, 11.5);
@@ -902,7 +870,7 @@ function initProfessional3DBackground() {
   logoTexture.generateMipmaps = true;
   logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
 
-  // Soft Glow Texture for particles & lights
+  // Soft Glow Texture for particles & lights (Luxury Ambient Embers)
   function createGlowTexture() {
     const c = document.createElement('canvas');
     c.width = 64;
@@ -910,8 +878,8 @@ function initProfessional3DBackground() {
     const ctx = c.getContext('2d');
     const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
     grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-    grad.addColorStop(0.25, 'rgba(0, 240, 255, 0.85)');
-    grad.addColorStop(0.6, 'rgba(0, 119, 182, 0.25)');
+    grad.addColorStop(0.25, 'rgba(245, 158, 11, 0.85)');
+    grad.addColorStop(0.6, 'rgba(217, 119, 6, 0.35)');
     grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, 64, 64);
@@ -920,24 +888,24 @@ function initProfessional3DBackground() {
   const glowTexture = createGlowTexture();
 
   // ==========================================================================
-  // LIGHTING SETUP (STUDIO LIGHTING MATCHING APPLE KEYNOTE)
+  // LIGHTING SETUP (STUDIO AMBIENT & DIRECTIONAL LIGHTING)
   // ==========================================================================
-  const ambientLight = new THREE.AmbientLight(0x0e1b2e, 2.6);
+  const ambientLight = new THREE.AmbientLight(0x160528, 2.6);
   scene.add(ambientLight);
 
-  const mainSun = new THREE.DirectionalLight(0xffffff, 3.2);
+  const mainSun = new THREE.DirectionalLight(0xfff8ee, 3.2);
   mainSun.position.set(8, 12, 10);
   scene.add(mainSun);
 
-  const rimLight = new THREE.DirectionalLight(0x38bdf8, 2.2);
+  const rimLight = new THREE.DirectionalLight(0xff007f, 2.8);
   rimLight.position.set(-8, 6, -6);
   scene.add(rimLight);
 
-  const neonFillCyan = new THREE.PointLight(0x00f0ff, 3.8, 30);
+  const neonFillCyan = new THREE.PointLight(0x00f0ff, 4.0, 30);
   neonFillCyan.position.set(-7, 4, 6);
   scene.add(neonFillCyan);
 
-  const neonFillPurple = new THREE.PointLight(0xa855f7, 3.2, 30);
+  const neonFillPurple = new THREE.PointLight(0xff007f, 3.8, 30);
   neonFillPurple.position.set(7, -2, 5);
   scene.add(neonFillPurple);
 
@@ -1557,15 +1525,26 @@ function initInteractiveAtomScene() {
   }
 
   function resizeCanvas() {
-    const width = canvas.parentElement ? canvas.parentElement.clientWidth : canvas.clientWidth;
-    const height = 480;
+    const parent = canvas.parentElement;
+    const width = (parent && parent.clientWidth > 0) ? parent.clientWidth : (canvas.clientWidth > 0 ? canvas.clientWidth : (window.innerWidth || 800));
+    const height = width < 640 ? Math.min(380, Math.max(260, Math.round(width * 0.8))) : 480;
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height, false);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   }
   resizeCanvas();
+  setTimeout(resizeCanvas, 100);
+  setTimeout(resizeCanvas, 300);
+  setTimeout(resizeCanvas, 800);
   window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('orientationchange', () => {
+    setTimeout(resizeCanvas, 150);
+  });
+
+  // Ambient & Core Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+  scene.add(ambientLight);
 
   // Atom Main Container Group (Rotated on Drag / Inertia)
   const atomGroup = new THREE.Group();
@@ -1574,35 +1553,38 @@ function initInteractiveAtomScene() {
   // 1. NUCLEUS (CENTRAL PLASMA CORE)
   const nucleusGroup = new THREE.Group();
 
-  // Central Core Plasma Sphere
-  const coreGeo = new THREE.SphereGeometry(0.68, 32, 32);
+  const coreLight = new THREE.PointLight(0xffd700, 3, 25);
+  nucleusGroup.add(coreLight);
+
+  // Central Core Plasma Sphere (Luminous Gold Core)
+  const coreGeo = new THREE.SphereGeometry(0.72, 32, 32);
   const coreMat = new THREE.MeshBasicMaterial({
-    color: 0x00f0ff,
+    color: 0xffd700,
     transparent: true,
-    opacity: 0.88,
+    opacity: 0.92,
   });
   const coreSphere = new THREE.Mesh(coreGeo, coreMat);
   nucleusGroup.add(coreSphere);
 
-  // Corona Wireframe Shell
-  const coronaGeo = new THREE.IcosahedronGeometry(0.98, 2);
+  // Corona Wireframe Shell (Golden Geometric Cage)
+  const coronaGeo = new THREE.IcosahedronGeometry(1.02, 2);
   const coronaMat = new THREE.MeshBasicMaterial({
-    color: 0x38bdf8,
+    color: 0xfde047,
     wireframe: true,
     transparent: true,
-    opacity: 0.35,
+    opacity: 0.45,
   });
   const coronaSphere = new THREE.Mesh(coronaGeo, coronaMat);
   nucleusGroup.add(coronaSphere);
 
-  // 12 Nucleons (Protons & Neutrons)
+  // 12 Nucleons (Protons & Neutrons - Gold, Amber, White, Bronze)
   const nucleons = [];
-  const nucleonColors = [0x00f0ff, 0x0077b6, 0x38bdf8, 0xffffff];
+  const nucleonColors = [0xffd700, 0xf59e0b, 0xffffff, 0xfde047];
   for (let i = 0; i < 12; i++) {
     const phi = Math.acos(-1 + (2 * i) / 12);
     const theta = Math.sqrt(12 * Math.PI) * phi;
-    const r = 0.58;
-    const nGeo = new THREE.SphereGeometry(0.18, 16, 16);
+    const r = 0.62;
+    const nGeo = new THREE.SphereGeometry(0.2, 16, 16);
     const nMat = new THREE.MeshBasicMaterial({
       color: nucleonColors[i % nucleonColors.length],
     });
@@ -1620,10 +1602,10 @@ function initInteractiveAtomScene() {
   }
   atomGroup.add(nucleusGroup);
 
-  // Quantum Pulse Burst Ring Mesh
+  // Quantum Pulse Burst Ring Mesh (Gold Shockwave)
   const burstGeo = new THREE.RingGeometry(0.1, 0.25, 64);
   const burstMat = new THREE.MeshBasicMaterial({
-    color: 0x00f0ff,
+    color: 0xffd700,
     transparent: true,
     opacity: 0,
     side: THREE.DoubleSide,
@@ -1638,10 +1620,10 @@ function initInteractiveAtomScene() {
   atomGroup.add(bohrGroup);
 
   const shellConfigs = [
-    { a: 3.4, b: 2.0, rot: [Math.PI / 3, 0, Math.PI / 8], color: 0x00f0ff, speed: 2.0, count: 2, label: 'K' },
-    { a: 3.8, b: 2.3, rot: [-Math.PI / 3, Math.PI / 3.8, -Math.PI / 5], color: 0x38bdf8, speed: 1.6, count: 2, label: 'L' },
-    { a: 4.2, b: 2.6, rot: [Math.PI / 5, -Math.PI / 2.8, Math.PI / 3.2], color: 0x00d2ff, speed: 1.3, count: 2, label: 'M' },
-    { a: 4.6, b: 2.9, rot: [-Math.PI / 4.2, -Math.PI / 3.5, -Math.PI / 2.2], color: 0xa855f7, speed: 1.0, count: 2, label: 'N' },
+    { a: 3.4, b: 2.0, rot: [Math.PI / 3, 0, Math.PI / 8], color: 0xffd700, speed: 2.0, count: 2, label: 'K' },
+    { a: 3.8, b: 2.3, rot: [-Math.PI / 3, Math.PI / 3.8, -Math.PI / 5], color: 0xf59e0b, speed: 1.6, count: 2, label: 'L' },
+    { a: 4.2, b: 2.6, rot: [Math.PI / 5, -Math.PI / 2.8, Math.PI / 3.2], color: 0xfde047, speed: 1.3, count: 3, label: 'M' },
+    { a: 4.6, b: 2.9, rot: [-Math.PI / 4.2, -Math.PI / 3.5, -Math.PI / 2.2], color: 0xffffff, speed: 1.0, count: 3, label: 'N' },
   ];
 
   const electrons = [];
@@ -1655,7 +1637,7 @@ function initInteractiveAtomScene() {
     const ringMat = new THREE.LineBasicMaterial({
       color: cfg.color,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.8,
     });
     const ringLine = new THREE.Line(ringGeo, ringMat);
     ringLine.rotation.set(cfg.rot[0], cfg.rot[1], cfg.rot[2]);
@@ -1663,16 +1645,16 @@ function initInteractiveAtomScene() {
 
     // Orbiting Electrons on this Shell
     for (let eIdx = 0; eIdx < cfg.count; eIdx++) {
-      const eGeo = new THREE.SphereGeometry(0.14, 16, 16);
+      const eGeo = new THREE.SphereGeometry(0.15, 16, 16);
       const eMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
       const eMesh = new THREE.Mesh(eGeo, eMat);
 
       // Glowing Halo around Electron
-      const haloGeo = new THREE.SphereGeometry(0.26, 16, 16);
+      const haloGeo = new THREE.SphereGeometry(0.28, 16, 16);
       const haloMat = new THREE.MeshBasicMaterial({
         color: cfg.color,
         transparent: true,
-        opacity: 0.45,
+        opacity: 0.55,
       });
       const eHalo = new THREE.Mesh(haloGeo, haloMat);
       eMesh.add(eHalo);
@@ -1685,7 +1667,7 @@ function initInteractiveAtomScene() {
           new THREE.MeshBasicMaterial({
             color: cfg.color,
             transparent: true,
-            opacity: 0.5 - t * 0.12,
+            opacity: 0.55 - t * 0.12,
           })
         );
         bohrGroup.add(tMesh);
@@ -1734,21 +1716,21 @@ function initInteractiveAtomScene() {
     cloudBasePos[i3 + 2] = z;
     cloudBaseDist[i] = r;
 
-    // Color gradient: cyan core to purple outer cloud
+    // Color gradient: Radiant Gold core to Amber & White outer cloud
     const t = Math.min(1, r / 4.5);
-    cloudColors[i3] = 0.0 * (1 - t) + 0.66 * t;
-    cloudColors[i3 + 1] = 0.94 * (1 - t) + 0.33 * t;
-    cloudColors[i3 + 2] = 1.0;
+    cloudColors[i3] = 1.0 * (1 - t) + 0.96 * t;
+    cloudColors[i3 + 1] = 0.84 * (1 - t) + 0.62 * t;
+    cloudColors[i3 + 2] = 0.0 * (1 - t) + 0.4 * t;
   }
 
   cloudGeo.setAttribute('position', new THREE.BufferAttribute(cloudPositions, 3));
   cloudGeo.setAttribute('color', new THREE.BufferAttribute(cloudColors, 3));
 
   const cloudMat = new THREE.PointsMaterial({
-    size: 0.1,
+    size: 0.12,
     vertexColors: true,
     transparent: true,
-    opacity: 0.85,
+    opacity: 0.88,
     blending: THREE.AdditiveBlending,
   });
   const cloudGroup = new THREE.Points(cloudGeo, cloudMat);
@@ -1781,7 +1763,8 @@ function initInteractiveAtomScene() {
     vortexPositions[i3 + 1] = r * Math.sin(theta);
     vortexPositions[i3 + 2] = z;
 
-    const armColor = arm === 0 ? [0.0, 0.94, 1.0] : [0.65, 0.33, 0.97];
+    // Gold and Amber Arms
+    const armColor = arm === 0 ? [1.0, 0.84, 0.0] : [0.96, 0.62, 0.04];
     vortexColors[i3] = armColor[0];
     vortexColors[i3 + 1] = armColor[1];
     vortexColors[i3 + 2] = armColor[2];
@@ -1791,17 +1774,214 @@ function initInteractiveAtomScene() {
   vortexGeo.setAttribute('color', new THREE.BufferAttribute(vortexColors, 3));
 
   const vortexMat = new THREE.PointsMaterial({
-    size: 0.11,
+    size: 0.12,
     vertexColors: true,
     transparent: true,
-    opacity: 0.9,
+    opacity: 0.92,
     blending: THREE.AdditiveBlending,
   });
   const vortexGroup = new THREE.Points(vortexGeo, vortexMat);
   vortexGroup.visible = false;
   atomGroup.add(vortexGroup);
 
-  // 4. AMBIENT FIELD PARTICLES (QUANTUM DUST)
+  // ==========================================================================
+  // MODE 4: GLOBAL EDGE CLOUD GLOBE (globeGroup)
+  // ==========================================================================
+  const globeGroup = new THREE.Group();
+  atomGroup.add(globeGroup);
+  globeGroup.visible = false;
+
+  const globeMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(2.35, 26, 22),
+    new THREE.MeshBasicMaterial({ color: 0xffd700, wireframe: true, transparent: true, opacity: 0.25 })
+  );
+  globeGroup.add(globeMesh);
+
+  const innerAtm = new THREE.Mesh(
+    new THREE.SphereGeometry(2.2, 24, 20),
+    new THREE.MeshBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.12 })
+  );
+  globeGroup.add(innerAtm);
+
+  function latLonToVector3(lat, lon, radius) {
+    const phi = (90 - lat) * (Math.PI / 180);
+    const theta = (lon + 180) * (Math.PI / 180);
+    return new THREE.Vector3(
+      -(radius * Math.sin(phi) * Math.cos(theta)),
+      radius * Math.cos(phi),
+      radius * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  const majorCities = [
+    [37.77, -122.41], [40.71, -74.00], [51.50, -0.12], [50.11, 8.68],
+    [19.07, 72.87], [28.61, 77.20], [1.35, 103.81], [35.67, 139.65],
+    [-33.86, 151.20], [25.20, 55.27]
+  ];
+
+  const globeNodes = [];
+  majorCities.forEach((city, idx) => {
+    const pos = latLonToVector3(city[0], city[1], 2.37);
+    const nodeMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(0.1, 12, 12),
+      new THREE.MeshBasicMaterial({ color: 0xffffff })
+    );
+    nodeMesh.position.copy(pos);
+    globeGroup.add(nodeMesh);
+
+    const ringMesh = new THREE.Mesh(
+      new THREE.RingGeometry(0.12, 0.18, 20),
+      new THREE.MeshBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.8, side: THREE.DoubleSide })
+    );
+    ringMesh.position.copy(pos);
+    ringMesh.lookAt(new THREE.Vector3(0, 0, 0));
+    globeGroup.add(ringMesh);
+
+    globeNodes.push({ mesh: nodeMesh, ring: ringMesh, phase: idx * 0.7 });
+  });
+
+  // Connecting Data Arcs
+  const arcCurves = [
+    [latLonToVector3(37.77, -122.41, 2.37), latLonToVector3(51.50, -0.12, 2.37)],
+    [latLonToVector3(51.50, -0.12, 2.37), latLonToVector3(19.07, 72.87, 2.37)],
+    [latLonToVector3(19.07, 72.87, 2.37), latLonToVector3(1.35, 103.81, 2.37)],
+    [latLonToVector3(1.35, 103.81, 2.37), latLonToVector3(35.67, 139.65, 2.37)],
+    [latLonToVector3(35.67, 139.65, 2.37), latLonToVector3(37.77, -122.41, 2.37)],
+    [latLonToVector3(51.50, -0.12, 2.37), latLonToVector3(25.20, 55.27, 2.37)],
+  ];
+
+  arcCurves.forEach(pts => {
+    const mid = pts[0].clone().add(pts[1]).multiplyScalar(0.5).normalize().multiplyScalar(3.1);
+    const curve = new THREE.QuadraticBezierCurve3(pts[0], mid, pts[1]);
+    const arcGeo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(36));
+    const arcLine = new THREE.Line(arcGeo, new THREE.LineBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.7 }));
+    globeGroup.add(arcLine);
+  });
+
+  const satelliteRing = new THREE.Group();
+  satelliteRing.rotation.x = Math.PI / 4;
+  for (let s = 0; s < 3; s++) {
+    const sat = new THREE.Mesh(
+      new THREE.BoxGeometry(0.15, 0.09, 0.2),
+      new THREE.MeshBasicMaterial({ color: 0xffffff })
+    );
+    const satAngle = (s / 3) * Math.PI * 2;
+    sat.position.set(Math.cos(satAngle) * 3.3, Math.sin(satAngle) * 3.3, 0);
+    satelliteRing.add(sat);
+  }
+  globeGroup.add(satelliteRing);
+
+  // ==========================================================================
+  // MODE 5: CYBER PRISM CRYSTAL MATRIX (prismGroup)
+  // ==========================================================================
+  const prismGroup = new THREE.Group();
+  atomGroup.add(prismGroup);
+  prismGroup.visible = false;
+
+  const prismMesh = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(2.1, 0),
+    new THREE.MeshBasicMaterial({ color: 0xffd700, transparent: true, opacity: 0.38, wireframe: false, depthWrite: false })
+  );
+  prismGroup.add(prismMesh);
+
+  const wireMesh = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(2.14, 0),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.75 })
+  );
+  prismGroup.add(wireMesh);
+
+  const cubeMesh = new THREE.Mesh(
+    new THREE.BoxGeometry(1.2, 1.2, 1.2),
+    new THREE.MeshBasicMaterial({ color: 0xf59e0b, wireframe: true, transparent: true, opacity: 0.85 })
+  );
+  prismGroup.add(cubeMesh);
+
+  const gemCore = new THREE.Mesh(
+    new THREE.OctahedronGeometry(0.68, 0),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 })
+  );
+  prismGroup.add(gemCore);
+
+  const shards = [];
+  for (let i = 0; i < 8; i++) {
+    const shardMesh = new THREE.Mesh(
+      new THREE.TetrahedronGeometry(0.22, 0),
+      new THREE.MeshBasicMaterial({ color: 0xfde047, wireframe: true, transparent: true, opacity: 0.85 })
+    );
+    prismGroup.add(shardMesh);
+    shards.push({ mesh: shardMesh, r: 3.1 + (i % 2) * 0.4, offset: (i / 8) * Math.PI * 2 });
+  }
+
+  // ==========================================================================
+  // MODE 6: NEURAL AI SYNAPSE NETWORK (neuralGroup)
+  // ==========================================================================
+  const neuralGroup = new THREE.Group();
+  atomGroup.add(neuralGroup);
+  neuralGroup.visible = false;
+
+  const neuralNodesGroup = new THREE.Group();
+  neuralGroup.add(neuralNodesGroup);
+
+  const nodeCount = 42;
+  const nodePositions = [];
+  for (let i = 0; i < nodeCount; i++) {
+    const r = 1.0 + Math.random() * 1.5;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    const p = new THREE.Vector3(
+      r * Math.sin(phi) * Math.cos(theta),
+      r * Math.sin(phi) * Math.sin(theta),
+      r * Math.cos(phi)
+    );
+    nodePositions.push(p);
+
+    const nMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(0.09, 12, 12),
+      new THREE.MeshBasicMaterial({ color: i % 3 === 0 ? 0xffffff : 0xffd700 })
+    );
+    nMesh.position.copy(p);
+    neuralNodesGroup.add(nMesh);
+  }
+
+  const synapseLines = [];
+  const pulsePairs = [];
+  for (let i = 0; i < nodeCount; i++) {
+    for (let j = i + 1; j < nodeCount; j++) {
+      const d = nodePositions[i].distanceTo(nodePositions[j]);
+      if (d < 1.45) {
+        synapseLines.push(nodePositions[i].x, nodePositions[i].y, nodePositions[i].z);
+        synapseLines.push(nodePositions[j].x, nodePositions[j].y, nodePositions[j].z);
+        if (pulsePairs.length < 14) {
+          pulsePairs.push({ from: nodePositions[i], to: nodePositions[j] });
+        }
+      }
+    }
+  }
+
+  const synapseGeo = new THREE.BufferGeometry();
+  synapseGeo.setAttribute('position', new THREE.Float32BufferAttribute(synapseLines, 3));
+  const synapsesLine = new THREE.LineSegments(
+    synapseGeo,
+    new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.45 })
+  );
+  neuralGroup.add(synapsesLine);
+
+  const synapsePulses = [];
+  pulsePairs.forEach((pair, idx) => {
+    const pulseMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(0.06, 8, 8),
+      new THREE.MeshBasicMaterial({ color: 0xffffff })
+    );
+    neuralGroup.add(pulseMesh);
+    synapsePulses.push({
+      mesh: pulseMesh,
+      from: pair.from,
+      to: pair.to,
+      progress: (idx / pulsePairs.length),
+    });
+  });
+
+  // 4. AMBIENT FIELD PARTICLES (GOLD QUANTUM DUST)
   const dustCount = 350;
   const dustGeo = new THREE.BufferGeometry();
   const dustPos = new Float32Array(dustCount * 3);
@@ -1813,7 +1993,7 @@ function initInteractiveAtomScene() {
   dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
   const dustMat = new THREE.PointsMaterial({
     size: 0.1,
-    color: 0x00f0ff,
+    color: 0xffd700,
     transparent: true,
     opacity: 0.6,
   });
@@ -1925,13 +2105,18 @@ function initInteractiveAtomScene() {
       }
     }
 
-    // MODE EXECUTION LOGIC
+    const dir = interactiveAtomState.isReverse ? -1 : 1;
+
+    // 5-IN-1 MODE EXECUTION LOGIC
     if (interactiveAtomState.mode === 'bohr') {
+      nucleusGroup.visible = true;
       bohrGroup.visible = true;
       cloudGroup.visible = false;
       vortexGroup.visible = false;
+      globeGroup.visible = false;
+      prismGroup.visible = false;
+      neuralGroup.visible = false;
 
-      const dir = interactiveAtomState.isReverse ? -1 : 1;
       electrons.forEach((el) => {
         const t = (elapsed * el.shell.speed * interactiveAtomState.speed * dir) + el.phase;
         const localX = el.shell.a * Math.cos(t);
@@ -1952,9 +2137,13 @@ function initInteractiveAtomScene() {
         });
       });
     } else if (interactiveAtomState.mode === 'cloud') {
+      nucleusGroup.visible = true;
       bohrGroup.visible = false;
       cloudGroup.visible = true;
       vortexGroup.visible = false;
+      globeGroup.visible = false;
+      prismGroup.visible = false;
+      neuralGroup.visible = false;
 
       const cPos = cloudGeo.attributes.position.array;
       for (let i = 0; i < cloudCount; i++) {
@@ -1969,12 +2158,15 @@ function initInteractiveAtomScene() {
       cloudGroup.rotation.y = elapsed * 0.25 * interactiveAtomState.speed;
       cloudGroup.rotation.x = elapsed * 0.18 * interactiveAtomState.speed;
     } else if (interactiveAtomState.mode === 'vortex') {
+      nucleusGroup.visible = false;
       bohrGroup.visible = false;
       cloudGroup.visible = false;
       vortexGroup.visible = true;
+      globeGroup.visible = false;
+      prismGroup.visible = false;
+      neuralGroup.visible = false;
 
       const vPos = vortexGeo.attributes.position.array;
-      const dir = interactiveAtomState.isReverse ? -1 : 1;
       for (let i = 0; i < vortexCount; i++) {
         const i3 = i * 3;
         const arm = vortexArm[i];
@@ -1989,6 +2181,66 @@ function initInteractiveAtomScene() {
       }
       vortexGeo.attributes.position.needsUpdate = true;
       vortexGroup.rotation.z = elapsed * 0.4 * interactiveAtomState.speed;
+    } else if (interactiveAtomState.mode === 'globe') {
+      nucleusGroup.visible = false;
+      bohrGroup.visible = false;
+      cloudGroup.visible = false;
+      vortexGroup.visible = false;
+      globeGroup.visible = true;
+      prismGroup.visible = false;
+      neuralGroup.visible = false;
+
+      globeGroup.rotation.y += 0.008 * interactiveAtomState.speed * dir;
+      satelliteRing.rotation.z += 0.015 * interactiveAtomState.speed * dir;
+      globeNodes.forEach(node => {
+        const s = 1 + Math.sin(elapsed * 4 + node.phase) * 0.25;
+        node.ring.scale.set(s, s, s);
+      });
+    } else if (interactiveAtomState.mode === 'prism') {
+      nucleusGroup.visible = false;
+      bohrGroup.visible = false;
+      cloudGroup.visible = false;
+      vortexGroup.visible = false;
+      globeGroup.visible = false;
+      prismGroup.visible = true;
+      neuralGroup.visible = false;
+
+      prismMesh.rotation.y += 0.007 * interactiveAtomState.speed * dir;
+      prismMesh.rotation.x += 0.005 * interactiveAtomState.speed * dir;
+      wireMesh.rotation.copy(prismMesh.rotation);
+
+      cubeMesh.rotation.x -= 0.016 * interactiveAtomState.speed * dir;
+      cubeMesh.rotation.y += 0.013 * interactiveAtomState.speed * dir;
+      gemCore.scale.setScalar(1 + Math.sin(elapsed * 5) * 0.15);
+
+      shards.forEach((shard) => {
+        const angle = elapsed * 0.8 * interactiveAtomState.speed * dir + shard.offset;
+        shard.mesh.position.set(Math.cos(angle) * shard.r, Math.sin(angle * 0.7) * 1.2, Math.sin(angle) * shard.r);
+        shard.mesh.rotation.x += 0.03;
+        shard.mesh.rotation.y += 0.02;
+      });
+    } else if (interactiveAtomState.mode === 'neural') {
+      nucleusGroup.visible = false;
+      bohrGroup.visible = false;
+      cloudGroup.visible = false;
+      vortexGroup.visible = false;
+      globeGroup.visible = false;
+      prismGroup.visible = false;
+      neuralGroup.visible = true;
+
+      neuralGroup.rotation.y += 0.006 * interactiveAtomState.speed * dir;
+      neuralGroup.rotation.z = Math.sin(elapsed * 0.5) * 0.15;
+
+      const breathe = 1 + Math.sin(elapsed * 2.2) * 0.04;
+      neuralNodesGroup.scale.set(breathe, breathe, breathe);
+      synapsesLine.scale.set(breathe, breathe, breathe);
+
+      synapsePulses.forEach((pulse) => {
+        pulse.progress += 0.025 * interactiveAtomState.speed * dir;
+        if (pulse.progress > 1) pulse.progress = 0;
+        if (pulse.progress < 0) pulse.progress = 1;
+        pulse.mesh.position.lerpVectors(pulse.from, pulse.to, pulse.progress);
+      });
     }
 
     // Ambient dust drift
@@ -2008,11 +2260,11 @@ function setAtomSpeed(multiplier, btnElement) {
   playCyberClick();
 
   document.querySelectorAll('.atom-speed-btn').forEach((btn) => {
-    btn.className = 'atom-speed-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all';
+    btn.className = 'atom-speed-btn px-3 py-1.5 rounded-xl border border-amber-500/20 text-slate-300 hover:text-white hover:border-amber-400 text-xs font-mono transition-all';
   });
 
   if (btnElement) {
-    btnElement.className = 'atom-speed-btn atom-btn-active px-3 py-1.5 rounded-xl border border-cyan-500/40 text-xs font-mono transition-all';
+    btnElement.className = 'atom-speed-btn atom-btn-active px-3 py-1.5 rounded-xl border border-amber-500/50 text-xs font-mono transition-all font-bold';
   }
 
   const speedVal = document.getElementById('atom-telemetry-speed');
@@ -2022,7 +2274,7 @@ function setAtomSpeed(multiplier, btnElement) {
   }
   if (stateVal) {
     stateVal.innerText = multiplier > 4 ? 'QUANTUM WARP' : multiplier > 2 ? 'HYPER-ORBIT' : 'SUPERCONDUCTING';
-    stateVal.className = multiplier > 4 ? 'text-purple-400 font-mono font-bold animate-pulse' : 'text-cyan-300 font-mono';
+    stateVal.className = multiplier > 4 ? 'text-yellow-300 font-mono font-bold animate-pulse' : 'text-amber-400 font-mono font-bold';
   }
 }
 
@@ -2032,7 +2284,7 @@ function triggerQuantumBurst() {
   interactiveAtomState.burstOpacity = 0.95;
   playCyberChirp(600, 2200, 0.08);
 
-  showWebsiteToast('Quantum Superposition Pulse Triggered! Atomic frequency synced.', 'success');
+  showWebsiteToast('Quantum Superposition Pulse Triggered! 3D frequency synced.', 'success');
 }
 
 function toggleAtomReverse() {
@@ -2041,44 +2293,63 @@ function toggleAtomReverse() {
 }
 
 // ==========================================================================
-// 20. 3D QUANTUM ATOM MODE SWITCHER (BOHR, CLOUD, VORTEX)
+// 20. 3D QUANTUM ATOM MODE SWITCHER (BOHR, CLOUD, VORTEX, GLOBE, PRISM, NEURAL)
 // ==========================================================================
 function switchAtomMode(mode, btnElement) {
   interactiveAtomState.mode = mode;
   playCyberClick();
 
   document.querySelectorAll('.atom-mode-btn').forEach((b) => {
-    b.className = 'atom-mode-btn px-3 py-1.5 rounded-xl border border-white/10 text-slate-300 hover:text-white hover:border-cyan-500/30 text-xs font-mono transition-all';
+    b.className = 'atom-mode-btn px-3 py-1.5 rounded-xl border border-amber-500/20 text-slate-300 hover:text-white hover:border-amber-400 text-xs font-mono transition-all';
   });
   if (btnElement) {
-    btnElement.className = 'atom-mode-btn atom-btn-active px-3 py-1.5 rounded-xl border border-cyan-500/40 text-xs font-mono transition-all';
+    btnElement.className = 'atom-mode-btn atom-btn-active px-3 py-1.5 rounded-xl border border-amber-500/50 text-xs font-mono transition-all font-bold';
   }
 
   const speedVal = document.getElementById('atom-telemetry-speed');
   const stateVal = document.getElementById('atom-telemetry-state');
-  const currentLang = localStorage.getItem('bitnexa_lang') || 'en';
+  const topTitle = document.getElementById('atom-stage-title');
 
   if (mode === 'bohr') {
     if (speedVal) speedVal.innerText = `${Math.round(2187 * interactiveAtomState.speed).toLocaleString()} km/s`;
     if (stateVal) {
-      stateVal.innerText = 'BOHR RUTHERFORD SHELLS';
-      stateVal.className = 'text-cyan-300 font-mono';
+      stateVal.innerText = 'BOHR ATOMIC ORBITALS';
+      stateVal.className = 'text-amber-400 font-mono font-bold';
     }
-    showWebsiteToast('Switched to Bohr Atomic Orbital Shell Model', 'info');
-  } else if (mode === 'cloud') {
-    if (speedVal) speedVal.innerText = `${Math.round(2997 * interactiveAtomState.speed).toLocaleString()} km/s`;
+    if (topTitle) topTitle.innerText = 'BITNEXA 3D QUANTUM ATOM CORE • RUTHERFORD-BOHR v3.0';
+    showWebsiteToast('Loaded Bohr Atomic Orbital 3D Model', 'info');
+  } else if (mode === 'globe') {
+    if (speedVal) speedVal.innerText = '310+ Edge PoP Nodes';
     if (stateVal) {
-      stateVal.innerText = 'SCHRÖDINGER |Ψ|² CLOUD';
-      stateVal.className = 'text-purple-300 font-mono';
+      stateVal.innerText = 'GLOBAL CLOUDFLARE EDGE';
+      stateVal.className = 'text-amber-300 font-mono font-bold';
     }
-    showWebsiteToast('Switched to Schrödinger Quantum Probability Cloud', 'info');
+    if (topTitle) topTitle.innerText = 'BITNEXA 3D GLOBAL EDGE NETWORK • DISTRIBUTED CLOUD';
+    showWebsiteToast('Loaded Global Cloud Edge 3D Globe', 'info');
+  } else if (mode === 'prism') {
+    if (speedVal) speedVal.innerText = '1.54 Refractive Index';
+    if (stateVal) {
+      stateVal.innerText = 'HOLOGRAPHIC SPECULAR MATRIX';
+      stateVal.className = 'text-yellow-300 font-mono font-bold';
+    }
+    if (topTitle) topTitle.innerText = 'BITNEXA 3D CYBER PRISM • SPECULAR CRYSTAL MATRIX';
+    showWebsiteToast('Loaded Cyber Prism Crystal 3D Model', 'info');
+  } else if (mode === 'neural') {
+    if (speedVal) speedVal.innerText = '1,024 GigaFLOPs';
+    if (stateVal) {
+      stateVal.innerText = 'NEURAL AI INFERENCE CORE';
+      stateVal.className = 'text-amber-400 font-mono font-bold animate-pulse';
+    }
+    if (topTitle) topTitle.innerText = 'BITNEXA 3D NEURAL AI CORE • SYNAPSE MAPPING';
+    showWebsiteToast('Loaded Neural AI Network 3D Model', 'info');
   } else if (mode === 'vortex') {
     if (speedVal) speedVal.innerText = `${Math.round(7450 * interactiveAtomState.speed).toLocaleString()} km/s`;
     if (stateVal) {
       stateVal.innerText = 'RELATIVISTIC PLASMA VORTEX';
-      stateVal.className = 'text-electric-300 font-mono font-bold animate-pulse';
+      stateVal.className = 'text-amber-300 font-mono font-bold animate-pulse';
     }
-    showWebsiteToast('Switched to Relativistic Plasma Fusion Vortex', 'info');
+    if (topTitle) topTitle.innerText = 'BITNEXA 3D PLASMA FUSION VORTEX • QUANTUM ACCELERATOR';
+    showWebsiteToast('Loaded Relativistic Plasma Fusion Vortex', 'info');
   }
 }
 
@@ -2398,7 +2669,7 @@ const i18n = {
     hero_tagline: "CODE BEYOND LIMITS",
     hero_h1_1: "We Build High-Speed",
     hero_h1_2: "Websites, Cloud & Viral Media",
-    hero_sub: "Bitnexa Technologies is your dedicated tech & creative growth partner. From custom modern web development and bulletproof Node.js backends to 24/7 Render Cloud live deployments, custom domains, and viral Instagram Reels editing.",
+    hero_sub: "Bitnexa Technologies is your dedicated tech & creative growth partner. From custom modern web development and bulletproof Node.js backends to 24/7 Custom Domain live deployments, custom domains, and viral Instagram Reels editing.",
     hero_cta_proposal: "Start Your Project (Free Quote) →",
     hero_cta_portfolio: "⚡ Explore Showcase Work",
     hero_pill_turnaround: "⚡ 7–14 Days Fast Turnaround",
@@ -2529,3 +2800,102 @@ function setSectionWarpVariant(variant) {
 
 window.initWarpFieldSection = initWarpFieldSection;
 window.setSectionWarpVariant = setSectionWarpVariant;
+
+// ==========================================================================
+// 26. MOBILE NAVIGATION DRAWER & TOUCH OPTIMIZATIONS (iOS & Android)
+// ==========================================================================
+window.toggleMobileMenu = function() {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const hamIcon = document.getElementById('mobile-hamburger-icon');
+  const closeIcon = document.getElementById('mobile-close-icon');
+  if (!drawer) return;
+  const isHidden = drawer.classList.contains('hidden');
+  if (isHidden) {
+    drawer.classList.remove('hidden');
+    if (hamIcon) hamIcon.classList.add('hidden');
+    if (closeIcon) closeIcon.classList.remove('hidden');
+  } else {
+    drawer.classList.add('hidden');
+    if (hamIcon) hamIcon.classList.remove('hidden');
+    if (closeIcon) closeIcon.classList.add('hidden');
+  }
+};
+
+window.closeMobileMenu = function() {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const hamIcon = document.getElementById('mobile-hamburger-icon');
+  const closeIcon = document.getElementById('mobile-close-icon');
+  if (drawer && !drawer.classList.contains('hidden')) {
+    drawer.classList.add('hidden');
+    if (hamIcon) hamIcon.classList.remove('hidden');
+    if (closeIcon) closeIcon.classList.add('hidden');
+  }
+};
+
+// Close mobile menu on Escape key
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.closeMobileMenu();
+    if (typeof window.closeInquiryModal === 'function') window.closeInquiryModal();
+  }
+});
+
+// Close mobile menu when resizing up to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1024) {
+    window.closeMobileMenu();
+  }
+});
+
+// ==========================================================================
+// 24. PROJECT SCOPE & INVESTMENT CALCULATOR (EXECUTIVE EDITION)
+// ==========================================================================
+window.selectedQuoteItems = [
+  { title: 'High-Performance Modern Website', price: 14999 },
+  { title: '24/7 Custom Domain Live Hosting & SSL', price: 4999 }
+];
+
+window.toggleQuoteItem = function (itemEl, title, price) {
+  if (!window.selectedQuoteItems) window.selectedQuoteItems = [];
+  const index = window.selectedQuoteItems.findIndex(i => i.title === title);
+  if (index > -1) {
+    window.selectedQuoteItems.splice(index, 1);
+    itemEl.classList.remove('selected');
+    const box = itemEl.querySelector('.quote-check-icon');
+    if (box) box.innerText = '⬜';
+  } else {
+    window.selectedQuoteItems.push({ title, price });
+    itemEl.classList.add('selected');
+    const box = itemEl.querySelector('.quote-check-icon');
+    if (box) box.innerText = '✅';
+  }
+  window.calculateQuoteTotal();
+};
+
+window.calculateQuoteTotal = function () {
+  const totalEl = document.getElementById('quote-total-price');
+  const itemsCountEl = document.getElementById('quote-items-count');
+  if (!totalEl || !itemsCountEl) return;
+  const total = (window.selectedQuoteItems || []).reduce((sum, item) => sum + item.price, 0);
+  totalEl.innerText = `₹${total.toLocaleString('en-IN')}`;
+  itemsCountEl.innerText = `${window.selectedQuoteItems.length} DELIVERABLES SELECTED`;
+};
+
+window.launchQuoteProposal = function () {
+  const count = (window.selectedQuoteItems || []).length;
+  const total = (window.selectedQuoteItems || []).reduce((sum, item) => sum + item.price, 0);
+  const titles = (window.selectedQuoteItems || []).map(i => i.title).join(', ');
+  const serviceName = `Custom Project: ${count} Deliverables [${titles}] (₹${total.toLocaleString('en-IN')})`;
+
+  if (window.openInquiryModal) {
+    window.openInquiryModal(serviceName);
+  }
+};
+
+// Auto-run calculator on init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => window.calculateQuoteTotal());
+} else {
+  setTimeout(() => window.calculateQuoteTotal(), 100);
+}
+
